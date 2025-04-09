@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'patients',
+    'transactions'
 ]
 
 MIDDLEWARE = [
@@ -95,3 +96,7 @@ STATIC_URL = '/static/'
 # Login redirect
 LOGIN_REDIRECT_URL = '/patients/'
 LOGIN_URL = '/accounts/login/'
+
+# DATE TIME SETTINGS
+TIME_ZONE = 'Asia/Manila'
+USE_TZ = True

@@ -1,8 +1,8 @@
-<!-- # patients/templates/patients/patient_form.html -->
+<!-- # transactions/templates/transactions/transaction_form.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% if form.instance.pk %}Edit{% else %}Register{% endif %} Patient</title>
+    <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %} transaction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -48,28 +48,13 @@
         }
     </style>
 </head>
-
-{% if show_modal %}
-<div id="modal" style="position: fixed; top: 0; left: 0; width:100%; height:100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;">
-    <div style="background: white; padding: 30px; border-radius: 10px; text-align: center; max-width: 400px;">
-        <h2>Notification</h2>
-        <p>{{ modal_message }}</p>
-        {% if existing_patient %}
-            <p><a href="{% url 'patient_detail' existing_patient.id %}">View Patient</a></p>
-        {% endif %}
-        <!-- Redirect to home page when closing the modal -->
-        <button onclick="window.location.href='{% url 'home' %}'" style="margin-top: 10px;">Close</button>
-    </div>
-</div>
-{% endif %}
-
 <body>
     <div class="nav">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'logout' %}">Logout</a>
     </div>
 
-    <h1>{% if form.instance.pk %}Edit{% else %}Register New{% endif %} Patient</h1>
+    <h1>{% if form.instance.pk %}Edit{% else %}Create New{% endif %} transaction</h1>
     
     <form method="post">
         {% csrf_token %}
@@ -86,7 +71,7 @@
             {% endif %}
         </div>
         {% endfor %}
-        <button type="submit">{% if form.instance.pk %}Update{% else %}Register{% endif %} Patient</button>
+        <button type="submit">{% if form.instance.pk %}Update{% else %}Create{% endif %} transaction</button>
     </form>
 </body>
 </html>

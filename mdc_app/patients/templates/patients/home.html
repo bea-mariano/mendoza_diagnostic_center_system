@@ -1,8 +1,8 @@
-<!-- # patients/templates/patients/patient_list.html -->
+<!-- # mdc_app/templates/home/home.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Patient List</title>
+    <title>Mendoza Diagnostic Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -66,42 +66,29 @@
         </form>
     </div>
 
-    <div class="header">
-        <h1>Patient List</h1>
-        <a href="{% url 'patient_new' %}" class="btn">Register New Patient</a>
+    <div>
+        <h1>Mendoza Diagnostic Center</h1>
+        <br>
+
+        <h2>Cashier and Billing</h2>
+        <!-- after new transaction is made, stickers will be printed -->
+        <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
+        <!-- add a review process after all tests are done? -->
+        <a href="{% url 'patient_new' %}" class="btn">Create Acknowledgement Receipt</a>
+        <a href="{% url 'transaction_active_list' %}" class="btn">View Active Transactions</a>
+        <a href="{% url 'transaction_list' %}" class="btn">View All Transactions</a>
+
+        <h2>Patient Management</h2>
+        <a href="{% url 'patient_new' %}" class="btn">Add New Patient</a>
+        <a href="{% url 'patient_list' %}" class="btn">View Patients</a>
+
+        <h2>Company Charge</h2>
+        <!-- all companies then, filter per company per month -->
+        <a href="{% url 'patient_new' %}" class="btn">View Active Company Transactions</a> 
+        <!-- choose a company first then filter per month -->
+        <a href="{% url 'patient_list' %}" class="btn">Generate Statement of Account</a> 
     </div>
     
-    {% if patients %}
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Date of Birth</th>
-                <th>Gender</th>
-                <th>Phone</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for patient in patients %}
-            <tr>
-                <td>{{ patient.id }}</td>
-                <td>{{ patient.last_name }}, {{ patient.first_name }}</td>
-                <td>{{ patient.date_of_birth }}</td>
-                <td>{{ patient.get_gender_display }}</td>
-                <td>{{ patient.phone_number }}</td>
-                <td class="action-links">
-                    <a href="{% url 'patient_detail' patient.id %}">View</a>
-                    <a href="{% url 'patient_edit' patient.id %}">Edit</a>
-                    <a href="{% url 'patient_delete' patient.id %}" class="btn-danger">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <p>No patients registered yet.</p>
-    {% endif %}
+
 </body>
 </html>

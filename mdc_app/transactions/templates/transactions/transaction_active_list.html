@@ -1,8 +1,8 @@
-<!-- # patients/templates/patients/patient_list.html -->
+<!-- # transactions/templates/transactions/transaction_list.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Patient List</title>
+    <title>Transaction List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -55,6 +55,10 @@
         .nav a {
             margin-right: 15px;
         }
+        .header-buttons {
+            display: flex;
+            gap: 10px; /* adds spacing between the buttons */
+        }
     </style>
 </head>
 <body>
@@ -67,41 +71,46 @@
     </div>
 
     <div class="header">
-        <h1>Patient List</h1>
-        <a href="{% url 'patient_new' %}" class="btn">Register New Patient</a>
+        <h1>Active Transactions List</h1>
+        <div class="header-buttons">
+            <a href="{% url 'transaction_list' %}" class="btn">View All Transactions</a>
+            <a href="{% url 'transaction_new' %}" class="btn">Register New Transaction</a>
+        </div>
     </div>
     
-    {% if patients %}
+    {% if transactions %}
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Date of Birth</th>
-                <th>Gender</th>
-                <th>Phone</th>
+                <th>Transaction ID</th>
+                <th>Patient Name</th>
+                <th>Payment Type</th>
+                <th>Transaction Type</th>
+                <th>Transaction Purpose</th>
+                <th>Transaction Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for patient in patients %}
+            {% for transaction in transactions %}
             <tr>
-                <td>{{ patient.id }}</td>
-                <td>{{ patient.last_name }}, {{ patient.first_name }}</td>
-                <td>{{ patient.date_of_birth }}</td>
-                <td>{{ patient.get_gender_display }}</td>
-                <td>{{ patient.phone_number }}</td>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.patient.last_name}},{{ transaction.patient.first_name}}</td>
+                <td>{{ transaction.payment_type }}</td>
+                <td>{{ transaction.transaction_type }}</td>
+                <td>{{ transaction.transaction_purpose }}</td>
+                <td>{{ transaction.transaction_status }}</td>
                 <td class="action-links">
-                    <a href="{% url 'patient_detail' patient.id %}">View</a>
-                    <a href="{% url 'patient_edit' patient.id %}">Edit</a>
-                    <a href="{% url 'patient_delete' patient.id %}" class="btn-danger">Delete</a>
+                    <a href="{% url 'transaction_detail' transaction.id %}">View</a>
+                    <a href="{% url 'transaction_edit' transaction.id %}">Edit</a>
+                    <a href="{% url 'transaction_delete' transaction.id %}" class="btn-danger">Delete</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% else %}
-    <p>No patients registered yet.</p>
+    <p>No transactions registered yet.</p>
     {% endif %}
 </body>
 </html>

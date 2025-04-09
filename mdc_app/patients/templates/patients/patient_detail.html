@@ -51,7 +51,7 @@
 </head>
 <body>
     <div class="nav">
-        <a href="{% url 'patient_list' %}">Home</a>
+        <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'logout' %}">Logout</a>
     </div>
 
@@ -59,37 +59,30 @@
     
     <div class="patient-info">
         <div class="field">
-            <span class="label">Name:</span>
-            <span>{{ patient.last_name }}, {{ patient.first_name }}</span>
+            <span class="label">Patient ID:</span>
+            <span>{{ patient.id }}</span>
         </div>
+
         <div class="field">
-            <span class="label">Date of Birth:</span>
-            <span>{{ patient.date_of_birth }}</span>
+            <span class="label">Name:</span>
+            <span>{{ patient.last_name }}, {{ patient.first_name }} {{ patient.middle_name }}</span>
         </div>
+
         <div class="field">
             <span class="label">Gender:</span>
             <span>{{ patient.get_gender_display }}</span>
         </div>
+
         <div class="field">
-            <span class="label">Phone:</span>
-            <span>{{ patient.phone_number }}</span>
+            <span class="label">Date of Birth:</span>
+            <span>{{ patient.date_of_birth }}</span>
         </div>
-        <div class="field">
-            <span class="label">Email:</span>
-            <span>{{ patient.email|default:"Not provided" }}</span>
-        </div>
-        <div class="field">
-            <span class="label">Address:</span>
-            <span>{{ patient.address }}</span>
-        </div>
-        <div class="field">
-            <span class="label">Medical History:</span>
-            <p>{{ patient.medical_history|linebreaks|default:"No medical history recorded" }}</p>
-        </div>
+    
         <div class="field">
             <span class="label">Registered:</span>
             <span>{{ patient.created_at }}</span>
         </div>
+
         <div class="field">
             <span class="label">Last Updated:</span>
             <span>{{ patient.updated_at }}</span>
@@ -101,5 +94,43 @@
         <a href="{% url 'patient_delete' patient.id %}" class="btn btn-danger">Delete</a>
         <a href="{% url 'patient_list' %}" class="btn">Back to List</a>
     </div>
+
+    <h2>Transactions</h2>
+
+    {% if transactions %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Payment Type</th>
+                <th>Transaction Type</th>
+                <th>Purpose</th>
+                <th>Transaction Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.payment_type }}</td>
+                <td>{{ transaction.transaction_type }}</td>
+                <td>{{ transaction.transaction_purpose }}</td>
+                <td>{{ transaction.transaction_date }}</td>
+                <td>{{ transaction.transaction_status }}</td>
+                <td>
+                    <a href="{% url 'transaction_detail' transaction.id %}">View</a>
+                    <a href="{% url 'transaction_edit' transaction.id %}">Edit</a>
+                    <a href="{% url 'transaction_delete' transaction.id %}" onclick="return confirm('Delete this transaction?');">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>This patient has no transactions yet.</p>
+    {% endif %}
+
 </body>
 </html>

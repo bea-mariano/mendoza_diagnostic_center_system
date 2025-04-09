@@ -1,8 +1,8 @@
-<!-- # patients/templates/patients/patient_confirm_delete.html -->
+<!-- # transactions/templates/transactions/transaction_confirm_delete.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Delete Patient</title>
+    <title>Delete transaction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -49,17 +49,17 @@
         <a href="{% url 'logout' %}">Logout</a>
     </div>
 
-    <h1>Delete Patient</h1>
+    <h1>Delete transaction</h1>
     
     <div class="warning">
-        <p>Are you sure you want to delete the record for <strong>{{ patient.last_name }}, {{ patient.first_name }}</strong>?</p>
+        <p>Are you sure you want to delete the record for <strong>{{ transaction.last_name }}, {{ transaction.first_name }}</strong>?</p>
         <p>This action cannot be undone.</p>
     </div>
     
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Yes, Delete</button>
-        <a href="{% url 'patient_detail' patient.id %}" class="btn btn-secondary">Cancel</a>
+        <a href="{% url 'transaction_detail' transaction.id %}" class="btn btn-secondary">Cancel</a>
     </form>
 </body>
 </html>

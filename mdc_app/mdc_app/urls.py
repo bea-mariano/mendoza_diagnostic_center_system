@@ -9,5 +9,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('patients/', include('patients.urls')),
+    path('transactions/', include('transactions.urls')),
     path('', include('patients.urls')),  # Redirect root to patients app
 ]

@@ -1,0 +1,136 @@
+<!-- # transactions/templates/transactions/transaction_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .transaction-info {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .field {
+            margin-bottom: 15px;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .btn-danger {
+            background-color: #f44336;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <h1>Transaction Details</h1>
+    
+    <div class="transaction-info">
+        <div class="field">
+            <span class="label">Transaction ID:</span>
+            <span>{{ transaction.id }}</span>
+        </div>
+
+        <div class="field">
+            <span class="label">Patient ID:</span>
+            <span>{{ transaction.patient.id }}</span>
+        </div>
+
+        <div class="field">
+            <span class="label">Patient:</span>
+            <span>{{ transaction.patient }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Address:</span>
+            <span>{{ transaction.address }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Contact Number:</span>
+            <span>{{ transaction.contact_no }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Age:</span>
+            <span>{{ transaction.age }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Payment Type:</span>
+            <span>{{ transaction.get_payment_type_display }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Transaction Type:</span>
+            <span>{{ transaction.get_transaction_type_display }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Company ID:</span>
+            <span>{{ transaction.company_id }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Transaction Purpose:</span>
+            <span>{{ transaction.get_transaction_purpose_display }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Has Drug Test:</span>
+            <span>{{ transaction.has_drug_test|yesno:"Yes,No" }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Custody Control Form Submitted:</span>
+            <span>{{ transaction.custody_control_form_submitted|yesno:"Yes,No" }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Transaction Date:</span>
+            <span>{{ transaction.transaction_date }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Transaction Time:</span>
+            <span>{{ transaction.transaction_time }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Tests:</span>
+            <span>{{ transaction.tests }}</span>
+        </div>
+        <div class="field">
+            <span class="label">Transaction Status:</span>
+            <span>{{ transaction.get_transaction_status_display }}</span>
+        </div>
+    </div>
+    
+    
+    <div class="actions">
+        <a href="{% url 'transaction_edit' transaction.id %}" class="btn">Edit</a>
+        <a href="{% url 'transaction_delete' transaction.id %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'transaction_list' %}" class="btn">Back to List</a>
+    </div>
+</body>
+</html>
