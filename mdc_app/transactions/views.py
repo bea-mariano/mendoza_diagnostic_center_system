@@ -1,4 +1,3 @@
-# transactions/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -6,7 +5,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from .models import Transaction
 from .forms import TransactionForm
-
 
 @method_decorator(login_required, name='dispatch')
 class TransactionListView(ListView):
@@ -22,7 +20,6 @@ class TransactionActiveListView(ListView):
 
     def get_queryset(self):
         return Transaction.objects.ongoing()
-
 
 @method_decorator(login_required, name='dispatch')
 class TransactionDetailView(DetailView):
@@ -41,6 +38,7 @@ class TransactionCreateView(CreateView):
     form_class = TransactionForm
     template_name = 'transactions/transaction_form.html'
     success_url = reverse_lazy('transaction_list')
+
 
 @method_decorator(login_required, name='dispatch')
 class TransactionUpdateView(UpdateView):

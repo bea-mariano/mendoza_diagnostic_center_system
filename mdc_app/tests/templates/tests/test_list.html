@@ -1,8 +1,8 @@
-<!-- # mdc_app/templates/home/home.html -->
+<!-- # patients/templates/patients/patient_list.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mendoza Diagnostic Center</title>
+    <title>Test List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -19,7 +19,7 @@
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
-        }
+        } 
         tr:hover {
             background-color: #f5f5f5;
         }
@@ -66,40 +66,42 @@
         </form>
     </div>
 
-    <div>
-        <h1>Mendoza Diagnostic Center</h1>
-        <br>
-
-        <h2>Cashier and Billing</h2>
-        <!-- after new transaction is made, stickers will be printed -->
-        <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
-        <!-- add a review process after all tests are done? -->
-        <a href="{% url 'patient_new' %}" class="btn">Create Acknowledgement Receipt</a>
-        <a href="{% url 'transaction_active_list' %}" class="btn">View Active Transactions</a>
-        <a href="{% url 'transaction_list' %}" class="btn">View All Transactions</a>
-
-        <h2>Patient Management</h2>
-        <a href="{% url 'patient_new' %}" class="btn">Add New Patient</a>
-        <a href="{% url 'patient_list' %}" class="btn">View Patients</a>
-
-        <h2>Company Charge</h2>
-        <!-- all companies then, filter per company per month -->
-        <a href="{% url 'patient_new' %}" class="btn">View Active Company Transactions</a> 
-        <!-- choose a company first then filter per month -->
-        <a href="{% url 'patient_list' %}" class="btn">Generate Statement of Account</a> 
-
-        <br>
-        <br>
-        <hr>
-        <br>
-
-        <h2>Test Management</h2>
-        <a href="{% url 'test_new' %}" class="btn">Add New Test</a>
-        <a href="{% url 'test_list' %}" class="btn">View Tests</a>
-
-
+    <div class="header">
+        <h1>Test List</h1>
+        <a href="{% url 'test_new' %}" class="btn">Register New Test</a>
     </div>
     
-
+    {% if tests %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Test Name</th>
+                <th>Test Price</th>
+                <th>Test Package Exclusion Rate</th>
+                <th>Test Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for test in tests %}
+            <tr>
+                <td>{{ test.id }}</td>
+                <td>{{ test.test_name }}</td>
+                <td>{{ test.test_price }}</td>
+                <td>{{ test.test_package_exclusion_rate }}</td>
+                <td>{{ test.test_category }}</td>
+                <td class="action-links">
+                    <a href="{% url 'test_detail' test.id %}">View</a>
+                    <a href="{% url 'test_edit' test.id %}">Edit</a>
+                    <a href="{% url 'test_delete' test.id %}" class="btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No tests registered yet.</p>
+    {% endif %}
 </body>
 </html>

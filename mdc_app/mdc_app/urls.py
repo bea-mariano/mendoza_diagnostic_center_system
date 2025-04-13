@@ -10,5 +10,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('patients/', include('patients.urls')),
     path('transactions/', include('transactions.urls')),
-    path('', include('patients.urls')),  # Redirect root to patients app
+    path('tests/', include('tests.urls')),
+    path('', include('patients.urls')),
 ]
