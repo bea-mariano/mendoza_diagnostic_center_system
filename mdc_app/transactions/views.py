@@ -38,6 +38,12 @@ class TransactionCreateView(CreateView):
     form_class = TransactionForm
     template_name = 'transactions/transaction_form.html'
     success_url = reverse_lazy('transaction_list')
+    
+    def form_valid(self, form):
+        form.instance.transaction_status = 'Ongoing'
+        if not form.instance.payment_type:
+            form.instance.payment_type = 'Cash'
+        return super().form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
