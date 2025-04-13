@@ -5,8 +5,9 @@ from patients.models import Patient
 
 class TransactionForm(forms.ModelForm):
     tests = forms.ModelMultipleChoiceField(
-        queryset=Test.objects.all().order_by('test_name'),  # Using test_name instead of name
-        widget=forms.CheckboxSelectMultiple,
+        queryset=Test.objects.all().order_by('test_name'),
+        widget=forms.CheckboxSelectMultiple(),
+        required=False
     )
 
     class Meta:

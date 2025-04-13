@@ -67,9 +67,9 @@ class Transaction(models.Model):
     tests = models.ManyToManyField(Test, related_name='transactions')
     transaction_status = models.CharField(max_length=50, choices=TRANSACTION_STATUS_CHOICES)
     discount_type = models.CharField(max_length=25, choices=DISCOUNT_TYPE_CHOICES, default='No Discount')
-    discount_rate = models.PositiveIntegerField()
-    discounted_total = models.PositiveIntegerField()
-    transaction_total = models.PositiveIntegerField()
+    discount_rate = models.PositiveIntegerField(default=0)
+    discounted_total = models.PositiveIntegerField(default=0)
+    transaction_total = models.PositiveIntegerField(default=0)
 
     objects = TransactionManager()
 
