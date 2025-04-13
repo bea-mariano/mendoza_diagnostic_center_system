@@ -8,7 +8,8 @@ from .models import Patient
 from .forms import PatientForm
 from transactions.models import Transaction
 from transactions.forms import TransactionForm
-
+from tests.models import Test
+from tests.forms import TestForm
 
 @method_decorator(login_required, name='dispatch')
 class HomeView(ListView):

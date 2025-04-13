@@ -1,9 +1,9 @@
-# transactions/models.py
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 import pytz
 from patients.models import Patient
+from tests.models import Test
 
 def get_manila_date():
     return timezone.now().astimezone(pytz.timezone('Asia/Manila')).date()
@@ -14,12 +14,6 @@ def get_manila_time():
 class TransactionManager(models.Manager):
     def ongoing(self):
         return self.filter(transaction_status='Ongoing')
-
-    # def cancelled(self):
-    #     return self.filter(transaction_status='Cancelled')
-
-    # def completed(self):
-    #     return self.filter(transaction_status='Completed')
 
 class Transaction(models.Model):
     GENDER_CHOICES = [
@@ -50,6 +44,14 @@ class Transaction(models.Model):
         ('Completed', 'Completed'),
     ]
 
+    DISCOUNT_TYPE_CHOICES = [
+        ('Philhealth', 'Philhealth'),
+        ('Senior Citizen', 'Senior Citizen'),
+        ('PWD', 'PWD'),
+        ('Package Exclusion', 'Package Exclusion'),
+        ('No Discount', 'No Discount')
+    ]
+
     address = models.TextField()
     contact_no = models.CharField(max_length=11)
     age = models.PositiveIntegerField()
@@ -61,9 +63,13 @@ class Transaction(models.Model):
     has_drug_test = models.BooleanField(default=False)
     custody_control_form_submitted = models.BooleanField(default=False)
     transaction_date = models.DateField(auto_now_add=True)
-    transaction_time = models.TimeField(auto_now_add=True)  # changed from DateField to TimeField
-    tests = models.CharField(max_length=256)
+    transaction_time = models.TimeField(auto_now_add=True)
+    tests = models.ManyToManyField(Test, related_name='transactions')
     transaction_status = models.CharField(max_length=50, choices=TRANSACTION_STATUS_CHOICES)
+    discount_type = models.CharField(max_length=25, choices=DISCOUNT_TYPE_CHOICES, default='No Discount')
+    discount_rate = models.PositiveIntegerField()
+    discounted_total = models.PositiveIntegerField()
+    transaction_total = models.PositiveIntegerField()
 
     objects = TransactionManager()
 
