@@ -1,131 +1,213 @@
-<!-- # companies/templates/companies/company_detail.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Company Details</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .company-info {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .field {
-            margin-bottom: 15px;
-        }
-        .actions {
-            margin-top: 20px;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-        .btn-danger {
-            background-color: #f44336;
-        }
-        .nav {
-            margin-bottom: 20px;
-        }
-        .nav a {
-            margin-right: 15px;
-        }
-    </style>
+  <title>Company Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Global Resets */
+    *, *:before, *:after {
+      box-sizing: border-box;
+    }
+    
+    /* Base Styles */
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    /* Navigation Bar */
+    .navbar {
+      background-color: #007BFF;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .nav-left a {
+      color: #f9f9f9;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    .nav-left a:hover {
+      text-decoration: underline;
+    }
+    .nav-right span {
+      margin-right: 15px;
+      font-weight: bold;
+      color: #f9f9f9;
+    }
+    .nav-right a {
+      color: #f9f9f9;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    
+    /* Container & Header */
+    .container {
+      max-width: 1200px;
+      margin: 90px auto 30px auto;  /* Top margin to account for fixed nav bar */
+      padding: 30px 40px;
+      border-radius: 8px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      text-align: center;
+      flex: 1;
+    }
+    
+    /* Button Styles */
+    .btn {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    .btn-danger {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
 </head>
 <body>
-    <div class="nav">
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="nav-left">
         <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'patient_list' %}">Patient</a>
+        <a href="{% url 'transaction_list' %}">Transactions</a>
+        <a href="{% url 'company_list' %}">Company</a>
     </div>
-
-    <h1>Company Details</h1>
-    
-    <div class="company-info">
-        <div class="field">
-            <span class="label">Company ID:</span>
-            <span>{{ company.id }}</span>
-        </div>
-
-        <div class="field">
-            <span class="label">CompanyName:</span>
-            <span>{{ company.company_name }}</span>
-        </div>
-
-        <div class="field">
-            <span class="label">Can Have Commission?:</span>
-            <span>{{ company.commission_eligible }}</span>
-        </div>
-
-        <div class="field">
-            <span class="label">Commission Type:</span>
-            <span>{{ company.commission_type }}</span>
-        </div>
-    
-        <div class="field">
-            <span class="label">Commission Rate:</span>
-            <span>{{ company.commission_rate }}</span>
-        </div>
+    <div class="nav-right">
+      <span>Logged in as {{ user.username }}</span>
+      <a href="{% url 'logout' %}">Logout</a>
     </div>
-    
-    <div class="actions">
+  </div>
+  
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Header with Title and Action Buttons -->
+    <div class="header">
+      <h1>Company Details</h1>
+      <div>
         <a href="{% url 'company_edit' company.id %}" class="btn">Edit</a>
         <a href="{% url 'company_delete' company.id %}" class="btn btn-danger">Delete</a>
         <a href="{% url 'company_list' %}" class="btn">Back to List</a>
+      </div>
     </div>
-
-    <h2>Transactions</h2>
-
-    {% if transactions %}
-    <table>
+    
+    <!-- Company Information Section -->
+    <div>
+      <h2>Company Information</h2>
+      <table>
+        <colgroup>
+            <col style="width: 20%;">
+            <col style="width: 80%;">
+        </colgroup>
+        <tr>
+          <th>Company ID</th>
+          <td>{{ company.id }}</td>
+        </tr>
+        <tr>
+          <th>Company Name</th>
+          <td>{{ company.company_name }}</td>
+        </tr>
+        <tr>
+          <th>Can Have Commission?</th>
+          <td>{{ company.commission_eligible }}</td>
+        </tr>
+        <tr>
+          <th>Commission Type</th>
+          <td>{{ company.commission_type }}</td>
+        </tr>
+        <tr>
+          <th>Commission Rate</th>
+          <td>{{ company.commission_rate }}</td>
+        </tr>
+      </table>
+    </div>
+    
+    <!-- Transactions Section -->
+    <div>
+      <h2>Transactions</h2>
+      {% if transactions %}
+      <table>
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Payment Type</th>
-                <th>Transaction Type</th>
-                <th>Purpose</th>
-                <th>Transaction Date</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
+          <tr>
+            <th>ID</th>
+            <th>Patient Name</th>
+            <th>Transaction Type</th>
+            <th>Purpose</th>
+            <th>Transaction Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
         </thead>
         <tbody>
-            {% for transaction in transactions %}
-            <tr>
-                <td>{{ transaction.id }}</td>
-                <td>{{ transaction.payment_type }}</td>
-                <td>{{ transaction.transaction_type }}</td>
-                <td>{{ transaction.transaction_purpose }}</td>
-                <td>{{ transaction.transaction_date }}</td>
-                <td>{{ transaction.transaction_status }}</td>
-                <td>
-                    <a href="{% url 'transaction_detail' transaction.id %}">View</a>
-                    <a href="{% url 'transaction_edit' transaction.id %}">Edit</a>
-                    <a href="{% url 'transaction_delete' transaction.id %}" onclick="return confirm('Delete this transaction?');">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
+          {% for transaction in transactions %}
+          <tr>
+            <td>{{ transaction.id }}</td>
+            <!-- Using the default string representation (from Patient.__str__) or a property like full_name if defined -->
+            <td>{{ transaction.patient }}</td>
+            <td>{{ transaction.payment_type }}</td>
+            <td>{{ transaction.transaction_purpose }}</td>
+            <td>{{ transaction.transaction_date }}</td>
+            <td>{{ transaction.transaction_status }}</td>
+            <td>
+              <a href="{% url 'transaction_detail' transaction.id %}">View</a>
+            </td>
+          </tr>
+          {% endfor %}
         </tbody>
-    </table>
-    {% else %}
-    <p>This company has no transactions yet.</p>
-    {% endif %}
-
+      </table>
+      {% else %}
+        <p>This company has no transactions yet.</p>
+      {% endif %}
+    </div>
+  </div>
 </body>
 </html>

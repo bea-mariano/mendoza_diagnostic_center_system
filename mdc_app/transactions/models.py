@@ -14,7 +14,8 @@ def get_manila_time():
 
 class TransactionManager(models.Manager):
     def ongoing(self):
-        return self.filter(transaction_status='Ongoing')
+        # Returns all transactions made on the current day (Manila date)
+        return self.filter(transaction_date=get_manila_date())
 
 class Transaction(models.Model):
     GENDER_CHOICES = [
@@ -79,8 +80,6 @@ class Transaction(models.Model):
     def __str__(self):
         return f"Transaction #{self.pk} - {self.patient}"
 
-
-# transactions/models.py
 class TransactionTest(models.Model):
     transaction = models.ForeignKey('Transaction', on_delete=models.CASCADE, related_name='transaction_tests')
     test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='test_transactions')

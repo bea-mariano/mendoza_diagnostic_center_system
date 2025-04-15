@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -74,8 +74,7 @@
         <!-- after new transaction is made, stickers will be printed -->
         <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
         <!-- add a review process after all tests are done? -->
-        <a href="{% url 'patient_new' %}" class="btn">Create Acknowledgement Receipt</a>
-        <a href="{% url 'transaction_active_list' %}" class="btn">View Active Transactions</a>
+        <a href="{% url 'transaction_active_list' %}" class="btn">View Transactions Today</a>
         <a href="{% url 'transaction_list' %}" class="btn">View All Transactions</a>
 
         <h2>Patient Management</h2>
@@ -84,9 +83,7 @@
 
         <h2>Company Charge</h2>
         <!-- all companies then, filter per company per month -->
-        <a href="{% url 'patient_new' %}" class="btn">View Active Company Transactions</a> 
-        <!-- choose a company first then filter per month -->
-        <a href="{% url 'patient_list' %}" class="btn">Generate Statement of Account</a> 
+        <a href="{% url 'company_list' %}" class="btn">View Company Charge</a>
 
         <br>
         <br>
@@ -99,7 +96,7 @@
 
         <h2>Company Management</h2>
         <a href="{% url 'company_new' %}" class="btn">Add New Company</a>
-        <a href="{% url 'company_list' %}" class="btn">View Company</a>
+        
 
 
     </div>
