@@ -4,6 +4,7 @@ from django.utils import timezone
 import pytz
 from patients.models import Patient
 from tests.models import Test
+from companies.models import Company
 
 def get_manila_date():
     return timezone.now().astimezone(pytz.timezone('Asia/Manila')).date()
@@ -58,13 +59,12 @@ class Transaction(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='transactions')
     payment_type = models.CharField(max_length=25, choices=PAYMENT_TYPE_CHOICES)
     transaction_type = models.CharField(max_length=25, choices=TRANSACTION_TYPE_CHOICES)
-    company_id = models.PositiveIntegerField()
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='transactions')
     transaction_purpose = models.CharField(max_length=50, choices=TRANSACTION_PURPOSE_CHOICES)
     has_drug_test = models.BooleanField(default=False)
     custody_control_form_submitted = models.BooleanField(default=False)
     transaction_date = models.DateField(auto_now_add=True)
     transaction_time = models.TimeField(auto_now_add=True)
-    tests = models.ManyToManyField(Test, related_name='transactions')
     transaction_status = models.CharField(max_length=50, choices=TRANSACTION_STATUS_CHOICES)
     discount_type = models.CharField(max_length=25, choices=DISCOUNT_TYPE_CHOICES, default='No Discount')
     discount_rate = models.PositiveIntegerField(default=0)
@@ -78,3 +78,13 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"Transaction #{self.pk} - {self.patient}"
+
+
+# transactions/models.py
+class TransactionTest(models.Model):
+    transaction = models.ForeignKey('Transaction', on_delete=models.CASCADE, related_name='transaction_tests')
+    test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='test_transactions')
+    test_price = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.transaction} - {self.test.test_name} - {self.test_price}"

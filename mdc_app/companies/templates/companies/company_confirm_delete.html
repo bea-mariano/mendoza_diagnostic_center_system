@@ -1,0 +1,65 @@
+<!-- # patients/templates/patients/patient_confirm_delete.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Company</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .warning {
+            background-color: #ffeeee;
+            border: 1px solid #ffcccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #ccc;
+            color: black;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <h1>Delete Company</h1>
+    
+    <div class="warning">
+        <p>Are you sure you want to delete the record for <strong>{{ company.company_name }}</strong>?</p>
+        <p>This action cannot be undone.</p>
+    </div>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'company_detail' company.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</body>
+</html>
