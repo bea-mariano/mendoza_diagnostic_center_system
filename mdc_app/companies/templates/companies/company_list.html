@@ -1,8 +1,8 @@
-<!-- # mdc_app/templates/home/home.html -->
+<!-- # companies/templates/companies/company_list.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mendoza Diagnostic Center</title>
+    <title>Company List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
@@ -19,7 +19,7 @@
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
-        }
+        } 
         tr:hover {
             background-color: #f5f5f5;
         }
@@ -66,44 +66,42 @@
         </form>
     </div>
 
-    <div>
-        <h1>Mendoza Diagnostic Center</h1>
-        <br>
-
-        <h2>Cashier and Billing</h2>
-        <!-- after new transaction is made, stickers will be printed -->
-        <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
-        <!-- add a review process after all tests are done? -->
-        <a href="{% url 'patient_new' %}" class="btn">Create Acknowledgement Receipt</a>
-        <a href="{% url 'transaction_active_list' %}" class="btn">View Active Transactions</a>
-        <a href="{% url 'transaction_list' %}" class="btn">View All Transactions</a>
-
-        <h2>Patient Management</h2>
-        <a href="{% url 'patient_new' %}" class="btn">Add New Patient</a>
-        <a href="{% url 'patient_list' %}" class="btn">View Patients</a>
-
-        <h2>Company Charge</h2>
-        <!-- all companies then, filter per company per month -->
-        <a href="{% url 'patient_new' %}" class="btn">View Active Company Transactions</a> 
-        <!-- choose a company first then filter per month -->
-        <a href="{% url 'patient_list' %}" class="btn">Generate Statement of Account</a> 
-
-        <br>
-        <br>
-        <hr>
-        <br>
-
-        <h2>Test Management</h2>
-        <a href="{% url 'test_new' %}" class="btn">Add New Test</a>
-        <a href="{% url 'test_list' %}" class="btn">View Tests</a>
-
-        <h2>Company Management</h2>
-        <a href="{% url 'company_new' %}" class="btn">Add New Company</a>
-        <a href="{% url 'company_list' %}" class="btn">View Company</a>
-
-
+    <div class="header">
+        <h1>Company List</h1>
+        <a href="{% url 'company_new' %}" class="btn">Register New Company</a>
     </div>
     
-
+    {% if companies %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company Name</th>
+                <th>Can Have Commission</th>
+                <th>Commission Type</th>
+                <th>Commission Rate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <tr>
+                <td>{{ company.id }}</td>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.commission_eligible }}</td>
+                <td>{{ company.commission_type }}</td>
+                <td>{{ company.commission_rate }}</td>
+                <td class="action-links">
+                    <a href="{% url 'company_detail' company.id %}">View</a>
+                    <a href="{% url 'company_edit' company.id %}">Edit</a>
+                    <a href="{% url 'company_delete' company.id %}" class="btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No companies registered yet.</p>
+    {% endif %}
 </body>
 </html>

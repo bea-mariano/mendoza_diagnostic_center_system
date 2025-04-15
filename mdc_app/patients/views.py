@@ -10,6 +10,8 @@ from transactions.models import Transaction
 from transactions.forms import TransactionForm
 from tests.models import Test
 from tests.forms import TestForm
+from companies.models import Company
+from companies.forms import CompanyForm
 
 @method_decorator(login_required, name='dispatch')
 class HomeView(ListView):

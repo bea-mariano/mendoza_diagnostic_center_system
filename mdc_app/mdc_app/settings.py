@@ -14,7 +14,9 @@ SECRET_KEY = 'your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*'
+    ]
 
 # Application definition
 INSTALLED_APPS = [
@@ -27,7 +29,8 @@ INSTALLED_APPS = [
     'accounts',
     'patients',
     'transactions',
-    'tests'
+    'tests',
+    'companies'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +70,17 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DB_NAME'),
+#         'USER': os.getenv('DB_USER'),
+#         'PASSWORD': os.getenv('DB_PASSWORD'),
+#         'HOST': os.getenv('DB_HOST'),
+#         'PORT': os.getenv('DB_PORT'),
+#     }
+# }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

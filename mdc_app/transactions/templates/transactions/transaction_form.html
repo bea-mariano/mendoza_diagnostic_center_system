@@ -89,15 +89,13 @@
         }
     </style>
     <script>
-        // JavaScript to handle dynamic discount rate update based on discount type and calculate transaction total
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const discountTypeField = document.getElementById("id_discount_type");
             const discountRateField = document.getElementById("id_discount_rate");
             const transactionTotalField = document.getElementById("id_transaction_total");
             const discountedTotalField = document.getElementById("id_discounted_total");
             const testCheckboxes = document.querySelectorAll("input[name='tests']");
 
-            // Function to update the discount rate based on discount type
             function updateDiscountRate() {
                 const discountType = discountTypeField.value;
 
@@ -108,18 +106,18 @@
                 } else if (discountType === "No Discount") {
                     discountRateField.value = 0;
                 } else {
-                    discountRateField.value = ""; // Default to empty if no matching discount type
+                    discountRateField.value = "";
                 }
-                updateTransactionTotal(); // Recalculate total when discount type changes
-                updateDiscountedTotal(); // Recalculate total when discount type changes
+
+                updateTransactionTotal();
+                updateDiscountedTotal();
             }
 
-            // Function to calculate the total of selected tests
             function calculateTestTotal() {
                 let total = 0;
-                testCheckboxes.forEach(function(checkbox) {
+                testCheckboxes.forEach(function (checkbox) {
                     if (checkbox.checked) {
-                        const testPrice = parseInt(checkbox.dataset.price);  // Fetch the price from the data-price attribute
+                        const testPrice = parseInt(checkbox.dataset.price) || 0;
                         total += testPrice;
                     }
                 });
@@ -129,57 +127,52 @@
             // Function to update the transaction total field
             function updateTransactionTotal() {
                 let testTotal = calculateTestTotal();
-                let discountRate = parseInt(discountRateField.value) || 0;  // Get the discount rate (default to 0 if NaN)
                 let total = testTotal;
-
-                // Update the transaction total field
                 transactionTotalField.value = total;
             }
 
-            // Function to update the transaction total field
+            // Function to update the discounted total field
             function updateDiscountedTotal() {
                 let testTotal = calculateTestTotal();
-                let discountRate = parseInt(discountRateField.value) || 0;  // Get the discount rate (default to 0 if NaN)
+                let discountRate = parseInt(discountRateField.value) || 0;
                 let total = testTotal - discountRate;
-
-                // Update the transaction total field
-                discountedTotalField.value = total;
+                discountedTotalField.value = total >= 0 ? total : 0;
             }
 
-            // Event listener for changes in the discount type field
-            discountTypeField.addEventListener("change", updateDiscountRate);
+            if (discountTypeField) {
+                discountTypeField.addEventListener("change", updateDiscountRate);
+            }
 
-            // Event listeners for test checkboxes to update the transaction total
-            testCheckboxes.forEach(function(checkbox) {
+            testCheckboxes.forEach(function (checkbox) {
                 checkbox.addEventListener("change", updateTransactionTotal);
                 checkbox.addEventListener("change", updateDiscountedTotal);
             });
 
-            // Initialize discount rate and transaction total on page load
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    if (!document.getElementById('id_payment_type').value) {
+                        document.getElementById('id_payment_type').value = 'Cash';
+                    }
+                    if (!document.getElementById('id_transaction_status').value) {
+                        document.getElementById('id_transaction_status').value = 'Ongoing';
+                    }
+
+                    if (isNaN(parseInt(discountRateField.value))) {
+                        discountRateField.value = 0;
+                    }
+                    if (isNaN(parseInt(transactionTotalField.value))) {
+                        transactionTotalField.value = 0;
+                    }
+                    if (isNaN(parseInt(discountedTotalField.value))) {
+                        discountedTotalField.value = 0;
+                    }
+                });
+            }
+
             updateDiscountRate();
             updateTransactionTotal();
             updateDiscountedTotal();
-        });
-
-        document.querySelector('form').addEventListener('submit', function(e) {
-            // Make sure all required fields have values
-            if (!document.getElementById('id_payment_type').value) {
-                document.getElementById('id_payment_type').value = 'Cash';
-            }
-            if (!document.getElementById('id_transaction_status').value) {
-                document.getElementById('id_transaction_status').value = 'Ongoing';
-            }
-            
-            // Ensure numeric fields are valid
-            if (isNaN(parseInt(discountRateField.value))) {
-                discountRateField.value = 0;
-            }
-            if (isNaN(parseInt(transactionTotalField.value))) {
-                transactionTotalField.value = 0;
-            }
-            if (isNaN(parseInt(discountedTotalField.value))) {
-                discountedTotalField.value = 0;
-            }
         });
     </script>
 </head>
@@ -212,8 +205,8 @@
             {{ form.transaction_type }}
         </div>
         <div class="form-group">
-            <label for="company_id">Company ID</label>
-            {{ form.company_id }}
+            <label for="company_id">Company</label>
+            {{ form.company }}
         </div>
         <div class="form-group">
             <label for="transaction_purpose">Transaction Purpose</label>
@@ -245,11 +238,10 @@
                             value="{{ test.pk }}" 
                             id="test_{{ test.pk }}" 
                             data-price="{{ test.test_price }}"
-                            {% if test in form.initial.tests %}checked{% endif %}>
+                            {% if test.pk in form.initial.tests %}checked{% endif %}>
                         <label for="test_{{ test.pk }}">{{ test.test_name }} (₱{{ test.test_price }})</label>
                     </div>
                 {% endfor %}
-
             </div>
         </div>
         <div class="form-group">
