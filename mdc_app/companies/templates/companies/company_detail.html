@@ -82,6 +82,7 @@
       text-decoration: none;
       font-size: 1rem;
       white-space: nowrap;
+      cursor: pointer;
     }
     .btn-danger {
       background-color: #f44336;
@@ -111,6 +112,33 @@
     tr:hover {
       background-color: #f5f5f5;
     }
+    
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 5px;
+      width: 80%;
+      max-width: 400px;
+    }
+    .close {
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -135,6 +163,8 @@
       <h1>Company Details</h1>
       <div>
         <a href="{% url 'company_edit' company.id %}" class="btn">Edit</a>
+        <!-- New Generate Statement Button -->
+        <button id="generateStatementBtn" class="btn">Generate Statement of Account</button>
         <a href="{% url 'company_delete' company.id %}" class="btn btn-danger">Delete</a>
         <a href="{% url 'company_list' %}" class="btn">Back to List</a>
       </div>
@@ -191,7 +221,6 @@
           {% for transaction in transactions %}
           <tr>
             <td>{{ transaction.id }}</td>
-            <!-- Using the default string representation (from Patient.__str__) or a property like full_name if defined -->
             <td>{{ transaction.patient }}</td>
             <td>{{ transaction.payment_type }}</td>
             <td>{{ transaction.transaction_purpose }}</td>
@@ -209,5 +238,48 @@
       {% endif %}
     </div>
   </div>
+  
+  <!-- Modal for Selecting the Month -->
+  <div id="statementModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Select Statement Month</h2>
+      <form id="statementForm">
+        <label for="monthSelect">Month:</label>
+        <input type="month" id="monthSelect" name="statementMonth" required>
+        <br><br>
+        <button type="submit" class="btn">Generate</button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    // Show the modal when the new button is clicked
+    document.getElementById('generateStatementBtn').addEventListener('click', function() {
+      document.getElementById('statementModal').style.display = 'block';
+    });
+
+    // Close the modal when the "x" is clicked
+    document.querySelector('.modal .close').addEventListener('click', function() {
+      document.getElementById('statementModal').style.display = 'none';
+    });
+
+    // Also close the modal if the user clicks outside the modal content
+    window.onclick = function(event) {
+      if (event.target == document.getElementById('statementModal')) {
+        document.getElementById('statementModal').style.display = 'none';
+      }
+    };
+
+    // Handle the form submission to generate the PDF statement
+    document.getElementById('statementForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const selectedMonth = document.getElementById('monthSelect').value;
+      // Construct the URL for PDF generation (this view must be created on the server)
+      const url = "{% url 'company_generate_statement' company.id %}?month=" + selectedMonth;
+      // For simplicity, redirect the user to the URL which will trigger the download
+      window.location.href = url;
+    });
+  </script>
 </body>
 </html>

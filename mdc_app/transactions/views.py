@@ -44,12 +44,11 @@ class TransactionCreateView(CreateView):
         form.instance.transaction_status = 'Ongoing'
         if not form.instance.payment_type:
             form.instance.payment_type = 'Cash'
-
-        # Save transaction first
         response = super().form_valid(form)
 
-        # Create TransactionTest records
         selected_tests = form.cleaned_data.get('tests')
+        print("Selected tests:", selected_tests)  # Debug statement
+
         for test in selected_tests:
             TransactionTest.objects.create(
                 transaction=self.object,
@@ -67,14 +66,14 @@ class TransactionUpdateView(UpdateView):
     success_url = reverse_lazy('transaction_list')
 
     def form_valid(self, form):
-        # Save updated transaction first
+        form.instance.transaction_status = 'Ongoing'
+        if not form.instance.payment_type:
+            form.instance.payment_type = 'Cash'
         response = super().form_valid(form)
 
-        # Remove existing test records
-        TransactionTest.objects.filter(transaction=self.object).delete()
-
-        # Recreate TransactionTest records
         selected_tests = form.cleaned_data.get('tests')
+        print("Selected tests:", selected_tests)  # Debug statement
+
         for test in selected_tests:
             TransactionTest.objects.create(
                 transaction=self.object,
@@ -84,8 +83,24 @@ class TransactionUpdateView(UpdateView):
 
         return response
 
+
 @method_decorator(login_required, name='dispatch')
 class TransactionDeleteView(DeleteView):
     model = Transaction
     template_name = 'transactions/transaction_confirm_delete.html'
     success_url = reverse_lazy('transaction_list')
+
+
+@login_required
+def complete_transaction(request, pk):
+    transaction = get_object_or_404(Transaction, pk=pk)
+    transaction.transaction_status = 'Completed'
+    transaction.save()
+    return redirect('transaction_detail', pk=pk)
+
+@login_required
+def revert_transaction(request, pk):
+    transaction = get_object_or_404(Transaction, pk=pk)
+    transaction.transaction_status = 'Ongoing'
+    transaction.save()
+    return redirect('transaction_detail', pk=pk)

@@ -8,4 +8,5 @@ urlpatterns = [
     path('company/new/', views.CompanyCreateView.as_view(), name='company_new'),
     path('company/<int:pk>/edit/', views.CompanyUpdateView.as_view(), name='company_edit'),
     path('company/<int:pk>/delete/', views.CompanyDeleteView.as_view(), name='company_delete'),
+    path('company/<int:company_id>/generate_statement/', views.generate_statement, name='company_generate_statement'),
 ]
