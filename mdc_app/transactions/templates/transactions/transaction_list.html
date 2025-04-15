@@ -1,273 +1,371 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Transaction List</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .action-links a {
-            text-decoration: none;
-            margin-right: 10px;
-        }
-        .btn-danger {
-            background-color: #f44336;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .nav {
-            margin-bottom: 20px;
-        }
-        .nav a {
-            margin-right: 15px;
-        }
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            /* Set the receipt width to 80mm */
-            width: 80mm;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        /* When printing, force modal-content to be 80mm wide */
-        @media print {
-            .modal {display: block !important;}
-            .modal-content {border: none; width: 80mm; margin: 0 auto; padding: 10px;}
-        }
-    </style>
+  <title>All Transactions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Global Resets */
+    *, *:before, *:after {
+      box-sizing: border-box;
+    }
+    
+    /* Base Styles */
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 20px 20px 20px 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      /* background-color: #fff; */
+      margin: 90px auto 30px auto;  /* Added top margin to account for fixed nav bar */
+      padding: 30px 40px;
+      border-radius: 8px;
+      /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); */
+    }
+    
+    /* Navigation Bar */
+    .navbar {
+      background-color: #007BFF;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .nav-left a {
+      color: #f9f9f9;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    .nav-left a:hover {
+      text-decoration: underline;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+    .nav-right span {
+      margin-right: 15px;
+      font-weight: bold;
+      color: #f9f9f9;
+    }
+    .nav-right form button {
+      background: none;
+      border: none;
+      color: #f9f9f9;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+      font: inherit;
+    }
+    
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      text-align: center;
+      flex: 1;
+    }
+    .btn {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    .btn-danger {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80mm;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+    }
+    
+    /* Print Styles */
+    @media print {
+      @page {
+        size: 80mm auto;  /* 80mm wide with auto height for continuous paper */
+        margin: 0;
+      }
+      body {
+        width: 80mm;
+        margin: 0 auto;
+      }
+      .modal-content {
+        width: 80mm;
+        margin: 0 auto;
+        padding: 10px;
+        border: none;
+        box-shadow: none;
+      }
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+  
 </head>
 <body>
-    <div class="nav">
-        <a href="{% url 'home' %}">Home</a>
-        <form method="post" action="{% url 'logout' %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer; padding:0;">Logout</button>
-        </form>
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'patient_list' %}">Patient</a>
+      <a href="{% url 'transaction_list' %}">Transactions</a>
+      <a href="{% url 'company_list' %}">Company</a>
     </div>
-
+    <div class="nav-right">
+      <span>Logged in as {{ user.username }}</span>
+      <form method="post" action="{% url 'logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+  </div>
+  
+  <div class="container">
     <div class="header">
-        <h1>Transaction List</h1>
-        <a href="{% url 'transaction_new' %}" class="btn">Register New Transaction</a>
+      <h1>All Transactions</h1>
+      <a href="{% url 'transaction_new' %}" class="btn">Register New Transaction</a>
     </div>
     
     {% if transactions %}
     <table>
-        <thead>
-            <tr>
-                <th>Transaction ID</th>
-                <th>Patient Name</th>
-                <th>Payment Type</th>
-                <th>Transaction Type</th>
-                <th>Transaction Purpose</th>
-                <th>Transaction Status</th>
-                <th>View</th>
-                <th>Edit</th>
-                <th>Print Receipt</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for transaction in transactions %}
-            <!-- 
-              Embed data attributes with all required details, including a summary of tests.
-              Payment-related attributes (e.g., payment_type, transaction_type, discount fields)
-              will be used in a separate table later.
-            -->
-            <tr data-transaction-id="{{ transaction.id }}"
-                data-patient-id="{{ transaction.patient.id }}"
-                data-patient-name="{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}"
-                data-address="{{ transaction.address }}"
-                data-contact="{{ transaction.contact_no }}"
-                data-age="{{ transaction.age }}"
-                data-payment-type="{{ transaction.get_payment_type_display }}"
-                data-transaction-type="{{ transaction.get_transaction_type_display }}"
-                data-company-id="{{ transaction.company_id }}"
-                data-company="{{ transaction.company }}"
-                data-purpose="{{ transaction.get_transaction_purpose_display }}"
-                data-drug-test="{{ transaction.has_drug_test|yesno:'Yes,No' }}"
-                data-custody="{{ transaction.custody_control_form_submitted|yesno:'Yes,No' }}"
-                data-transaction-date="{{ transaction.transaction_date }}"
-                data-transaction-time="{{ transaction.transaction_time }}"
-                data-transaction-status="{{ transaction.get_transaction_status_display }}"
-                data-discount-type="{{ transaction.discount_type }}"
-                data-discount-rate="₱ {{ transaction.discount_rate }}"
-                data-transaction-total="₱ {{ transaction.transaction_total }}"
-                data-discounted-total="₱ {{ transaction.discounted_total }}"
-                data-test-details="{% for tt in transaction.transaction_tests.all %}{{ tt.test.test_name }} - ₱{{ tt.test_price }}{% if not forloop.last %}, {% endif %}{% endfor %}"
-            >
-                <td>{{ transaction.id }}</td>
-                <td>{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}</td>
-                <td>{{ transaction.payment_type }}</td>
-                <td>{{ transaction.transaction_type }}</td>
-                <td>{{ transaction.transaction_purpose }}</td>
-                <td id="transaction-status-{{ transaction.id }}">{{ transaction.transaction_status }}</td>
-                <td class="action-view">
-                    <a href="{% url 'transaction_detail' transaction.id %}">View</a>
-                </td>
-                <td class="action-edit">
-                    <a href="{% url 'transaction_edit' transaction.id %}">Edit</a>
-                </td>
-                <td class="action-receipt">
-                    <a href="javascript:void(0)" onclick="printAcknowledgementReceipt({{ transaction.id }})">Print Receipt</a>
-                </td>
-                <td class="action-delete">
-                    <a href="{% url 'transaction_delete' transaction.id %}" class="btn-danger">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
+      <thead>
+        <tr>
+          <th>Transaction ID</th>
+          <th>Transaction Date</th>
+          <th>Patient Name</th>
+          <th>Payment Type</th>
+          <th>Transaction Type</th>
+          <th>Transaction Purpose</th>
+          <th>Transaction Status</th>
+          <th>View</th>
+          <th>Edit</th>
+          <th>Print Receipt</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaction in transactions %}
+        <tr data-transaction-id="{{ transaction.id }}"
+            data-patient-id="{{ transaction.patient.id }}"
+            data-patient-name="{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}"
+            data-address="{{ transaction.address }}"
+            data-contact="{{ transaction.contact_no }}"
+            data-age="{{ transaction.age }}"
+            data-payment-type="{{ transaction.get_payment_type_display }}"
+            data-transaction-type="{{ transaction.get_transaction_type_display }}"
+            data-company-id="{{ transaction.company_id }}"
+            data-company="{{ transaction.company }}"
+            data-purpose="{{ transaction.get_transaction_purpose_display }}"
+            data-drug-test="{{ transaction.has_drug_test|yesno:'Yes,No' }}"
+            data-custody="{{ transaction.custody_control_form_submitted|yesno:'Yes,No' }}"
+            data-transaction-date="{{ transaction.transaction_date }}"
+            data-transaction-time="{{ transaction.transaction_time }}"
+            data-transaction-status="{{ transaction.get_transaction_status_display }}"
+            data-discount-type="{{ transaction.discount_type }}"
+            data-discount-rate="₱ {{ transaction.discount_rate }}"
+            data-transaction-total="₱ {{ transaction.transaction_total }}"
+            data-discounted-total="₱ {{ transaction.discounted_total }}"
+            data-test-details="{% for tt in transaction.transaction_tests.all %}{{ tt.test.test_name }} - ₱{{ tt.test_price }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+          <td>{{ transaction.id }}</td>
+          <td>{{ transaction.transaction_date }}</td>
+          <td>{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}</td>
+          <td>{{ transaction.payment_type }}</td>
+          <td>{{ transaction.transaction_type }}</td>
+          <td>{{ transaction.transaction_purpose }}</td>
+          <td id="transaction-status-{{ transaction.id }}">{{ transaction.transaction_status }}</td>
+          <td class="action-view">
+            <a href="{% url 'transaction_detail' transaction.id %}">View</a>
+          </td>
+          <td class="action-edit">
+            <a href="{% url 'transaction_edit' transaction.id %}">Edit</a>
+          </td>
+          <td class="action-receipt">
+            <a href="javascript:void(0)" onclick="printAcknowledgementReceipt({{ transaction.id }})">Print Receipt</a>
+          </td>
+          <td class="action-delete">
+            <a href="{% url 'transaction_delete' transaction.id %}" class="btn-danger">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
     {% else %}
-    <p>No transactions registered yet.</p>
+      <p>No transactions registered yet.</p>
     {% endif %}
-
+    
     <!-- Modal for receipt preview -->
     <div id="receiptModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="receiptDetails">
-                <!-- The acknowledgement receipt details will be injected here -->
-            </div>
-            <button onclick="printReceipt()">Print/Save as PDF</button>
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="receiptDetails">
+          <!-- Customized receipt details will be inserted here -->
         </div>
+        <!-- The print/save button (hidden during printing) -->
+        <button class="no-print" onclick="printReceipt()">Print/Save as PDF</button>
+      </div>
     </div>
-
-    <script>
-        // Function to build the acknowledgement receipt and show the modal
-        function printAcknowledgementReceipt(transactionId) {
-            // Optionally update transaction status via AJAX; here we update in the UI.
-            document.getElementById("transaction-status-" + transactionId).innerText = "Completed";
-            
-            // Locate the table row for the transaction via its data attributes
-            var row = document.querySelector('tr[data-transaction-id="' + transactionId + '"]');
-            if (row) {
-                // Build the Basic Details table (excluding payment details)
-                var basicTableHtml = "<h2 style='text-align:center;'>Acknowledgement Receipt</h2>";
-                basicTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
-                basicTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Field</th><th style='padding:8px; background:#f2f2f2;'>Value</th></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Transaction ID</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-id") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Patient ID</td><td style='padding:8px;'>" + row.getAttribute("data-patient-id") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Patient Name</td><td style='padding:8px;'>" + row.getAttribute("data-patient-name") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Company ID</td><td style='padding:8px;'>" + row.getAttribute("data-company-id") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Company</td><td style='padding:8px;'>" + row.getAttribute("data-company") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Address</td><td style='padding:8px;'>" + row.getAttribute("data-address") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Contact Number</td><td style='padding:8px;'>" + row.getAttribute("data-contact") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Age</td><td style='padding:8px;'>" + row.getAttribute("data-age") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Transaction Purpose</td><td style='padding:8px;'>" + row.getAttribute("data-purpose") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Has Drug Test</td><td style='padding:8px;'>" + row.getAttribute("data-drug-test") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Custody Form Submitted</td><td style='padding:8px;'>" + row.getAttribute("data-custody") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Transaction Date</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-date") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Transaction Time</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-time") + "</td></tr>";
-                basicTableHtml += "<tr><td style='padding:8px;'>Transaction Status</td><td style='padding:8px;'>Completed</td></tr>";
-                basicTableHtml += "</table>";
-                
-                // Build the Test Details table (if test details exist)
-                var testDetails = row.getAttribute("data-test-details");
-                var testTableHtml = "";
-                if (testDetails && testDetails.trim().length > 0) {
-                    testTableHtml += "<h3 style='text-align:center;'>Test Details</h3>";
-                    testTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
-                    testTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Test Name</th><th style='padding:8px; background:#f2f2f2;'>Test Price</th></tr>";
-                    var testsArray = testDetails.split(",");
-                    for (var i = 0; i < testsArray.length; i++) {
-                        var testItem = testsArray[i].trim();
-                        if (testItem) {
-                            var parts = testItem.split(" - ");
-                            var testName = parts[0] ? parts[0].trim() : "";
-                            var testPrice = parts[1] ? parts[1].trim() : "";
-                            testTableHtml += "<tr><td style='padding:8px;'>" + testName + "</td><td style='padding:8px;'>" + testPrice + "</td></tr>";
-                        }
-                    }
-                    testTableHtml += "</table>";
-                }
-                
-                // Build the Payment Details table (separated from the main details)
-                var paymentTableHtml = "<h3 style='text-align:center; margin-top:20px;'>Payment Details</h3>";
-                paymentTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
-                paymentTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Field</th><th style='padding:8px; background:#f2f2f2;'>Value</th></tr>";
-                paymentTableHtml += "<tr><td style='padding:8px;'>Payment Type</td><td style='padding:8px;'>" + row.getAttribute("data-payment-type") + "</td></tr>";
-                paymentTableHtml += "<tr><td style='padding:8px;'>Transaction Type</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-type") + "</td></tr>";
-                paymentTableHtml += "<tr><td style='padding:8px;'>Discount Type</td><td style='padding:8px;'>" + row.getAttribute("data-discount-type") + "</td></tr>";
-                paymentTableHtml += "<tr><td style='padding:8px;'>Discount Rate</td><td style='padding:8px;'>" + row.getAttribute("data-discount-rate") + "</td></tr>";
-                paymentTableHtml += "<tr><td style='padding:8px;'>Transaction Total</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-total") + "</td></tr>";
-                paymentTableHtml += "<tr><td style='padding:8px;'>Discounted Total</td><td style='padding:8px;'>" + row.getAttribute("data-discounted-total") + "</td></tr>";
-                paymentTableHtml += "</table>";
-                
-                // Combine the Basic, Test, and Payment tables to form the complete receipt
-                var receiptHtml = basicTableHtml + testTableHtml + paymentTableHtml;
-                
-                document.getElementById("receiptDetails").innerHTML = receiptHtml;
+  </div>
+  
+  <script>
+    // Function to build the acknowledgement receipt and show the modal
+    function printAcknowledgementReceipt(transactionId) {
+      // Optionally update the transaction status on the server; updating in the UI here.
+      document.getElementById("transaction-status-" + transactionId).innerText = "Completed";
+      
+      // Locate the table row using data attributes
+      var row = document.querySelector('tr[data-transaction-id="' + transactionId + '"]');
+      if (row) {
+        // Build the Basic Details table (without header row)
+        var basicTableHtml = "<h2 style='text-align:center;'>Mendoza Diagnostic Center</h2>";
+        basicTableHtml += "<h4 style='text-align:center;'>Acknowledgement Receipt</h4>";
+        basicTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Transaction ID</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-id") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Patient ID</td><td style='padding:8px;'>" + row.getAttribute("data-patient-id") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Patient Name</td><td style='padding:8px;'>" + row.getAttribute("data-patient-name") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Address</td><td style='padding:8px;'>" + row.getAttribute("data-address") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Contact Number</td><td style='padding:8px;'>" + row.getAttribute("data-contact") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Age</td><td style='padding:8px;'>" + row.getAttribute("data-age") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Company ID</td><td style='padding:8px;'>" + row.getAttribute("data-company-id") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Company</td><td style='padding:8px;'>" + row.getAttribute("data-company") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Transaction Purpose</td><td style='padding:8px;'>" + row.getAttribute("data-purpose") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Has Drug Test</td><td style='padding:8px;'>" + row.getAttribute("data-drug-test") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Custody Form Submitted</td><td style='padding:8px;'>" + row.getAttribute("data-custody") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Transaction Date</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-date") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Transaction Time</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-time") + "</td></tr>";
+        basicTableHtml += "<tr><td style='padding:8px;'>Transaction Status</td><td style='padding:8px;'>Completed</td></tr>";
+        basicTableHtml += "</table>";
+        
+        // Build the Test Details table (retaining its headers)
+        var testDetails = row.getAttribute("data-test-details");
+        var testTableHtml = "";
+        if (testDetails && testDetails.trim().length > 0) {
+          testTableHtml += "<h3 style='text-align:center;'>Test Details</h3>";
+          testTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
+          testTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Test Name</th><th style='padding:8px; background:#f2f2f2;'>Test Price</th></tr>";
+          var testsArray = testDetails.split(",");
+          for (var i = 0; i < testsArray.length; i++) {
+            var testItem = testsArray[i].trim();
+            if (testItem) {
+              var parts = testItem.split(" - ");
+              var testName = parts[0] ? parts[0].trim() : "";
+              var testPrice = parts[1] ? parts[1].trim() : "";
+              testTableHtml += "<tr><td style='padding:8px;'>" + testName + "</td><td style='padding:8px;'>" + testPrice + "</td></tr>";
             }
-            // Display the modal
-            document.getElementById("receiptModal").style.display = "block";
+          }
+          testTableHtml += "</table>";
         }
-
-        // Function to close the modal
-        function closeModal() {
-            document.getElementById("receiptModal").style.display = "none";
-        }
-
-        // Function to invoke the browser's print dialog
-        function printReceipt() {
-            window.print();
-        }
-
-        // Optional: Close modal if the user clicks outside the modal content
-        window.onclick = function(event) {
-            var modal = document.getElementById("receiptModal");
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+        
+        // Build the Payment Details table (without header row)
+        var paymentTableHtml = "<h3 style='text-align:center; margin-top:20px;'>Payment Details</h3>";
+        paymentTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
+        paymentTableHtml += "<tr><td style='padding:8px;'>Payment Type</td><td style='padding:8px;'>" + row.getAttribute("data-payment-type") + "</td></tr>";
+        paymentTableHtml += "<tr><td style='padding:8px;'>Transaction Type</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-type") + "</td></tr>";
+        paymentTableHtml += "<tr><td style='padding:8px;'>Discount Type</td><td style='padding:8px;'>" + row.getAttribute("data-discount-type") + "</td></tr>";
+        paymentTableHtml += "<tr><td style='padding:8px;'>Discount Rate</td><td style='padding:8px;'>" + row.getAttribute("data-discount-rate") + "</td></tr>";
+        paymentTableHtml += "<tr><td style='padding:8px;'>Transaction Total</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-total") + "</td></tr>";
+        paymentTableHtml += "<tr><td style='padding:8px;'><strong>Discounted Total</strong></td><td style='padding:8px;'><strong>" + row.getAttribute("data-discounted-total") + "</strong></td></tr>";
+        paymentTableHtml += "</table>";
+        
+        // Combine the sections
+        var receiptHtml = basicTableHtml + testTableHtml + paymentTableHtml;
+        document.getElementById("receiptDetails").innerHTML = receiptHtml;
+      }
+      // Show the modal
+      document.getElementById("receiptModal").style.display = "block";
+    }
+    
+    // Function to close the modal
+    function closeModal() {
+      document.getElementById("receiptModal").style.display = "none";
+    }
+    
+    // Optional: Close the modal if clicking outside the modal content
+    window.onclick = function(event) {
+      var modal = document.getElementById("receiptModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    
+    // Function to invoke the browser's print dialog
+    function printReceipt() {
+      window.print();
+    }
+  </script>
 </body>
 </html>

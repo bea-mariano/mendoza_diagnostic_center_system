@@ -22,3 +22,10 @@ class Patient(models.Model):
     
     def get_absolute_url(self):
         return reverse('patient_detail', kwargs={'pk': self.pk})
+    
+    @property
+    def full_name(self):
+        # Exclude the middle name if it's the default value
+        if self.middle_name == 'NO_MIDDLE_NAME':
+            return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.middle_name} {self.last_name}"

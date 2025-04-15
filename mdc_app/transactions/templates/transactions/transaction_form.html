@@ -1,91 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %} transaction</title>
+    <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Transaction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        /* Ensure all elements use the same box sizing */
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        /* Base and Container Styles */
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
             padding: 20px;
         }
+        .container {
+            max-width: 1200px;
+            background-color: #fff;
+            margin: 0 auto;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Navigation Bar */
+        .nav {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .nav a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        /* Form Group and Inputs */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             font-weight: bold;
+            color: #333;
         }
-        input[type="text"], input[type="email"], input[type="date"], input[type="number"], textarea, select {
+        /* Common styles for text boxes and dropdowns */
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        textarea,
+        select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #007BFF;
         }
         textarea {
-            height: 100px;
+            resize: vertical;
+            height: 120px;
         }
         input[disabled], select[disabled] {
-            background-color: #f3f3f3;
+            background-color: #e9ecef;
             color: #555;
         }
+        /* Button Styles */
         button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 12px 20px;
             border: none;
             border-radius: 4px;
+            font-size: 1rem;
             cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
         }
-        .error {
-            color: red;
-            margin-bottom: 10px;
+        button:hover {
+            background-color: #0056b3;
         }
-        .nav {
+        /* Section Grouping */
+        fieldset {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 15px;
             margin-bottom: 20px;
         }
-        .nav a {
-            margin-right: 15px;
+        legend {
+            padding: 0 10px;
+            font-weight: bold;
+            color: #007BFF;
         }
-
+        /* Tests Options Styles */
         .tests-container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 8px;
+            gap: 10px;
         }
-
         @media (min-width: 768px) {
             .tests-container {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr;
                 gap: 16px;
             }
         }
-
         .test-option {
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
         }
-
         .test-option input[type="checkbox"] {
             margin-right: 8px;
+            transform: scale(1.2);
         }
-
-        ul.tests-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
-        }
-
-        @media (min-width: 768px) {
-            ul.tests-list {
-                grid-template-columns: 1fr 1fr;
-            }
+        /* Error styling */
+        .error {
+            color: #d9534f;
+            margin-top: 5px;
         }
     </style>
     <script>
@@ -98,7 +146,6 @@
 
             function updateDiscountRate() {
                 const discountType = discountTypeField.value;
-
                 if (discountType === "Philhealth") {
                     discountRateField.value = 500;
                 } else if (discountType === "Senior Citizen" || discountType === "PWD") {
@@ -108,7 +155,6 @@
                 } else {
                     discountRateField.value = "";
                 }
-
                 updateTransactionTotal();
                 updateDiscountedTotal();
             }
@@ -124,17 +170,14 @@
                 return total;
             }
 
-            // Function to update the transaction total field
             function updateTransactionTotal() {
-                let testTotal = calculateTestTotal();
-                let total = testTotal;
-                transactionTotalField.value = total;
+                const testTotal = calculateTestTotal();
+                transactionTotalField.value = testTotal;
             }
 
-            // Function to update the discounted total field
             function updateDiscountedTotal() {
-                let testTotal = calculateTestTotal();
-                let discountRate = parseInt(discountRateField.value) || 0;
+                const testTotal = calculateTestTotal();
+                const discountRate = parseInt(discountRateField.value) || 0;
                 let total = testTotal - discountRate;
                 discountedTotalField.value = total >= 0 ? total : 0;
             }
@@ -142,22 +185,19 @@
             if (discountTypeField) {
                 discountTypeField.addEventListener("change", updateDiscountRate);
             }
-
             testCheckboxes.forEach(function (checkbox) {
                 checkbox.addEventListener("change", updateTransactionTotal);
                 checkbox.addEventListener("change", updateDiscountedTotal);
             });
-
             const form = document.querySelector('form');
             if (form) {
-                form.addEventListener('submit', function (e) {
+                form.addEventListener('submit', function () {
                     if (!document.getElementById('id_payment_type').value) {
                         document.getElementById('id_payment_type').value = 'Cash';
                     }
                     if (!document.getElementById('id_transaction_status').value) {
                         document.getElementById('id_transaction_status').value = 'Ongoing';
                     }
-
                     if (isNaN(parseInt(discountRateField.value))) {
                         discountRateField.value = 0;
                     }
@@ -169,7 +209,6 @@
                     }
                 });
             }
-
             updateDiscountRate();
             updateTransactionTotal();
             updateDiscountedTotal();
@@ -178,89 +217,111 @@
 </head>
 <body>
     <div class="nav">
-        <a href="{% url 'transaction_list' %}">Back to Transaction List</a>
+        <a href="{% url 'transaction_list' %}">← Back to Transaction List</a>
     </div>
-    <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Transaction</h1>
-    
-    <form method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="patient">Patient</label>
-            {{ form.patient }}
-        </div>
-        <div class="form-group">
-            <label for="address">Address</label>
-            {{ form.address }}
-        </div>
-        <div class="form-group">
-            <label for="contact_no">Contact Number</label>
-            {{ form.contact_no }}
-        </div>
-        <div class="form-group">
-            <label for="age">Age</label>
-            {{ form.age }}
-        </div>
-        <div class="form-group">
-            <label for="transaction_type">Transaction Type</label>
-            {{ form.transaction_type }}
-        </div>
-        <div class="form-group">
-            <label for="company_id">Company</label>
-            {{ form.company }}
-        </div>
-        <div class="form-group">
-            <label for="transaction_purpose">Transaction Purpose</label>
-            {{ form.transaction_purpose }}
-        </div>
-        <div class="form-group">
-            <label for="transaction_purpose">Transaction Status</label>
-            {{ form.transaction_status }}
-        </div>
-        <div class="form-group">
-            <label for="payment_type">Payment Type</label>
-            {{ form.payment_type }}
-        </div>
-        <div class="form-group">
-            <label for="has_drug_test">Has Drug Test</label>
-            {{ form.has_drug_test }}
-        </div>
-        <div class="form-group">
-            <label for="custody_control_form_submitted">Custody Control Form Submitted</label>
-            {{ form.custody_control_form_submitted }}
-        </div>
-        <div class="form-group">
-            <label for="tests">Tests</label>
-            <div class="tests-container">
-                {% for test in form.fields.tests.queryset %}
-                    <div class="test-option">
-                        <input type="checkbox" 
-                            name="tests" 
-                            value="{{ test.pk }}" 
-                            id="test_{{ test.pk }}" 
-                            data-price="{{ test.test_price }}"
-                            {% if test.pk in form.initial.tests %}checked{% endif %}>
-                        <label for="test_{{ test.pk }}">{{ test.test_name }} (₱{{ test.test_price }})</label>
+    <div class="container">
+        <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Transaction</h1>
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Patient and Contact Details -->
+            <fieldset>
+                <legend>Patient Information</legend>
+                <div class="form-group">
+                    <label for="patient">Patient</label>
+                    {{ form.patient }}
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    {{ form.address }}
+                </div>
+                <div class="form-group">
+                    <label for="contact_no">Contact Number</label>
+                    {{ form.contact_no }}
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    {{ form.age }}
+                </div>
+            </fieldset>
+
+            <!-- Transaction Details -->
+            <fieldset>
+                <legend>Transaction Details</legend>
+                <div class="form-group">
+                    <label for="transaction_type">Transaction Type</label>
+                    {{ form.transaction_type }}
+                </div>
+                <div class="form-group">
+                    <label for="company_id">Company</label>
+                    {{ form.company }}
+                </div>
+                <div class="form-group">
+                    <label for="transaction_purpose">Transaction Purpose</label>
+                    {{ form.transaction_purpose }}
+                </div>
+                <div class="form-group">
+                    <label for="transaction_status">Transaction Status</label>
+                    {{ form.transaction_status }}
+                </div>
+                <div class="form-group">
+                    <label for="payment_type">Payment Type</label>
+                    {{ form.payment_type }}
+                </div>
+                <div class="form-group">
+                    <label for="has_drug_test">Has Drug Test</label>
+                    {{ form.has_drug_test }}
+                </div>
+                <div class="form-group">
+                    <label for="custody_control_form_submitted">Custody Control Form Submitted</label>
+                    {{ form.custody_control_form_submitted }}
+                </div>
+            </fieldset>
+
+            <!-- Test Selection -->
+            <fieldset>
+                <legend>Test Selection</legend>
+                <div class="form-group">
+                    <label for="tests">Tests</label>
+                    <div class="tests-container">
+                        {% for test in form.fields.tests.queryset %}
+                            <div class="test-option">
+                                <input type="checkbox" 
+                                    name="tests" 
+                                    value="{{ test.pk }}" 
+                                    id="test_{{ test.pk }}" 
+                                    data-price="{{ test.test_price }}"
+                                    {% if test.pk in form.initial.tests %}checked{% endif %}>
+                                <label for="test_{{ test.pk }}">{{ test.test_name }} (₱{{ test.test_price }})</label>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="discount_type">Discount Type</label>
-            {{ form.discount_type }}
-        </div>
-        <div class="form-group">
-            <label for="discount_rate">Discount Rate</label>
-            {{ form.discount_rate }}
-        </div>
-        <div class="form-group">
-            <label for="transaction_total">Transaction Total</label>
-            {{ form.transaction_total }}
-        </div>
-        <div class="form-group">
-            <label for="discounted_total">Discounted Total</label>
-            {{ form.discounted_total }}
-        </div>
-        <button type="submit">Save</button>
-    </form>
+                </div>
+            </fieldset>
+
+            <!-- Discounts and Totals -->
+            <fieldset>
+                <legend>Discounts & Totals</legend>
+                <div class="form-group">
+                    <label for="discount_type">Discount Type</label>
+                    {{ form.discount_type }}
+                </div>
+                <div class="form-group">
+                    <label for="discount_rate">Discount Rate</label>
+                    {{ form.discount_rate }}
+                </div>
+                <div class="form-group">
+                    <label for="transaction_total">Transaction Total</label>
+                    {{ form.transaction_total }}
+                </div>
+                <div class="form-group">
+                    <label for="discounted_total">Discounted Total</label>
+                    {{ form.discounted_total }}
+                </div>
+            </fieldset>
+
+            <button type="submit">Save Transaction</button>
+        </form>
+    </div>
 </body>
 </html>

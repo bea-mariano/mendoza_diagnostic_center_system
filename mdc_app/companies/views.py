@@ -6,6 +6,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from .models import Company
 from .forms import CompanyForm
+from transactions.models import Transaction
+from transactions.forms import TransactionForm
 
 
 @method_decorator(login_required, name='dispatch')
@@ -19,6 +21,12 @@ class CompanyDetailView(DetailView):
     model = Company
     template_name = 'companies/company_detail.html'
     context_object_name = 'company'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        company = self.object
+        context['transactions'] = Transaction.objects.filter(company=company)
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class CompanyCreateView(CreateView):
