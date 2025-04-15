@@ -117,6 +117,11 @@
         </thead>
         <tbody>
             {% for transaction in transactions %}
+            <!-- 
+              Embed data attributes with all required details, including a summary of tests.
+              Payment-related attributes (e.g., payment_type, transaction_type, discount fields)
+              will be used in a separate table later.
+            -->
             <tr data-transaction-id="{{ transaction.id }}"
                 data-patient-id="{{ transaction.patient.id }}"
                 data-patient-name="{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}"
@@ -170,61 +175,52 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <div id="receiptDetails">
-                <!-- Customized Receipt details will be inserted here -->
+                <!-- The acknowledgement receipt details will be injected here -->
             </div>
             <button onclick="printReceipt()">Print/Save as PDF</button>
         </div>
     </div>
 
     <script>
-        // Function to update the transaction status, build the receipt details, and show the modal
+        // Function to build the acknowledgement receipt and show the modal
         function printAcknowledgementReceipt(transactionId) {
-            // Optionally update the transaction status on the server via AJAX.
-            // For demonstration, update the status in the UI.
+            // Optionally update transaction status via AJAX; here we update in the UI.
             document.getElementById("transaction-status-" + transactionId).innerText = "Completed";
             
-            // Locate the table row corresponding to the transaction using data attributes
+            // Locate the table row for the transaction via its data attributes
             var row = document.querySelector('tr[data-transaction-id="' + transactionId + '"]');
             if (row) {
-                // Build the main details table
-                var detailsTableHtml = "<h2 style='text-align:center;'>Acknowledgement Receipt</h2>";
-                detailsTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
-                detailsTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Field</th><th style='padding:8px; background:#f2f2f2;'>Value</th></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Transaction ID</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-id") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Patient ID</td><td style='padding:8px;'>" + row.getAttribute("data-patient-id") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Patient Name</td><td style='padding:8px;'>" + row.getAttribute("data-patient-name") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Address</td><td style='padding:8px;'>" + row.getAttribute("data-address") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Contact Number</td><td style='padding:8px;'>" + row.getAttribute("data-contact") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Age</td><td style='padding:8px;'>" + row.getAttribute("data-age") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Payment Type</td><td style='padding:8px;'>" + row.getAttribute("data-payment-type") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Transaction Type</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-type") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Company ID</td><td style='padding:8px;'>" + row.getAttribute("data-company-id") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Company</td><td style='padding:8px;'>" + row.getAttribute("data-company") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Transaction Purpose</td><td style='padding:8px;'>" + row.getAttribute("data-purpose") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Has Drug Test</td><td style='padding:8px;'>" + row.getAttribute("data-drug-test") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Custody Form Submitted</td><td style='padding:8px;'>" + row.getAttribute("data-custody") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Transaction Date</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-date") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Transaction Time</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-time") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Transaction Status</td><td style='padding:8px;'>Completed</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Discount Type</td><td style='padding:8px;'>" + row.getAttribute("data-discount-type") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Discount Rate</td><td style='padding:8px;'>" + row.getAttribute("data-discount-rate") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Transaction Total</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-total") + "</td></tr>";
-                detailsTableHtml += "<tr><td style='padding:8px;'>Discounted Total</td><td style='padding:8px;'>" + row.getAttribute("data-discounted-total") + "</td></tr>";
-                detailsTableHtml += "</table>";
+                // Build the Basic Details table (excluding payment details)
+                var basicTableHtml = "<h2 style='text-align:center;'>Acknowledgement Receipt</h2>";
+                basicTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
+                basicTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Field</th><th style='padding:8px; background:#f2f2f2;'>Value</th></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Transaction ID</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-id") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Patient ID</td><td style='padding:8px;'>" + row.getAttribute("data-patient-id") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Patient Name</td><td style='padding:8px;'>" + row.getAttribute("data-patient-name") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Company ID</td><td style='padding:8px;'>" + row.getAttribute("data-company-id") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Company</td><td style='padding:8px;'>" + row.getAttribute("data-company") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Address</td><td style='padding:8px;'>" + row.getAttribute("data-address") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Contact Number</td><td style='padding:8px;'>" + row.getAttribute("data-contact") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Age</td><td style='padding:8px;'>" + row.getAttribute("data-age") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Transaction Purpose</td><td style='padding:8px;'>" + row.getAttribute("data-purpose") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Has Drug Test</td><td style='padding:8px;'>" + row.getAttribute("data-drug-test") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Custody Form Submitted</td><td style='padding:8px;'>" + row.getAttribute("data-custody") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Transaction Date</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-date") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Transaction Time</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-time") + "</td></tr>";
+                basicTableHtml += "<tr><td style='padding:8px;'>Transaction Status</td><td style='padding:8px;'>Completed</td></tr>";
+                basicTableHtml += "</table>";
                 
-                // Build the test details table (if available)
+                // Build the Test Details table (if test details exist)
                 var testDetails = row.getAttribute("data-test-details");
                 var testTableHtml = "";
                 if (testDetails && testDetails.trim().length > 0) {
                     testTableHtml += "<h3 style='text-align:center;'>Test Details</h3>";
-                    testTableHtml += "<table style='width:100%; border-collapse:collapse;'>";
+                    testTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
                     testTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Test Name</th><th style='padding:8px; background:#f2f2f2;'>Test Price</th></tr>";
-                    // Split the comma-separated string into an array of tests
                     var testsArray = testDetails.split(",");
                     for (var i = 0; i < testsArray.length; i++) {
                         var testItem = testsArray[i].trim();
                         if (testItem) {
-                            // Split each test item into test name and test price
                             var parts = testItem.split(" - ");
                             var testName = parts[0] ? parts[0].trim() : "";
                             var testPrice = parts[1] ? parts[1].trim() : "";
@@ -234,11 +230,20 @@
                     testTableHtml += "</table>";
                 }
                 
-                // Combine the tables into the final receipt HTML
-                var receiptHtml = detailsTableHtml;
-                if (testTableHtml) {
-                    receiptHtml += testTableHtml;
-                }
+                // Build the Payment Details table (separated from the main details)
+                var paymentTableHtml = "<h3 style='text-align:center; margin-top:20px;'>Payment Details</h3>";
+                paymentTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
+                paymentTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Field</th><th style='padding:8px; background:#f2f2f2;'>Value</th></tr>";
+                paymentTableHtml += "<tr><td style='padding:8px;'>Payment Type</td><td style='padding:8px;'>" + row.getAttribute("data-payment-type") + "</td></tr>";
+                paymentTableHtml += "<tr><td style='padding:8px;'>Transaction Type</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-type") + "</td></tr>";
+                paymentTableHtml += "<tr><td style='padding:8px;'>Discount Type</td><td style='padding:8px;'>" + row.getAttribute("data-discount-type") + "</td></tr>";
+                paymentTableHtml += "<tr><td style='padding:8px;'>Discount Rate</td><td style='padding:8px;'>" + row.getAttribute("data-discount-rate") + "</td></tr>";
+                paymentTableHtml += "<tr><td style='padding:8px;'>Transaction Total</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-total") + "</td></tr>";
+                paymentTableHtml += "<tr><td style='padding:8px;'>Discounted Total</td><td style='padding:8px;'>" + row.getAttribute("data-discounted-total") + "</td></tr>";
+                paymentTableHtml += "</table>";
+                
+                // Combine the Basic, Test, and Payment tables to form the complete receipt
+                var receiptHtml = basicTableHtml + testTableHtml + paymentTableHtml;
                 
                 document.getElementById("receiptDetails").innerHTML = receiptHtml;
             }
