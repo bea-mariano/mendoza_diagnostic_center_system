@@ -5,6 +5,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from .models import Transaction, TransactionTest  # 👈 Import TransactionTest
 from .forms import TransactionForm
+from companies.models import Company
+from django.http import JsonResponse
 
 @method_decorator(login_required, name='dispatch')
 class TransactionListView(ListView):
@@ -127,3 +129,10 @@ def revert_transaction(request, pk):
     transaction.transaction_status = 'Ongoing'
     transaction.save()
     return redirect('transaction_detail', pk=pk)
+
+def get_company_peme_rate(request, company_id):
+    try:
+        company = Company.objects.get(pk=company_id)
+        return JsonResponse({'peme_rate': company.company_peme_rate})
+    except Company.DoesNotExist:
+        return JsonResponse({'peme_rate': 0})

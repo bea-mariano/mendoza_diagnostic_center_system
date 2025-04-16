@@ -1,106 +1,169 @@
 <!-- # mdc_app/templates/home/home.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Mendoza Diagnostic Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        /* Global Resets */
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        /* Base Styles */
         body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
             padding: 20px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+
+        .container {
+            max-width: 1200px;
+            margin: 90px auto 30px auto;
+            padding: 30px 40px;
         }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .action-links a {
-            margin-right: 10px;
-            text-decoration: none;
-        }
-        .header {
+
+        /* Navbar */
+        .navbar {
+            background-color: #007BFF;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
         }
+
+        .nav-left a {
+            color: #f9f9f9;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .nav-left a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-right form {
+            display: inline;
+        }
+
+        .nav-right form button {
+            background: none;
+            border: none;
+            color: #f9f9f9;
+            text-decoration: underline;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        /* Page Sections */
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        .section-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
         .btn {
-            background-color: #4CAF50;
+            background-color: #007BFF;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
             border-radius: 4px;
-            cursor: pointer;
             text-decoration: none;
+            font-size: 1rem;
+            text-align: center;
+            white-space: nowrap;
         }
-        .btn-danger {
-            background-color: #f44336;
+
+        .btn:hover {
+            opacity: 0.9;
         }
-        .nav {
-            margin-bottom: 20px;
-        }
-        .nav a {
-            margin-right: 15px;
+
+        .footer {
+            margin-top: 60px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="nav">
+
+<div class="navbar">
+    <div class="nav-left">
         <a href="{% url 'home' %}">Home</a>
-        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+        <a href="{% url 'transaction_list' %}">Transactions</a>
+        <a href="{% url 'patient_list' %}">Patients</a>
+        <a href="{% url 'company_list' %}">Companies</a>
+    </div>
+    <div class="nav-right">
+        <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button type="submit" style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer; padding:0;">Logout</button>
+            <button type="submit">Logout</button>
         </form>
     </div>
+</div>
 
-    <div>
-        <h1>Mendoza Diagnostic Center</h1>
-        <br>
+<div class="container">
+    <h1>Mendoza Diagnostic Center</h1>
 
-        <h2>Cashier and Billing</h2>
-        <!-- after new transaction is made, stickers will be printed -->
+    <h2>Cashier and Billing</h2>
+    <div class="section-buttons">
         <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
-        <!-- add a review process after all tests are done? -->
-        <a href="{% url 'transaction_active_list' %}" class="btn">View Transactions Today</a>
-        <a href="{% url 'transaction_list' %}" class="btn">View All Transactions</a>
+        <a href="{% url 'transaction_active_list' %}" class="btn">Today's Transactions</a>
+        <a href="{% url 'transaction_list' %}" class="btn">All Transactions</a>
+    </div>
 
-        <h2>Patient Management</h2>
+    <h2>Patient Management</h2>
+    <div class="section-buttons">
         <a href="{% url 'patient_new' %}" class="btn">Add New Patient</a>
         <a href="{% url 'patient_list' %}" class="btn">View Patients</a>
+    </div>
 
-        <h2>Company Charge</h2>
-        <!-- all companies then, filter per company per month -->
+    <h2>Company Charge</h2>
+    <div class="section-buttons">
         <a href="{% url 'company_list' %}" class="btn">View Company Charge</a>
+    </div>
 
-        <br>
-        <br>
-        <hr>
-        <br>
-
-        <h2>Test Management</h2>
+    <!-- Optional future sections:
+    <h2>Test Management</h2>
+    <div class="section-buttons">
         <a href="{% url 'test_new' %}" class="btn">Add New Test</a>
         <a href="{% url 'test_list' %}" class="btn">View Tests</a>
-
-        <h2>Company Management</h2>
-        <a href="{% url 'company_new' %}" class="btn">Add New Company</a>
-        
-
-
     </div>
-    
+
+    <h2>Company Management</h2>
+    <div class="section-buttons">
+        <a href="{% url 'company_new' %}" class="btn">Add New Company</a>
+    </div>
+    -->
+
+    <div class="footer">
+        &copy; {{ now.year }} Mendoza Diagnostic Center. All rights reserved.
+    </div>
+</div>
 
 </body>
 </html>

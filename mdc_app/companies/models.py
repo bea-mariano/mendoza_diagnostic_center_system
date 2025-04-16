@@ -17,6 +17,7 @@ class Company(models.Model):
     commission_eligible = models.BooleanField(default=False)
     commission_type = models.CharField(max_length=50, choices=COMMISSION_TYPE_CHOICES)
     commission_rate = models.PositiveIntegerField()
+    company_peme_rate = models.PositiveIntegerField()
 
     def __str__(self):
         return f"{self.company_name}"

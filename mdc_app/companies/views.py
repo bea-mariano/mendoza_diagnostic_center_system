@@ -20,7 +20,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Table, TableStyle
 from reportlab.lib import colors
-
+from django.http import JsonResponse
 from io import BytesIO
 from datetime import datetime
 from reportlab.lib.pagesizes import letter
@@ -352,3 +352,4 @@ class CompanyDeleteView(DeleteView):
     model = Company
     template_name = 'companies/company_confirm_delete.html'
     success_url = reverse_lazy('company_list')
+

@@ -84,14 +84,6 @@
         <a href="{% url 'company_list' %}">Company</a>
     </div>
 
-    <div class="actions" style="text-align: right; margin-bottom: 15px;">
-        {% if transaction.transaction_status == 'Ongoing' %}
-            <a href="{% url 'complete_transaction' transaction.id %}" class="btn">Complete Transaction</a>
-        {% elif transaction.transaction_status == 'Completed' %}
-            <a href="{% url 'revert_transaction' transaction.id %}" class="btn btn-danger">Revert to Ongoing</a>
-        {% endif %}
-    </div>
-
     <h1>Transaction Details</h1>
 
     <!-- Transaction Basic Details -->
