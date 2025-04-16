@@ -48,6 +48,13 @@ from reportlab.platypus import Table, TableStyle, Paragraph
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
 
+from collections import defaultdict
+from django.db.models import Sum, Count
+
+from itertools import groupby
+from operator import attrgetter
+
+
 def create_pdf(company, transactions):
     buffer = BytesIO()
     p = canvas.Canvas(buffer, pagesize=letter)
@@ -59,9 +66,9 @@ def create_pdf(company, transactions):
 
     p.setFont("Helvetica", 10)
     p.drawString(50, 735, "930 ME National Road, Tibag, Pulilan, Bulacan")
-    p.drawString(50, 725, "\"Healthcare partner that is convenient, reliable, and affordable\"")
+    p.drawString(50, 725, '"Healthcare partner that is convenient, reliable, and affordable"')
 
-    # Centered STATEMENT OF ACCOUNT Title
+    # STATEMENT OF ACCOUNT Title
     p.setFont("Helvetica", 12)
     page_width, _ = letter
     text = "STATEMENT OF ACCOUNT"
@@ -69,14 +76,14 @@ def create_pdf(company, transactions):
     x_center = (page_width - text_width) / 2
     p.drawString(x_center, 690, text)
 
-    # Build the header table for company details (two columns: label and value)
+    # Company details header table
     header_data = [
         ["DATE", datetime.now().strftime('%B %d, %Y')],
-        ["STATEMENT NO", f"{company.id}-{datetime.now().strftime('%Y%m')}"],
+        ["STATEMENT NO", f"{company.id}-{datetime.now().strftime('%Y%m')}"] ,
         ["ACCOUNT NAME", company.company_name]
     ]
 
-    available_width = width - 100  # 50 pt margin on each side
+    available_width = width - 100
     header_table = Table(header_data, colWidths=[available_width * 0.25, available_width * 0.75])
     header_table.setStyle(TableStyle([
         ('FONT', (0, 0), (-1, -1), 'Helvetica', 10),
@@ -84,60 +91,105 @@ def create_pdf(company, transactions):
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
         ('TOPPADDING', (0, 0), (-1, -1), 4),
-        # Uncomment to add borders:
-        # ('GRID', (0,0), (-1,-1), 0.25, colors.black)
     ]))
 
-    # Position the header table below the title
-    table_x = 50
-    header_table_y = 670  # top position for the company header table
+    header_table_y = 660
     header_table.wrapOn(p, available_width, height)
-    header_table.drawOn(p, table_x, header_table_y - header_table._height)
+    header_table.drawOn(p, 50, header_table_y - header_table._height)
 
-    # Prepare a style for paragraphs for text wrapping
     styles = getSampleStyleSheet()
     normalStyle = styles['Normal']
 
-    # Build the transactions table data.
-    # Header row for the transactions table.
-    transaction_data = [["DATE (YYYY-MM-DD)", "ID", "PATIENT NAME", "TRANSACTION TYPE", "AMOUNT (Php)"]]
-
-    # Add each transaction as a row.
+    # Transactions table
+    transaction_data = [["DATE", "ID", "PATIENT NAME", "TRANSACTION TYPE", "AMOUNT"]]
+    total_amount = 0
     for txn in transactions:
+        amount_value = float(txn.formatted_discounted_total.replace(',', ''))
+        total_amount += amount_value
         transaction_data.append([
             txn.transaction_date.strftime('%Y-%m-%d'),
             txn.id,
-            # Convert the Patient object into a string; alternatively, use txn.patient.name if available.
             str(txn.patient),
-            # Wrap the transaction type in Paragraph for proper text wrapping.
             Paragraph(str(txn.transaction_purpose), normalStyle),
-            txn.discounted_total
+            txn.formatted_discounted_total
         ])
 
-    # Create the transactions table with specific column widths.
+    total_formatted = "{:,.2f}".format(total_amount)
+    transaction_data.append(["BALANCE DUE", "", "", "", total_formatted])
+
     transactions_table = Table(transaction_data, colWidths=[
-            available_width * 0.15,  # DATE
-            available_width * 0.10,  # ID
-            available_width * 0.30,  # PATIENT NAME
-            available_width * 0.25,  # TRANSACTION TYPE
-            available_width * 0.15   # AMOUNT
-        ])
+        available_width * 0.15, available_width * 0.10, available_width * 0.30,
+        available_width * 0.30, available_width * 0.15
+    ])
+
+    last_row_index = len(transaction_data) - 1
+
     transactions_table.setStyle(TableStyle([
-        ('FONT', (0, 0), (-1, 0), 'Helvetica-Bold', 10),  # header row bold
+        ('FONT', (0, 0), (-1, 0), 'Helvetica-Bold', 10),
         ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
         ('FONT', (0, 1), (-1, -1), 'Helvetica', 10),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
-        ('TOPPADDING', (0, 0), (-1, -1), 4),
-        ('GRID', (0, 0), (-1, -1), 0.25, colors.black)
+        ('GRID', (0, 0), (-1, -1), 0.25, colors.black),
+        ('FONT', (0, last_row_index), (-1, last_row_index), 'Helvetica-Bold', 10),
+        ('BACKGROUND', (0, last_row_index), (-1, last_row_index), colors.lightgrey),
+        ('SPAN', (0, last_row_index), (3, last_row_index)),
+        ('ALIGN', (0, last_row_index), (0, last_row_index), 'RIGHT'),
+        ('ALIGN', (4, 0), (4, -1), 'RIGHT'),
     ]))
 
-    # Position the transactions table below the company header table with a gap
-    gap = 30
-    transactions_table_y = header_table_y - header_table._height - gap
+    transactions_table_y = header_table_y - header_table._height - 20
+
+    p.setFont("Helvetica", 10)
+    p.drawString(50, transactions_table_y, "TRANSACTIONS")
+
+    transactions_table_y = header_table_y - header_table._height - 35
     transactions_table.wrapOn(p, available_width, height)
     transactions_table.drawOn(p, 50, transactions_table_y - transactions_table._height)
+
+    # Payment Type Summary Table
+    # Sort transactions by payment_type to prepare for groupby
+    sorted_transactions = sorted(transactions, key=attrgetter('payment_type'))
+
+    # Initialize summary data
+    summary_data = [["PAYMENT TYPE", "TRANSACTION COUNT", "PRICE PER EMPLOYEE", "TOTAL"]]
+
+    # Group and summarize by payment_type
+    for payment_type, group in groupby(sorted_transactions, key=attrgetter('payment_type')):
+        group_list = list(group)
+        count_txn = len(group_list)
+        commission = float(50)
+        # total = sum(float(txn.formatted_discounted_total.replace(',', '')) for txn in group_list)
+        total = count_txn * commission
+
+        summary_data.append([
+            payment_type,
+            count_txn,
+            commission,
+            f"{total:,.2f}"
+        ])
+
+    summary_table = Table(summary_data, colWidths=[
+        available_width * 0.30, available_width * 0.25, available_width * 0.25, available_width * 0.20
+    ])
+
+    summary_table.setStyle(TableStyle([
+        ('FONT', (0, 0), (-1, 0), 'Helvetica-Bold', 10),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+        ('FONT', (0, 1), (-1, -1), 'Helvetica', 10),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('GRID', (0, 0), (-1, -1), 0.25, colors.black),
+    ]))
+
+    summary_table_y = transactions_table_y - transactions_table._height - 30
+
+    p.setFont("Helvetica", 10)
+    p.drawString(50, summary_table_y, "COMMISSIONS")
+
+    summary_table_y = transactions_table_y - transactions_table._height - 40
+    summary_table.wrapOn(p, available_width, height)
+    summary_table.drawOn(p, 50, summary_table_y - summary_table._height)
 
     # Finish up the PDF
     p.save()
@@ -146,23 +198,19 @@ def create_pdf(company, transactions):
     return pdf
 
 
+
 def generate_statement(request, company_id):
-    # Retrieve the company instance
     company = get_object_or_404(Company, pk=company_id)
 
-    # Get the selected month from the query string (expects a format like "2025-04")
     month_str = request.GET.get('month')
     if not month_str:
         return HttpResponse("Month not specified", status=400)
-    
+
     try:
-        # Parse the month; day is irrelevant here so we use the first day of the month
         selected_date = datetime.strptime(month_str, "%Y-%m")
     except ValueError:
         return HttpResponse("Invalid month format", status=400)
 
-    # Filter transactions for the given company, status "Completed",
-    # and matching the selected month and year
     transactions = Transaction.objects.filter(
         company=company,
         transaction_status='Completed',
@@ -170,11 +218,13 @@ def generate_statement(request, company_id):
         transaction_date__month=selected_date.month
     )
 
-    # Generate the PDF using your preferred PDF library.
-    # Example: pdf_content = create_pdf(company, transactions)
-    pdf_content = create_pdf(company, transactions)  # Implement this helper accordingly
+    # Format discounted_total in accounting style
+    for transaction in transactions:
+        transaction.formatted_discounted_total = "{:,.2f}".format(transaction.discounted_total)
 
-    # Send the PDF file as a downloadable response
+    # Implement create_pdf to use formatted_discounted_total
+    pdf_content = create_pdf(company, transactions)
+
     response = HttpResponse(pdf_content, content_type='application/pdf')
     filename = f"statement_{company.id}_{month_str}.pdf"
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
