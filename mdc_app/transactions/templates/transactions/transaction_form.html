@@ -285,15 +285,15 @@
                     <label for="tests">Tests</label>
                     <div class="tests-container">
                         {% for test in form.fields.tests.queryset %}
-                            <div class="test-option">
-                                <input type="checkbox" 
-                                    name="tests" 
-                                    value="{{ test.pk }}" 
-                                    id="test_{{ test.pk }}" 
-                                    data-price="{{ test.test_price }}"
-                                    {% if test.pk in form.initial.tests %}checked{% endif %}>
-                                <label for="test_{{ test.pk }}">{{ test.test_name }} (₱{{ test.test_price }})</label>
-                            </div>
+                        <div class="test-option">
+                            <input type="checkbox" 
+                                name="tests" 
+                                value="{{ test.pk }}" 
+                                id="test_{{ test.pk }}" 
+                                data-price="{{ test.test_price }}"
+                                {% if test.pk in form.tests.value %}checked{% endif %}>
+                            <label for="test_{{ test.pk }}">{{ test.test_name }} (₱{{ test.test_price }})</label>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -319,6 +319,12 @@
                     {{ form.discounted_total }}
                 </div>
             </fieldset>
+
+            {% if form.errors %}
+                <div class="error">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
 
             <button type="submit">Save Transaction</button>
         </form>
