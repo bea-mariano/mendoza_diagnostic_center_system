@@ -9,7 +9,8 @@ class CompanyForm(forms.ModelForm):
             'company_name', 
             'commission_eligible',
             'commission_type', 
-            'commission_rate'
+            'commission_rate',
+            'company_peme_rate'
             ]
         widgets = {
         }
