@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>{% block title %}MDC{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
             background-color: #007BFF;
             padding: 10px 20px;
             display: flex;
-            flex-wrap: wrap;  /* ✅ allow wrapping on smaller screens */
+            flex-wrap: wrap;  /* allow wrapping on smaller screens */
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #ccc;
@@ -21,14 +22,23 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            box-sizing: border-box;  /* ✅ ensures padding is included in width */
+            box-sizing: border-box;  /* ensures padding is included in width */
             overflow-x: auto;
+        }
+        .nav-left {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-left img {
+            height: 40px;
+            margin-right: 10px;
         }
         .nav-left a {
             color: #f9f9f9;
             text-decoration: none;
             font-weight: bold;
-            margin-right: 15px;
         }
         .nav-left a:hover {
             text-decoration: underline;
@@ -36,9 +46,10 @@
         .nav-right {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .nav-right span {
-            margin-right: 15px;
             font-weight: bold;
             color: #f9f9f9;
         }
@@ -52,54 +63,41 @@
             font: inherit;
             white-space: nowrap;
         }
-
         .nav-right form {
             margin: 0;
         }
-
         .nav-right form input[type="text"] {
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
             width: 200px;
         }
-
-        .nav-left,
-        .nav-right {
-            display: flex;
-            flex-wrap: wrap;       /* ✅ allow wrapping if needed */
-            gap: 10px;
-        }
-
         /* Padding for fixed navbar */
         body {
             font-family: "Segoe UI", Arial, sans-serif;
             padding-top: 60px;
         }
-
         @media (max-width: 600px) {
             .navbar {
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 10px;
             }
-
             .nav-left, .nav-right {
                 flex-direction: column;
                 width: 100%;
             }
-
             .nav-left a, .nav-right span, .nav-right form {
                 margin-bottom: 10px;
             }
         }
-
     </style>
     {% block extra_head %}{% endblock %}
 </head>
 <body>
     <div class="navbar">
         <div class="nav-left">
+            <!-- <img src="{% static 'images/mdc_logo.jpg' %}" alt="Logo"> -->
             <a href="{% url 'home' %}">Home</a>
             <a href="{% url 'patient_list' %}">Patient</a>
             <a href="{% url 'transaction_list' %}">Transactions</a>

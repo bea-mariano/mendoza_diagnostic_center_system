@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}All Transactions{% endblock %}
 
@@ -40,7 +41,6 @@
         border: none;
         cursor: pointer;
     }
-
 
     .btn-view { background-color: #4CAF50; }
     .btn-edit { background-color: #FFC107; }
@@ -111,57 +111,28 @@
     }
 
     @media print {
-        @page {
-            size: 80mm auto;
-            margin: 0;
-        }
-
-        /* Hide all page UI elements */
-        body * {
-            visibility: hidden;
-        }
-
-        /* Only show the receipt modal and its content */
-        #receiptModal, #receiptModal * {
-            visibility: visible;
-        }
-
+        @page { size: 80mm auto; margin: 0; }
+        body * { visibility: hidden; }
+        #receiptModal, #receiptModal * { visibility: visible; }
         #receiptModal {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            z-index: 9999;
+            position: absolute; top: 0; left: 0;
+            width: 100%; background: #fff; z-index: 9999;
             display: block !important;
         }
-
         .modal-content {
-            width: 80mm;
-            margin: 0 auto;
-            padding: 10px;
-            border: none;
-            box-shadow: none;
+            width: 60mm; margin: 0 auto;
+            padding: 10px; border: none; box-shadow: none;
         }
-
-        .no-print {
-            display: none !important;
-        }
+        .no-print { display: none !important; }
     }
 
     .action-group {
       display: flex;
       justify-content: flex-end;
-      gap: 6px; /* tighter spacing */
+      gap: 6px;
     }
 
-    .col-transaction-id {
-      width: 4%;
-      /* text-align: center; */
-    }
-
-
-
+    .col-transaction-id { width: 4%; }
 </style>
 {% endblock %}
 
@@ -188,30 +159,8 @@
     </thead>
     <tbody>
         {% for transaction in transactions %}
-        <tr data-transaction-id="{{ transaction.id }}"
-            data-patient-id="{{ transaction.patient.id }}"
-            data-patient-name="{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}"
-            data-address="{{ transaction.address }}"
-            data-contact="{{ transaction.contact_no }}"
-            data-age="{{ transaction.age }}"
-            data-payment-type="{{ transaction.get_payment_type_display }}"
-            data-transaction-type="{{ transaction.get_transaction_type_display }}"
-            data-company-id="{{ transaction.company_id }}"
-            data-company="{{ transaction.company }}"
-            data-purpose="{{ transaction.get_transaction_purpose_display }}"
-            data-drug-test="{{ transaction.has_drug_test|yesno:'Yes,No' }}"
-            data-custody="{{ transaction.custody_control_form_submitted|yesno:'Yes,No' }}"
-            data-transaction-date="{{ transaction.transaction_date }}"
-            data-transaction-time="{{ transaction.transaction_time }}"
-            data-transaction-status="{{ transaction.get_transaction_status_display }}"
-            data-discount-type="{{ transaction.discount_type }}"
-            data-discount-rate="₱ {{ transaction.discount_rate }}"
-            data-transaction-total="₱ {{ transaction.transaction_total }}"
-            data-discounted-total="₱ {{ transaction.discounted_total }}"
-            data-test-details="{% for tt in transaction.transaction_tests.all %}{{ tt.test.test_name }} - ₱{{ tt.test_price }}{% if not forloop.last %}, {% endif %}{% endfor %}">
-            <td><a href="{% url 'transaction_detail' transaction.id %}" class="btn-view btn-action" title="View">
-              <i class="fas fa-eye"></i>
-            </a></td>
+        <tr data-transaction-id="{{ transaction.id }}" data-patient-id="{{ transaction.patient.id }}" data-patient-name="{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}" data-contact="{{ transaction.contact_no }}" data-payment-type="{{ transaction.get_payment_type_display }}" data-transaction-type="{{ transaction.get_transaction_type_display }}" data-company="{{ transaction.company }}" data-purpose="{{ transaction.get_transaction_purpose_display }}" data-transaction-date="{{ transaction.transaction_date }}" data-transaction-time="{{ transaction.transaction_time }}" data-transaction-status="{{ transaction.get_transaction_status_display }}" data-discount-type="{{ transaction.discount_type }}" data-discount-rate="₱ {{ transaction.discount_rate }}" data-transaction-total="₱ {{ transaction.transaction_total }}" data-discounted-total="₱ {{ transaction.discounted_total }}" data-test-details="{% for tt in transaction.transaction_tests.all %}{{ tt.test.test_name }} - ₱{{ tt.test_price }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+            <td><a href="{% url 'transaction_detail' transaction.id %}" class="btn-view btn-action" title="View"><i class="fas fa-eye"></i></a></td>
             <td class="col-transaction-id">{{ transaction.id }}</td>
             <td>{{ transaction.transaction_date }}</td>
             <td>{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}</td>
@@ -246,89 +195,66 @@
 
 {% block scripts %}
 <script>
-    // Function to build the acknowledgement receipt and show the modal
-    function printAcknowledgementReceipt(transactionId) {
-      // Optionally update the transaction status on the server; updating in the UI here.
-      document.getElementById("transaction-status-" + transactionId).innerText = "Completed";
-      
-      // Locate the table row using data attributes
-      var row = document.querySelector('tr[data-transaction-id="' + transactionId + '"]');
-      if (row) {
-        // Build the Basic Details table (without header row)
-        var basicTableHtml = "<h2 style='text-align:center;'>Mendoza Diagnostic Center</h2>";
-        basicTableHtml += "<h4 style='text-align:center;'>Acknowledgement Receipt</h4>";
-        basicTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Transaction ID</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-id") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Patient ID</td><td style='padding:8px;'>" + row.getAttribute("data-patient-id") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Patient Name</td><td style='padding:8px;'>" + row.getAttribute("data-patient-name") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Address</td><td style='padding:8px;'>" + row.getAttribute("data-address") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Contact Number</td><td style='padding:8px;'>" + row.getAttribute("data-contact") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Age</td><td style='padding:8px;'>" + row.getAttribute("data-age") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Company ID</td><td style='padding:8px;'>" + row.getAttribute("data-company-id") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Company</td><td style='padding:8px;'>" + row.getAttribute("data-company") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Transaction Purpose</td><td style='padding:8px;'>" + row.getAttribute("data-purpose") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Has Drug Test</td><td style='padding:8px;'>" + row.getAttribute("data-drug-test") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Custody Form Submitted</td><td style='padding:8px;'>" + row.getAttribute("data-custody") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Transaction Date</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-date") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Transaction Time</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-time") + "</td></tr>";
-        basicTableHtml += "<tr><td style='padding:8px;'>Transaction Status</td><td style='padding:8px;'>Completed</td></tr>";
-        basicTableHtml += "</table>";
-        
-        // Build the Test Details table (retaining its headers)
-        var testDetails = row.getAttribute("data-test-details");
-        var testTableHtml = "";
-        if (testDetails && testDetails.trim().length > 0) {
-          testTableHtml += "<h3 style='text-align:center;'>Test Details</h3>";
-          testTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
-          testTableHtml += "<tr><th style='padding:8px; background:#f2f2f2;'>Test Name</th><th style='padding:8px; background:#f2f2f2;'>Test Price</th></tr>";
-          var testsArray = testDetails.split(",");
-          for (var i = 0; i < testsArray.length; i++) {
-            var testItem = testsArray[i].trim();
-            if (testItem) {
-              var parts = testItem.split(" - ");
-              var testName = parts[0] ? parts[0].trim() : "";
-              var testPrice = parts[1] ? parts[1].trim() : "";
-              testTableHtml += "<tr><td style='padding:8px;'>" + testName + "</td><td style='padding:8px;'>" + testPrice + "</td></tr>";
-            }
-          }
-          testTableHtml += "</table>";
-        }
-        
-        // Build the Payment Details table (without header row)
-        var paymentTableHtml = "<h3 style='text-align:center; margin-top:20px;'>Payment Details</h3>";
-        paymentTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>";
-        paymentTableHtml += "<tr><td style='padding:8px;'>Payment Type</td><td style='padding:8px;'>" + row.getAttribute("data-payment-type") + "</td></tr>";
-        paymentTableHtml += "<tr><td style='padding:8px;'>Transaction Type</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-type") + "</td></tr>";
-        paymentTableHtml += "<tr><td style='padding:8px;'>Discount Type</td><td style='padding:8px;'>" + row.getAttribute("data-discount-type") + "</td></tr>";
-        paymentTableHtml += "<tr><td style='padding:8px;'>Discount Rate</td><td style='padding:8px;'>" + row.getAttribute("data-discount-rate") + "</td></tr>";
-        paymentTableHtml += "<tr><td style='padding:8px;'>Transaction Total</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-total") + "</td></tr>";
-        paymentTableHtml += "<tr><td style='padding:8px;'><strong>Discounted Total</strong></td><td style='padding:8px;'><strong>" + row.getAttribute("data-discounted-total") + "</strong></td></tr>";
-        paymentTableHtml += "</table>";
-        
-        // Combine the sections
-        var receiptHtml = basicTableHtml + testTableHtml + paymentTableHtml;
-        document.getElementById("receiptDetails").innerHTML = receiptHtml;
+  const logoUrl = "{% static 'images/mdc_logo.jpg' %}";
+
+  function printAcknowledgementReceipt(transactionId) {
+    document.getElementById("transaction-status-" + transactionId).innerText = "Completed";
+    const row = document.querySelector('tr[data-transaction-id="' + transactionId + '"]');
+    if (row) {
+      let basicTableHtml = "<div style='text-align:center; margin-bottom:10px;'><img src='" + logoUrl + "' style='width:60px; height:auto;'></div>";
+      basicTableHtml += "<h2 style='text-align:center; margin-bottom:5px;'>Mendoza Diagnostic Center</h2>";
+      basicTableHtml += "<h4 style='text-align:center;'>Acknowledgement Receipt</h4>";
+      basicTableHtml += "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>" +
+        "<tr><td style='padding:8px;'>Transaction ID</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-id") + "</td></tr>" +
+        "<tr><td style='padding:8px;'>Patient Name</td><td style='padding:8px;'>" + row.getAttribute("data-patient-name") + "</td></tr>" +
+        "<tr><td style='padding:8px;'>Contact Number</td><td style='padding:8px;'>" + row.getAttribute("data-contact") + "</td></tr>" +
+        "<tr><td style='padding:8px;'>Company</td><td style='padding:8px;'>" + row.getAttribute("data-company") + "</td></tr>" +
+        "<tr><td style='padding:8px;'>Transaction Purpose</td><td style='padding:8px;'>" + row.getAttribute("data-purpose") + "</td></tr>" +
+        "<tr><td style='padding:8px;'>Transaction Date</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-date") + "</td></tr>" +
+        "<tr><td style='padding:8px;'>Transaction Time</td><td style='padding:8px;'>" + row.getAttribute("data-transaction-time") + "</td></tr>" +
+        "<tr><td style='padding:8px;'>Transaction Status</td><td style='padding:8px;'>Completed</td></tr>" +
+        "</table>";
+
+      const testDetails = row.getAttribute("data-test-details");
+      let testTableHtml = "";
+      if (testDetails) {
+        testTableHtml += "<h3 style='text-align:center;'>Test Details</h3>" +
+          "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>" +
+          "<tr><th style='padding:8px;'>Test Name</th><th style='padding:8px;'>Test Price</th></tr>";
+        testDetails.split(",").forEach(item => {
+          const [name, price] = item.split(" - ");
+          testTableHtml += `<tr><td style='padding:8px;'>${name.trim()}</td><td style='padding:8px;'>${price.trim()}</td></tr>`;
+        });
+        testTableHtml += "</table>";
       }
-      // Show the modal
-      document.getElementById("receiptModal").style.display = "block";
+
+      const paymentTableHtml =
+        "<h3 style='text-align:center; margin-top:20px;'>Payment Details</h3>" +
+        "<table style='width:100%; border-collapse:collapse; margin-bottom:20px;'>" +
+        `<tr><td style='padding:8px;'>Payment Type</td><td style='padding:8px;'>${row.getAttribute("data-payment-type")}</td></tr>` +
+        `<tr><td style='padding:8px;'>Transaction Type</td><td style='padding:8px;'>${row.getAttribute("data-transaction-type")}</td></tr>` +
+        `<tr><td style='padding:8px;'>Discount Type</td><td style='padding:8px;'>${row.getAttribute("data-discount-type")}</td></tr>` +
+        `<tr><td style='padding:8px;'>Discount Rate</td><td style='padding:8px;'>${row.getAttribute("data-discount-rate")}</td></tr>` +
+        `<tr><td style='padding:8px;'>Transaction Total</td><td style='padding:8px;'>${row.getAttribute("data-transaction-total")}</td></tr>` +
+        `<tr><td style='padding:8px;'><strong>Discounted Total</strong></td><td style='padding:8px;'><strong>${row.getAttribute("data-discounted-total")}</strong></td></tr>` +
+        "</table>";
+
+      document.getElementById("receiptDetails").innerHTML = basicTableHtml + testTableHtml + paymentTableHtml;
     }
-    
-    // Function to close the modal
-    function closeModal() {
-      document.getElementById("receiptModal").style.display = "none";
-    }
-    
-    // Optional: Close the modal if clicking outside the modal content
-    window.onclick = function(event) {
-      var modal = document.getElementById("receiptModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-    
-    // Function to invoke the browser's print dialog
-    function printReceipt() {
-      window.print();
-    }
+    document.getElementById("receiptModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("receiptModal").style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById("receiptModal");
+    if (event.target == modal) modal.style.display = "none";
+  }
+
+  function printReceipt() {
+    window.print();
+  }
 </script>
 {% endblock %}
