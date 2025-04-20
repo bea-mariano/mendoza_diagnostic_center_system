@@ -1,88 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>All Transactions</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    /* Global Resets */
-    *, *:before, *:after {
-      box-sizing: border-box;
-    }
-    
-    /* Base Styles */
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background-color: #fff;
-      margin: 0;
-      padding: 20px 20px 20px 20px;
-    }
-    
+{% extends 'base.html' %}
+
+{% block title %}All Transactions{% endblock %}
+
+{% block extra_head %}
+<style>
     .container {
-      max-width: 1200px;
-      /* background-color: #fff; */
-      margin: 90px auto 30px auto;  /* Added top margin to account for fixed nav bar */
-      padding: 30px 40px;
-      border-radius: 8px;
-      /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); */
+        max-width: 1200px;
+        margin: 15px auto 30px auto;
+        padding: 30px 40px;
     }
-    
-    /* Navigation Bar */
-    .navbar {
-      background-color: #007BFF;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ccc;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
+
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2rem;
     }
-    .nav-left a {
-      color: #f9f9f9;
-      text-decoration: none;
-      font-weight: bold;
-      margin-right: 15px;
-    }
-    .nav-left a:hover {
-      text-decoration: underline;
-    }
-    .nav-right {
-      display: flex;
-      align-items: center;
-    }
-    .nav-right span {
-      margin-right: 15px;
-      font-weight: bold;
-      color: #f9f9f9;
-    }
-    .nav-right form button {
-      background: none;
-      border: none;
-      color: #f9f9f9;
-      text-decoration: underline;
-      cursor: pointer;
-      padding: 0;
-      font: inherit;
-    }
-    
-    /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    .header h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      text-align: center;
-      flex: 1;
-    }
+
     .btn {
-      background-color: #007BFF;
+      background-color: #4CAF50;
       color: #fff;
       padding: 12px 20px;
       border: none;
@@ -91,134 +26,167 @@
       font-size: 1rem;
       white-space: nowrap;
     }
-    
-    /* Table Styles */
+
+    .btn-action {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        border-radius: 4px;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+    }
+
+
+    .btn-view { background-color: #4CAF50; }
+    .btn-edit { background-color: #FFC107; }
+    .btn-print { background-color: #17A2B8; }
+    .btn-delete { background-color: #DC3545; }
+
     table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
     }
+
     th, td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
     }
+
     th {
-      background-color: #007BFF;
-      color: white;
+        background-color: #007BFF;
+        color: white;
     }
+
     tr:hover {
-      background-color: #f5f5f5;
+        background-color: #f5f5f5;
     }
-    .btn-danger {
-      background-color: #f44336;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
+
+    th:nth-last-child(-n+4),
+    td:nth-last-child(-n+4) {
+        width: 10%;
+        text-align: center;
     }
-    
-    /* Modal Styles */
+
     .modal {
-      display: none; /* Hidden by default */
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
     }
+
     .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80mm;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80mm;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
+
     .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
     }
+
     .close:hover,
     .close:focus {
-      color: #000;
-      text-decoration: none;
+        color: #000;
+        text-decoration: none;
     }
-    
-    /* Print Styles */
+
     @media print {
-      @page {
-        size: 80mm auto;  /* 80mm wide with auto height for continuous paper */
-        margin: 0;
-      }
-      body {
-        width: 80mm;
-        margin: 0 auto;
-      }
-      .modal-content {
-        width: 80mm;
-        margin: 0 auto;
-        padding: 10px;
-        border: none;
-        box-shadow: none;
-      }
-      .no-print {
-        display: none;
-      }
+        @page {
+            size: 80mm auto;
+            margin: 0;
+        }
+
+        /* Hide all page UI elements */
+        body * {
+            visibility: hidden;
+        }
+
+        /* Only show the receipt modal and its content */
+        #receiptModal, #receiptModal * {
+            visibility: visible;
+        }
+
+        #receiptModal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            z-index: 9999;
+            display: block !important;
+        }
+
+        .modal-content {
+            width: 80mm;
+            margin: 0 auto;
+            padding: 10px;
+            border: none;
+            box-shadow: none;
+        }
+
+        .no-print {
+            display: none !important;
+        }
     }
-  </style>
-  
-</head>
-<body>
-  <div class="navbar">
-    <div class="nav-left">
-      <a href="{% url 'home' %}">Home</a>
-      <a href="{% url 'patient_list' %}">Patient</a>
-      <a href="{% url 'transaction_list' %}">Transactions</a>
-      <a href="{% url 'company_list' %}">Company</a>
-    </div>
-    <div class="nav-right">
-      <span>Logged in as {{ user.username }}</span>
-      <form method="post" action="{% url 'logout' %}" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-      </form>
-    </div>
-  </div>
-  
-  <div class="container">
-    <div class="header">
-      <h1>All Transactions</h1>
-      <a href="{% url 'transaction_new' %}" class="btn">Register New Transaction</a>
-    </div>
-    
-    {% if transactions %}
-    <table>
-      <thead>
+
+    .action-group {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px; /* tighter spacing */
+    }
+
+    .col-transaction-id {
+      width: 4%;
+      /* text-align: center; */
+    }
+
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>All Transactions</h1>
+<div class="header" style="display: flex; align-items: center; margin-bottom: 20px;">
+    <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
+</div>
+
+{% if transactions %}
+<table>
+    <thead>
         <tr>
-          <th>Transaction ID</th>
-          <th>Transaction Date</th>
-          <th>Patient Name</th>
-          <th>Payment Type</th>
-          <th>Transaction Type</th>
-          <th>Transaction Purpose</th>
-          <th>Transaction Status</th>
-          <th>View</th>
-          <th>Edit</th>
-          <th>Print Receipt</th>
-          <th>Delete</th>
+            <th></th>
+            <th class="col-transaction-id">Transaction ID</th>
+            <th>Date</th>
+            <th>Patient</th>
+            <th style="width: 6%;">Payment Type</th>
+            <th style="width: 6%;">Type</th>
+            <th style="width: 25%;">Purpose</th>
+            <th>Status</th>
+            <th>Actions</th>
         </tr>
-      </thead>
-      <tbody>
+    </thead>
+    <tbody>
         {% for transaction in transactions %}
         <tr data-transaction-id="{{ transaction.id }}"
             data-patient-id="{{ transaction.patient.id }}"
@@ -241,47 +209,43 @@
             data-transaction-total="₱ {{ transaction.transaction_total }}"
             data-discounted-total="₱ {{ transaction.discounted_total }}"
             data-test-details="{% for tt in transaction.transaction_tests.all %}{{ tt.test.test_name }} - ₱{{ tt.test_price }}{% if not forloop.last %}, {% endif %}{% endfor %}">
-          <td>{{ transaction.id }}</td>
-          <td>{{ transaction.transaction_date }}</td>
-          <td>{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}</td>
-          <td>{{ transaction.payment_type }}</td>
-          <td>{{ transaction.transaction_type }}</td>
-          <td>{{ transaction.transaction_purpose }}</td>
-          <td id="transaction-status-{{ transaction.id }}">{{ transaction.transaction_status }}</td>
-          <td class="action-view">
-            <a href="{% url 'transaction_detail' transaction.id %}">View</a>
-          </td>
-          <td class="action-edit">
-            <a href="{% url 'transaction_edit' transaction.id %}">Edit</a>
-          </td>
-          <td class="action-receipt">
-            <a href="javascript:void(0)" onclick="printAcknowledgementReceipt({{ transaction.id }})">Print Receipt</a>
-          </td>
-          <td class="action-delete">
-            <a href="{% url 'transaction_delete' transaction.id %}" class="btn-danger">Delete</a>
-          </td>
+            <td><a href="{% url 'transaction_detail' transaction.id %}" class="btn-view btn-action" title="View">
+              <i class="fas fa-eye"></i>
+            </a></td>
+            <td class="col-transaction-id">{{ transaction.id }}</td>
+            <td>{{ transaction.transaction_date }}</td>
+            <td>{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}</td>
+            <td style="width: 6%;">{{ transaction.payment_type }}</td>
+            <td style="width: 6%;">{{ transaction.transaction_type }}</td>
+            <td style="width: 25%;">{{ transaction.transaction_purpose }}</td>
+            <td id="transaction-status-{{ transaction.id }}">{{ transaction.transaction_status }}</td>
+            <td style="text-align: right;">
+              <div class="action-group">
+                <a href="{% url 'transaction_edit' transaction.id %}" class="btn-edit btn-action" title="Edit"><i class="fas fa-pen"></i></a>
+                <a href="javascript:void(0)" onclick="printAcknowledgementReceipt({{ transaction.id }})" class="btn-print btn-action" title="Print"><i class="fas fa-print"></i></a>
+                <a href="{% url 'transaction_delete' transaction.id %}" class="btn-delete btn-action" title="Delete"><i class="fas fa-trash"></i></a>
+              </div>
+            </td>
         </tr>
         {% endfor %}
-      </tbody>
-    </table>
-    {% else %}
-      <p>No transactions registered yet.</p>
-    {% endif %}
-    
-    <!-- Modal for receipt preview -->
-    <div id="receiptModal" class="modal">
-      <div class="modal-content">
+    </tbody>
+</table>
+{% else %}
+<p>No transactions registered yet.</p>
+{% endif %}
+
+<!-- Receipt Modal -->
+<div id="receiptModal" class="modal">
+    <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <div id="receiptDetails">
-          <!-- Customized receipt details will be inserted here -->
-        </div>
-        <!-- The print/save button (hidden during printing) -->
+        <div id="receiptDetails"></div>
         <button class="no-print" onclick="printReceipt()">Print/Save as PDF</button>
-      </div>
     </div>
-  </div>
-  
-  <script>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
     // Function to build the acknowledgement receipt and show the modal
     function printAcknowledgementReceipt(transactionId) {
       // Optionally update the transaction status on the server; updating in the UI here.
@@ -366,6 +330,5 @@
     function printReceipt() {
       window.print();
     }
-  </script>
-</body>
-</html>
+</script>
+{% endblock %}
