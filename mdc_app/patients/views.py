@@ -1,6 +1,7 @@
 # patients/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -12,6 +13,10 @@ from tests.models import Test
 from tests.forms import TestForm
 from companies.models import Company
 from companies.forms import CompanyForm
+import logging
+from django.forms.models import model_to_dict
+
+logger = logging.getLogger('mdc_app')
 
 @method_decorator(login_required, name='dispatch')
 class HomeView(ListView):
@@ -56,6 +61,10 @@ class PatientCreateView(CreateView):
 
         if existing_patient:
             # Pass this info to template context
+            logger.info(
+                f"Patient CREATED by user={self.request.user.username!r}: "
+                f"Patient already exists with ID {existing_patient.id}, name={self.object.first_name} {self.object.last_name}"
+            )
             return self.render_to_response(self.get_context_data(
                 form=form,
                 existing_patient=existing_patient,
@@ -64,6 +73,12 @@ class PatientCreateView(CreateView):
             ))
         else:
             self.object = form.save()
+
+            logger.info(
+                f"Patient CREATED by user={self.request.user.username!r}: "
+                f"id={self.object.pk}, name={self.object.first_name} {self.object.last_name}"
+            )
+
             return self.render_to_response(self.get_context_data(
                 form=self.get_form_class()(instance=self.object),
                 new_patient=self.object,
@@ -72,11 +87,41 @@ class PatientCreateView(CreateView):
             ))
 
 @method_decorator(login_required, name='dispatch')
-class PatientUpdateView(UpdateView):
+class PatientUpdateView(LoginRequiredMixin, UpdateView):
     model = Patient
     form_class = PatientForm
     template_name = 'patients/patient_form.html'
     success_url = reverse_lazy('patient_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        # capture a snapshot of the object *before* any edits
+        self._original = model_to_dict(self.get_object())
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        changed = form.changed_data  # list of field names that were modified
+        
+        if changed:
+            # build a “field: old → new” string
+            diffs = []
+            for field in changed:
+                old = self._original.get(field)
+                new = getattr(self.object, field)
+                diffs.append(f"{field!r}: {old!r} → {new!r}")
+            
+            logger.info(
+                f"Patient UPDATED by user={self.request.user.username!r} "
+                f"(id={self.object.pk}): " + "; ".join(diffs)
+            )
+        else:
+            # you can still log “no changes” if you like
+            logger.info(
+                f"Patient UPDATE attempted by user={self.request.user.username!r} "
+                f"(id={self.object.pk}) but no fields changed"
+            )
+
+        return response
 
 @method_decorator(login_required, name='dispatch')
 class PatientDeleteView(DeleteView):

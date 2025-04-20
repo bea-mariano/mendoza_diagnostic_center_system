@@ -1,0 +1,42 @@
+[2025-04-21 06:03:25,019] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:03:58,035] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 6814
+[2025-04-21 06:04:02,564] INFO django.server "GET /patient/list/ HTTP/1.1" 200 6407
+[2025-04-21 06:04:03,747] INFO django.server "GET /patient/new/ HTTP/1.1" 200 4989
+[2025-04-21 06:04:16,754] INFO django.server "POST /patient/new/ HTTP/1.1" 200 5245
+[2025-04-21 06:04:18,317] INFO django.server "GET / HTTP/1.1" 200 5826
+[2025-04-21 06:06:56,659] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-21 06:06:57,063] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:08:01,605] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-21 06:08:02,090] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:08:15,719] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-21 06:08:16,175] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:08:52,212] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-21 06:08:52,620] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:08:55,724] INFO django.server "GET / HTTP/1.1" 200 5826
+[2025-04-21 06:08:56,911] INFO django.server "GET /patient/new/ HTTP/1.1" 200 4989
+[2025-04-21 06:09:16,265] INFO mdc_app Patient CREATED by user='mapleshield': id=10, name=CATHERINE MARIANO
+[2025-04-21 06:09:16,268] INFO django.server "POST /patient/new/ HTTP/1.1" 200 5249
+[2025-04-21 06:09:17,430] INFO django.server "GET / HTTP/1.1" 200 5826
+[2025-04-21 06:09:56,392] INFO django.server "GET /patient/new/ HTTP/1.1" 200 4989
+[2025-04-21 06:09:58,738] INFO django.server "GET /patient/list/ HTTP/1.1" 200 7862
+[2025-04-21 06:10:01,904] INFO django.server "GET /patient/10/edit/ HTTP/1.1" 200 5016
+[2025-04-21 06:12:27,327] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-21 06:12:27,751] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:12:43,147] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-21 06:12:43,501] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:14:19,075] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-21 06:14:19,488] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:14:23,257] INFO django.server "POST /patient/10/edit/ HTTP/1.1" 302 0
+[2025-04-21 06:14:23,270] INFO django.server "GET /patient/list/ HTTP/1.1" 200 7862
+[2025-04-21 06:14:40,289] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:14:42,483] INFO django.server "GET /patient/list/ HTTP/1.1" 200 7862
+[2025-04-21 06:14:45,888] INFO django.server "GET /patient/10/edit/ HTTP/1.1" 200 5019
+[2025-04-21 06:14:53,496] INFO django.server "POST /patient/10/edit/ HTTP/1.1" 302 0
+[2025-04-21 06:14:53,504] INFO django.server "GET /patient/list/ HTTP/1.1" 200 7862
+[2025-04-21 06:16:04,469] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\mdc_app\settings.py changed, reloading.
+[2025-04-21 06:16:04,929] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:16:23,868] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-21 06:16:30,409] INFO django.server "GET /patient/9/edit/ HTTP/1.1" 200 5013
+[2025-04-21 06:16:37,490] INFO mdc_app Patient UPDATED by user='mapleshield' (id=9): 'middle_name': 'UY' → 'CRUZ'
+[2025-04-21 06:16:37,491] INFO django.server "POST /patient/9/edit/ HTTP/1.1" 302 0
+[2025-04-21 06:16:37,503] INFO django.server "GET /patient/list/ HTTP/1.1" 200 7862
