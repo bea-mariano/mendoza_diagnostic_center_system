@@ -140,6 +140,20 @@
 <h1>All Transactions</h1>
 <div class="header" style="display: flex; align-items: center; margin-bottom: 20px;">
     <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
+
+    <form method="get" action="" style="margin-left: auto; display: flex; gap: 8px;">
+      <input
+        type="text"
+        name="q"
+        placeholder="Search by Txn ID or Patient ID/Name"
+        value="{{ q }}"
+        style="padding:8px; border:1px solid #ccc; border-radius:4px; width:220px;"
+      />
+      <button type="submit" class="btn">Search</button>
+      {% if q %}
+        <a href="{% url 'transaction_list' %}" class="btn" style="background:#6c757d;">Clear</a>
+      {% endif %}
+    </form>
 </div>
 
 {% if transactions %}

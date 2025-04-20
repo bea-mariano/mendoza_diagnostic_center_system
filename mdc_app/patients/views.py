@@ -15,6 +15,7 @@ from companies.models import Company
 from companies.forms import CompanyForm
 import logging
 from django.forms.models import model_to_dict
+from django.db.models import Q
 
 logger = logging.getLogger('mdc_app')
 
@@ -30,6 +31,31 @@ class PatientListView(ListView):
     template_name = 'patients/patient_list.html'
     context_object_name = 'patients'
     ordering = ['-created_at']
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.request.GET.get('q', '').strip()
+        if q:
+            if q.isdigit():
+                # search by numeric ID OR by name
+                qs = qs.filter(
+                    Q(id=int(q)) |
+                    Q(first_name__icontains=q) |
+                    Q(last_name__icontains=q)
+                )
+            else:
+                # search only by name
+                qs = qs.filter(
+                    Q(first_name__icontains=q) |
+                    Q(last_name__icontains=q)
+                )
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # so your template can pre‑fill the search box
+        context['q'] = self.request.GET.get('q', '')
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class PatientDetailView(DetailView):
