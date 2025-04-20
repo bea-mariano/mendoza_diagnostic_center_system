@@ -103,7 +103,22 @@
 {% block content %}
 <h1>Patient List</h1>
 <div class="header" style="display: flex; align-items: center; margin-bottom: 20px;">
-    <a href="{% url 'patient_new' %}" class="btn">Register New Patient</a>
+  <a href="{% url 'patient_new' %}" class="btn">Register New Patient</a>
+
+  <!-- Search form -->
+  <form method="get" action="" style="margin-left: auto; display: flex; gap: 8px;">
+    <input
+      type="text"
+      name="q"
+      placeholder="Search by ID or Name"
+      value="{{ q }}"
+      style="padding:8px; border:1px solid #ccc; border-radius:4px; width:200px;"
+    />
+    <button type="submit" class="btn">Search</button>
+    {% if q %}
+      <a href="{% url 'patient_list' %}" class="btn" style="background:#6c757d;">Clear</a>
+    {% endif %}
+  </form>
 </div>
 
 {% if patients %}

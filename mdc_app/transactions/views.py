@@ -7,12 +7,41 @@ from .models import Transaction, TransactionTest  # 👈 Import TransactionTest
 from .forms import TransactionForm
 from companies.models import Company
 from django.http import JsonResponse
+from django.db.models import Q
+
+
 
 @method_decorator(login_required, name='dispatch')
 class TransactionListView(ListView):
     model = Transaction
     template_name = 'transactions/transaction_list.html'
     context_object_name = 'transactions'
+    ordering = ['-transaction_date', '-transaction_time']
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.request.GET.get('q', '').strip()
+        if q:
+            if q.isdigit():
+                # search by Txn ID, or by Patient ID or name
+                qs = qs.filter(
+                    Q(id=int(q)) |
+                    Q(patient__id=int(q)) |
+                    Q(patient__first_name__icontains=q) |
+                    Q(patient__last_name__icontains=q)
+                )
+            else:
+                # search only by patient name
+                qs = qs.filter(
+                    Q(patient__first_name__icontains=q) |
+                    Q(patient__last_name__icontains=q)
+                )
+        return qs
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['q'] = self.request.GET.get('q', '')
+        return ctx
 
 @method_decorator(login_required, name='dispatch')
 class TransactionActiveListView(ListView):
