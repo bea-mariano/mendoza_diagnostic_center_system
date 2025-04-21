@@ -158,3 +158,612 @@ NameError: name 'Q' is not defined
 [2025-04-21 10:14:29,299] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67602
 [2025-04-21 10:14:37,985] INFO django.server "GET /transactions/ajax/get-company-peme-rate/5/ HTTP/1.1" 200 18
 [2025-04-21 10:16:51,432] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67295
+[2025-04-21 11:18:55,328] INFO django.server "GET / HTTP/1.1" 200 5896
+[2025-04-21 11:20:07,666] INFO django.server "GET / HTTP/1.1" 200 5896
+[2025-04-21 11:20:09,787] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 18075
+[2025-04-21 11:20:11,190] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8226
+[2025-04-21 11:20:13,091] INFO django.server "GET / HTTP/1.1" 200 5896
+[2025-04-21 11:20:13,794] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8226
+[2025-04-21 11:20:14,598] INFO django.server "GET / HTTP/1.1" 200 5896
+[2025-04-22 04:38:13,890] INFO django.server "GET / HTTP/1.1" 200 5896
+[2025-04-22 04:38:13,900] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
+[2025-04-22 04:38:14,841] WARNING django.request Not Found: /favicon.ico
+[2025-04-22 04:38:14,841] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 4596
+[2025-04-22 04:38:29,375] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67295
+[2025-04-22 04:38:47,755] INFO django.server "GET /transactions/ajax/get-company-peme-rate/4/ HTTP/1.1" 200 18
+[2025-04-22 04:39:09,526] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-04-22 04:39:09,540] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 19679
+[2025-04-22 04:39:17,263] INFO django.server "GET /transactions/transaction/21/ HTTP/1.1" 200 5578
+[2025-04-22 04:41:29,367] INFO django.server "GET /transactions/transaction/21/ HTTP/1.1" 200 5578
+[2025-04-22 04:41:31,771] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 19682
+[2025-04-22 04:41:38,267] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67295
+[2025-04-22 04:50:40,263] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\mdc_app\settings.py changed, reloading.
+[2025-04-22 04:50:40,753] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 04:51:02,803] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\models.py changed, reloading.
+[2025-04-22 04:51:03,228] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 04:53:12,087] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\mdc_app\urls.py changed, reloading.
+[2025-04-22 04:53:12,576] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 04:57:09,246] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 04:57:09,671] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 04:57:36,534] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 04:57:36,955] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 04:58:44,534] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\models.py changed, reloading.
+[2025-04-22 04:58:44,959] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 04:58:51,387] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 04:58:51,768] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:00:39,945] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 05:00:40,338] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:03:39,488] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:06:53,553] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\models.py changed, reloading.
+[2025-04-22 05:06:53,971] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:07:56,457] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\models.py changed, reloading.
+[2025-04-22 05:07:56,960] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:10:13,228] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:10:19,713] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 05:10:22,451] ERROR django.request Internal Server Error: /setpackages/setpackages/list/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: setpackages/setpackage_list.html, setpackages/setpackage_list.html
+[2025-04-22 05:10:22,452] ERROR django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 500 90636
+[2025-04-22 05:11:18,734] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:11:22,339] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 2868
+[2025-04-22 05:18:04,688] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 05:18:05,510] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:18:07,371] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:21:01,265] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:21:02,357] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:21:02,540] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:21:02,712] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:21:02,854] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:21:02,998] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:21:03,161] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2102
+[2025-04-22 05:21:36,231] ERROR django.request Internal Server Error: /setpackages/setpackages/1/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackage_edit' not found. 'setpackage_edit' is not a valid view function or pattern name.
+[2025-04-22 05:21:36,233] ERROR django.server "GET /setpackages/setpackages/1/ HTTP/1.1" 500 118996
+[2025-04-22 05:23:27,700] ERROR django.request Internal Server Error: /setpackages/setpackages/list/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackage_new' not found. 'setpackage_new' is not a valid view function or pattern name.
+[2025-04-22 05:23:27,701] ERROR django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 500 119119
+[2025-04-22 05:23:57,360] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 05:23:57,799] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:24:05,934] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2074
+[2025-04-22 05:25:09,999] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2074
+[2025-04-22 05:27:56,394] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:28:58,326] ERROR django.request Internal Server Error: /setpackages/setpackages/1/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackage_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['setpackages/setpackages/(?P<pk>[0-9]+)/edit/\\Z']
+[2025-04-22 05:28:58,327] ERROR django.server "GET /setpackages/setpackages/1/ HTTP/1.1" 500 122396
+[2025-04-22 05:33:15,201] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:17,196] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:17,363] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:17,544] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:17,704] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:18,022] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:18,180] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:18,404] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:18,575] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:18,804] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:18,936] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3478
+[2025-04-22 05:33:31,325] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4022
+[2025-04-22 05:33:39,671] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:33:41,309] ERROR django.request Internal Server Error: /setpackages/setpackages/3/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackage_edit' with arguments '('',)' not found. 1 pattern(s) tried: ['setpackages/setpackages/(?P<pk>[0-9]+)/edit/\\Z']
+[2025-04-22 05:33:41,310] ERROR django.server "GET /setpackages/setpackages/3/ HTTP/1.1" 500 122588
+[2025-04-22 05:36:13,560] ERROR django.request Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackages_list' not found. 'setpackages_list' is not a valid view function or pattern name.
+[2025-04-22 05:36:13,561] ERROR django.server "GET / HTTP/1.1" 500 175017
+[2025-04-22 05:36:13,972] ERROR django.request Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackages_list' not found. 'setpackages_list' is not a valid view function or pattern name.
+[2025-04-22 05:36:13,973] ERROR django.server "GET / HTTP/1.1" 500 174743
+[2025-04-22 05:36:57,025] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 05:36:58,457] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:36:59,988] INFO django.server "GET /setpackages/setpackages/4/ HTTP/1.1" 200 2489
+[2025-04-22 05:37:07,624] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:37:09,788] INFO django.server "GET /setpackages/setpackages/3/ HTTP/1.1" 200 3095
+[2025-04-22 05:37:18,646] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:37:58,084] INFO django.server "GET /setpackages/setpackages/3/ HTTP/1.1" 200 3095
+[2025-04-22 05:37:59,598] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:38:00,501] INFO django.server "GET /setpackages/setpackages/1/ HTTP/1.1" 200 2490
+[2025-04-22 05:38:05,929] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:38:07,230] INFO django.server "GET /setpackages/setpackages/2/ HTTP/1.1" 200 3095
+[2025-04-22 05:38:08,416] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:39:14,377] INFO django.server "GET /setpackages/setpackages/4/ HTTP/1.1" 200 2489
+[2025-04-22 05:39:19,157] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:40:17,043] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:40:18,137] INFO django.server "GET /setpackages/setpackages/4/ HTTP/1.1" 200 3095
+[2025-04-22 05:40:19,623] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:40:20,900] INFO django.server "GET /setpackages/setpackages/1/ HTTP/1.1" 200 2490
+[2025-04-22 05:40:21,839] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:40:25,471] INFO django.server "GET /setpackages/setpackages/2/ HTTP/1.1" 200 3095
+[2025-04-22 05:40:31,663] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:40:37,218] INFO django.server "GET /setpackages/setpackages/1/ HTTP/1.1" 200 2490
+[2025-04-22 05:40:39,814] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4566
+[2025-04-22 05:45:15,979] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4578
+[2025-04-22 05:45:22,180] ERROR django.request Internal Server Error: /setpackages/setpackages/1/delete/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackages_detail' not found. 'setpackages_detail' is not a valid view function or pattern name.
+[2025-04-22 05:45:22,181] ERROR django.server "GET /setpackages/setpackages/1/delete/ HTTP/1.1" 500 118148
+[2025-04-22 05:45:50,790] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 05:45:53,011] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4578
+[2025-04-22 05:45:57,536] ERROR django.request Internal Server Error: /setpackages/setpackages/1/delete/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackage_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['setpackages/setpackages/(?P<pk>[0-9]+)/\\Z']
+[2025-04-22 05:45:57,537] ERROR django.server "GET /setpackages/setpackages/1/delete/ HTTP/1.1" 500 121259
+[2025-04-22 05:46:09,183] INFO django.server "GET /setpackages/setpackages/3/ HTTP/1.1" 200 3095
+[2025-04-22 05:46:13,256] INFO django.server "GET /setpackages/setpackages/4/ HTTP/1.1" 200 3095
+[2025-04-22 05:46:16,466] INFO django.server "GET /setpackages/setpackages/4/ HTTP/1.1" 200 3095
+[2025-04-22 05:46:36,028] INFO django.server "GET /setpackages/setpackages/4/ HTTP/1.1" 200 3100
+[2025-04-22 05:47:00,971] INFO django.server "GET /setpackages/setpackages/4/ HTTP/1.1" 200 3123
+[2025-04-22 05:47:42,655] INFO django.server "GET /setpackages/setpackages/4/ HTTP/1.1" 200 2985
+[2025-04-22 05:47:54,342] ERROR django.request Internal Server Error: /setpackages/setpackages/4/delete/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'setpackage_detail' with arguments '('',)' not found. 1 pattern(s) tried: ['setpackages/setpackages/(?P<pk>[0-9]+)/\\Z']
+[2025-04-22 05:47:54,344] ERROR django.server "GET /setpackages/setpackages/4/delete/ HTTP/1.1" 500 121448
+[2025-04-22 05:49:32,648] INFO django.server "GET /setpackages/setpackages/4/delete/ HTTP/1.1" 200 2101
+[2025-04-22 05:49:37,405] INFO django.server "POST /setpackages/setpackages/4/delete/ HTTP/1.1" 302 0
+[2025-04-22 05:49:37,418] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4029
+[2025-04-22 05:49:42,138] INFO django.server "GET /setpackages/setpackages/1/delete/ HTTP/1.1" 200 2101
+[2025-04-22 05:49:43,413] INFO django.server "POST /setpackages/setpackages/1/delete/ HTTP/1.1" 302 0
+[2025-04-22 05:49:43,419] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3484
+[2025-04-22 05:49:45,470] INFO django.server "GET /setpackages/setpackages/2/delete/ HTTP/1.1" 200 2101
+[2025-04-22 05:49:46,392] INFO django.server "POST /setpackages/setpackages/2/delete/ HTTP/1.1" 302 0
+[2025-04-22 05:49:46,407] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 2940
+[2025-04-22 05:49:47,408] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 2868
+[2025-04-22 05:50:17,333] ERROR django.request Internal Server Error: /setpackages/setpackages/new/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\generic\edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\generic\edit.py", line 151, in post
+    return self.form_valid(form)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py", line 33, in form_valid
+    setpackage_name__iexact=data['setpackage_name']
+                            ~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'setpackage_name'
+[2025-04-22 05:50:17,334] ERROR django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 500 99055
+[2025-04-22 05:54:54,537] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 05:54:54,987] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:54:58,816] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 28223
+[2025-04-22 05:55:23,549] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 29614
+[2025-04-22 05:56:16,759] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 302 0
+[2025-04-22 05:56:16,769] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3530
+[2025-04-22 05:56:19,523] INFO django.server "GET /setpackages/setpackages/5/ HTTP/1.1" 200 3505
+[2025-04-22 05:56:23,120] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3530
+[2025-04-22 05:56:25,793] INFO django.server "GET /setpackages/setpackages/5/edit/ HTTP/1.1" 200 3303
+[2025-04-22 05:57:46,941] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 05:57:47,325] INFO django.utils.autoreload Watching for file changes with StatReloader
