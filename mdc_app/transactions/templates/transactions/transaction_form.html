@@ -247,6 +247,51 @@
             updateDiscountRate();
             updateDiscountedTotal();
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const purposeSelect = document.getElementById("id_transaction_purpose");
+
+            fetch('/setpackages/ajax/get-available-transaction-purposes/')
+                .then(response => response.json())
+                .then(data => {
+                    data.purposes.forEach(purpose => {
+                        const option = document.createElement("option");
+                        option.value = purpose;
+                        option.textContent = purpose;
+                        purposeSelect.appendChild(option);
+                    });
+
+                    // Set initial value if editing an existing transaction
+                    const initial = "{{ form.initial.transaction_purpose|escapejs }}";
+                    if (initial) {
+                        purposeSelect.value = initial;
+                    }
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const purposeSelect = document.getElementById("id_transaction_purpose");
+            const testCheckboxes = document.querySelectorAll("input[name='tests']");
+
+            purposeSelect?.addEventListener("change", () => {
+                const selectedPurpose = purposeSelect.value;
+
+                // Call backend to get test IDs for this purpose
+                fetch(`/setpackages/ajax/get-tests-by-purpose/${encodeURIComponent(selectedPurpose)}/`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const checkedTestIds = data.test_ids.map(String);
+                        testCheckboxes.forEach(cb => {
+                            cb.checked = checkedTestIds.includes(cb.value);
+                        });
+
+                        // trigger any downstream updates (totals, etc.)
+                        if (typeof updateTransactionTotal === 'function') updateTransactionTotal();
+                        if (typeof updateDiscountRate === 'function') updateDiscountRate();
+                        if (typeof updateDiscountedTotal === 'function') updateDiscountedTotal();
+                    });
+            });
+        });
     </script>
 </head>
 <body>
@@ -294,7 +339,9 @@
                        value="{{ form.instance.company.company_peme_rate|default:0 }}">
                 <div class="form-group">
                     <label for="transaction_purpose">Transaction Purpose</label>
-                    {{ form.transaction_purpose }}
+                    <select id="id_transaction_purpose" name="transaction_purpose">
+                        <option value="">Select Purpose</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="transaction_status">Transaction Status</label>

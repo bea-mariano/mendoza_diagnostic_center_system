@@ -767,3 +767,62 @@ KeyError: 'setpackage_name'
 [2025-04-22 05:56:25,793] INFO django.server "GET /setpackages/setpackages/5/edit/ HTTP/1.1" 200 3303
 [2025-04-22 05:57:46,941] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
 [2025-04-22 05:57:47,325] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 05:57:52,142] INFO django.server "GET /setpackages/setpackages/5/edit/ HTTP/1.1" 200 29668
+[2025-04-22 05:58:00,646] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 05:58:01,942] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3530
+[2025-04-22 05:58:03,591] INFO django.server "GET /setpackages/setpackages/5/edit/ HTTP/1.1" 200 29668
+[2025-04-22 05:59:48,144] INFO django.server "GET /setpackages/setpackages/5/edit/ HTTP/1.1" 200 34138
+[2025-04-22 05:59:49,609] INFO django.server "GET /setpackages/setpackages/5/edit/ HTTP/1.1" 200 34138
+[2025-04-22 05:59:55,814] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 05:59:56,984] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3530
+[2025-04-22 05:59:58,670] INFO django.server "GET /setpackages/setpackages/3/edit/ HTTP/1.1" 200 34083
+[2025-04-22 06:00:44,652] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 06:00:46,057] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3530
+[2025-04-22 06:00:47,917] INFO django.server "GET /setpackages/setpackages/3/ HTTP/1.1" 200 2987
+[2025-04-22 06:00:53,411] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3530
+[2025-04-22 06:00:56,094] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 06:01:02,250] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 3530
+[2025-04-22 06:01:16,961] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 06:01:34,431] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67295
+[2025-04-22 06:05:12,765] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 06:05:13,175] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:05:34,944] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 06:05:35,356] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:06:13,371] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 06:06:13,759] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:06:18,218] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 06:06:18,630] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:07:54,646] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67969
+[2025-04-22 06:07:54,664] WARNING django.request Not Found: /transactions/ajax/get-available-transaction-purposes/
+[2025-04-22 06:07:54,664] WARNING django.server "GET /transactions/ajax/get-available-transaction-purposes/ HTTP/1.1" 404 6833
+[2025-04-22 06:07:57,440] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67969
+[2025-04-22 06:07:57,456] WARNING django.request Not Found: /transactions/ajax/get-available-transaction-purposes/
+[2025-04-22 06:07:57,456] WARNING django.server "GET /transactions/ajax/get-available-transaction-purposes/ HTTP/1.1" 404 6833
+[2025-04-22 06:07:57,947] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67969
+[2025-04-22 06:07:57,961] WARNING django.request Not Found: /transactions/ajax/get-available-transaction-purposes/
+[2025-04-22 06:07:57,962] WARNING django.server "GET /transactions/ajax/get-available-transaction-purposes/ HTTP/1.1" 404 6833
+[2025-04-22 06:08:07,889] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67969
+[2025-04-22 06:08:07,909] WARNING django.request Not Found: /transactions/ajax/get-available-transaction-purposes/
+[2025-04-22 06:08:07,910] WARNING django.server "GET /transactions/ajax/get-available-transaction-purposes/ HTTP/1.1" 404 6833
+[2025-04-22 06:08:08,424] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67969
+[2025-04-22 06:08:08,443] WARNING django.request Not Found: /transactions/ajax/get-available-transaction-purposes/
+[2025-04-22 06:08:08,443] WARNING django.server "GET /transactions/ajax/get-available-transaction-purposes/ HTTP/1.1" 404 6833
+[2025-04-22 06:08:08,588] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67969
+[2025-04-22 06:08:08,603] WARNING django.request Not Found: /transactions/ajax/get-available-transaction-purposes/
+[2025-04-22 06:08:08,604] WARNING django.server "GET /transactions/ajax/get-available-transaction-purposes/ HTTP/1.1" 404 6833
+[2025-04-22 06:08:55,665] WARNING django.request Not Found: /ajax/get-available-transaction-purposes/
+[2025-04-22 06:08:55,665] WARNING django.server "GET /ajax/get-available-transaction-purposes/ HTTP/1.1" 404 4838
+[2025-04-22 06:09:52,665] WARNING django.request Not Found: /ajax/get-available-transaction-purposes/
+[2025-04-22 06:09:52,665] WARNING django.server "GET /ajax/get-available-transaction-purposes/ HTTP/1.1" 404 4838
+[2025-04-22 06:09:53,601] WARNING django.request Not Found: /ajax/get-available-transaction-purposes/
+[2025-04-22 06:09:53,601] WARNING django.server "GET /ajax/get-available-transaction-purposes/ HTTP/1.1" 404 4838
+[2025-04-22 06:09:53,819] WARNING django.request Not Found: /ajax/get-available-transaction-purposes/
+[2025-04-22 06:09:53,820] WARNING django.server "GET /ajax/get-available-transaction-purposes/ HTTP/1.1" 404 4838
+[2025-04-22 06:09:56,005] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 67968
+[2025-04-22 06:09:56,021] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/ HTTP/1.1" 200 40
+[2025-04-22 06:12:22,105] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 06:12:22,537] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:12:39,151] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 06:12:39,569] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:13:04,404] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 06:13:04,836] INFO django.utils.autoreload Watching for file changes with StatReloader
