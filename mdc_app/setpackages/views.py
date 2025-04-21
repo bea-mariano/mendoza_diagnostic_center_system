@@ -134,11 +134,21 @@ def get_available_transaction_purposes(request, company_id):
 
 @require_GET
 @login_required
-def get_tests_by_transaction_purpose(request, purpose):
-    test_ids = SetpackageTest.objects.filter(
-        package__package_transaction_purpose=purpose
-    ).values_list('test_id', flat=True).distinct()
+def get_tests_by_transaction_purpose(request, company_id, purpose):
+    """
+    Return test IDs for the given purpose *and* company.
+    """
+    test_ids = (
+        SetpackageTest.objects
+        .filter(
+            package__company_id=company_id,
+            package__package_transaction_purpose=purpose
+        )
+        .values_list('test_id', flat=True)
+        .distinct()
+    )
     return JsonResponse({'test_ids': list(test_ids)})
+
 
 @login_required
 def get_package_price(request):

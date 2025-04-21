@@ -5,394 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         /* Ensure all elements use the same box sizing */
-        *, *:before, *:after {
-            box-sizing: border-box;
+        *, *:before, *:after { box-sizing: border-box; }
+        body { font-family: "Segoe UI", Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; background-color: #fff; margin: 0 auto; padding: 30px 40px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+        h1 { text-align: center; margin-bottom: 20px; }
+        .nav { margin-bottom: 20px; text-align: left; }
+        .nav a { color: #007BFF; text-decoration: none; font-weight: bold; margin: 0 10px; }
+        .nav a:hover { text-decoration: underline; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; color: #333; }
+        input[type="text"], input[type="email"], input[type="date"], input[type="number"], textarea, select {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.95rem; transition: border-color 0.3s;
         }
-
-        /* Base and Container Styles */
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            background-color: #fff;
-            margin: 0 auto;
-            padding: 30px 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        /* Navigation Bar */
-        .nav {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .nav a {
-            color: #007BFF;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 0 10px;
-        }
-        .nav a:hover {
-            text-decoration: underline;
-        }
-        /* Form Group and Inputs */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #333;
-        }
-        /* Common styles for text boxes and dropdowns */
-        input[type="text"],
-        input[type="email"],
-        input[type="date"],
-        input[type="number"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="date"]:focus,
-        input[type="number"]:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: #007BFF;
-        }
-        textarea {
-            resize: vertical;
-            height: 120px;
-        }
-        input[disabled], select[disabled] {
-            background-color: #e9ecef;
-            color: #555;
-        }
-        /* Button Styles */
-        button {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        /* Section Grouping */
-        fieldset {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        legend {
-            padding: 0 10px;
-            font-weight: bold;
-            color: #007BFF;
-        }
-        /* Tests Options Styles */
-        .tests-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-        @media (min-width: 768px) {
-            .tests-container {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 16px;
-            }
-        }
-        .test-option {
-            display: flex;
-            align-items: center;
-        }
-        .test-option input[type="checkbox"] {
-            margin-right: 8px;
-            transform: scale(1.2);
-        }
-        /* Error styling */
-        .error {
-            color: #d9534f;
-            margin-top: 5px;
-        }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #007BFF; }
+        textarea { resize: vertical; height: 120px; }
+        input[disabled], select[disabled] { background-color: #e9ecef; color: #555; }
+        button { background-color: #007BFF; color: #fff; padding: 12px 20px; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; width: 100%; }
+        button:hover { background-color: #0056b3; }
+        fieldset { border: 1px solid #ccc; border-radius: 4px; padding: 15px; margin-bottom: 20px; }
+        legend { padding: 0 10px; font-weight: bold; color: #007BFF; }
+        .tests-container { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        @media (min-width: 768px) { .tests-container { grid-template-columns: 1fr 1fr 1fr; gap: 16px; } }
+        .test-option { display: flex; align-items: center; }
+        .test-option input[type="checkbox"] { margin-right: 8px; transform: scale(1.2); }
+        .error { color: #d9534f; margin-top: 5px; }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const discountTypeField      = document.getElementById("id_discount_type");
-            const discountRateField      = document.getElementById("id_discount_rate");
-            const transactionTotalField  = document.getElementById("id_transaction_total");
-            const transactionPurposeField= document.getElementById("id_transaction_purpose");
-            const companyPemeRateField   = document.getElementById("id_company_peme_rate");
-            const discountedTotalField   = document.getElementById("id_discounted_total");
-            const testCheckboxes         = document.querySelectorAll("input[name='tests']");
-            const companyField           = document.getElementById("id_company");
-
-            function calculateTestTotal() {
-                let total = 0;
-                const purpose = transactionPurposeField.value;
-                if (purpose === "Pre-Employment Examination (PEME)" ||
-                    purpose === "Annual Physical Examination (APE)"
-                ) {
-                    total = parseInt(companyPemeRateField.value) || 0;
-                } else {
-                    testCheckboxes.forEach(cb => {
-                        if (cb.checked) total += parseInt(cb.dataset.price) || 0;
-                    });
-                }
-                return total;
-            }
-
-            function updateTransactionTotal() {
-                transactionTotalField.value = calculateTestTotal();
-            }
-
-            function updateDiscountRate() {
-                const type = discountTypeField.value;
-                const testTotal = calculateTestTotal();
-                if (type === "Philhealth") {
-                    discountRateField.value = 500;
-                } else if (type === "Senior Citizen" || type === "PWD") {
-                    discountRateField.value = Math.round(testTotal * 0.2);
-                } else if (type === "No Discount") {
-                    discountRateField.value = 0;
-                } else {
-                    discountRateField.value = "";
-                }
-            }
-
-            function updateDiscountedTotal() {
-                const testTotal = calculateTestTotal();
-                const type = discountTypeField.value;
-                let rate = parseInt(discountRateField.value) || 0;
-                if (type === "Senior Citizen" || type === "PWD") {
-                    rate = Math.round(testTotal * 0.2);
-                    discountRateField.value = rate;
-                }
-                const finalTotal = testTotal - rate;
-                discountedTotalField.value = finalTotal >= 0 ? finalTotal : 0;
-            }
-
-            // wire up events
-            discountTypeField?.addEventListener("change", () => {
-                updateTransactionTotal();
-                updateDiscountRate();
-                updateDiscountedTotal();
-            });
-            discountRateField?.addEventListener("input", updateDiscountedTotal);
-
-            companyField?.addEventListener("change", () => {
-                fetch(`/transactions/ajax/get-company-peme-rate/${companyField.value}/`)
-                    .then(res => res.json())
-                    .then(data => {
-                        companyPemeRateField.value = data.peme_rate || 0;
-                        updateTransactionTotal();
-                        updateDiscountRate();
-                        updateDiscountedTotal();
-                    })
-                    .catch(() => {
-                        companyPemeRateField.value = 0;
-                        updateTransactionTotal();
-                        updateDiscountRate();
-                        updateDiscountedTotal();
-                    });
-            });
-
-            transactionPurposeField?.addEventListener("change", () => {
-                updateTransactionTotal();
-                updateDiscountRate();
-                updateDiscountedTotal();
-            });
-
-            testCheckboxes.forEach(cb => {
-                cb.addEventListener("change", () => {
-                    updateTransactionTotal();
-                    updateDiscountRate();
-                    updateDiscountedTotal();
-                });
-            });
-
-            // defaults on submit
-            document.querySelector('form')?.addEventListener('submit', () => {
-                if (!document.getElementById('id_payment_type').value)
-                    document.getElementById('id_payment_type').value = 'Cash';
-                if (!document.getElementById('id_transaction_status').value)
-                    document.getElementById('id_transaction_status').value = 'Ongoing';
-                if (isNaN(parseInt(discountRateField.value))) discountRateField.value = 0;
-                if (isNaN(parseInt(transactionTotalField.value))) transactionTotalField.value = 0;
-                if (isNaN(parseInt(discountedTotalField.value))) discountedTotalField.value = 0;
-            });
-
-            // initial compute
-            updateTransactionTotal();
-            updateDiscountRate();
-            updateDiscountedTotal();
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const purposeSelect = document.getElementById("id_transaction_purpose");
-
-            fetch(`/setpackages/ajax/get-available-transaction-purposes/${companyId}/`)
-                .then(response => response.json())
-                .then(data => {
-                    data.purposes.forEach(purpose => {
-                        const option = document.createElement("option");
-                        option.value = purpose;
-                        option.textContent = purpose;
-                        purposeSelect.appendChild(option);
-                    });
-
-                    // Set initial value if editing an existing transaction
-                    const initial = "{{ form.initial.transaction_purpose|escapejs }}";
-                    if (initial) {
-                        purposeSelect.value = initial;
-                    }
-                });
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const purposeSelect = document.getElementById("id_transaction_purpose");
-            const testCheckboxes = document.querySelectorAll("input[name='tests']");
-
-            purposeSelect?.addEventListener("change", function () {
-                const selectedPurpose = purposeSelect.value;
-
-                // build URL with string concatenation
-                var url = '/setpackages/ajax/get-tests-by-purpose/' 
-                        + encodeURIComponent(selectedPurpose) 
-                        + '/';
-
-                fetch(url)
-                    .then(function(res) {
-                        if (!res.ok) throw new Error(res.statusText);
-                        return res.json();
-                    })
-                    .then(function(data) {
-                        var checkedTestIds = data.test_ids.map(String);
-                        testCheckboxes.forEach(function(cb) {
-                            cb.checked = checkedTestIds.includes(cb.value);
-                        });
-
-                        // trigger any downstream updates (totals, etc.)
-                        if (typeof updateTransactionTotal === 'function') updateTransactionTotal();
-                        if (typeof updateDiscountRate === 'function') updateDiscountRate();
-                        if (typeof updateDiscountedTotal === 'function') updateDiscountedTotal();
-                    })
-                    .catch(function(err) {
-                        console.error('Failed to fetch tests by purpose:', err);
-                    });
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const purposeSelect = document.getElementById("id_transaction_purpose");
-            const testCheckboxes = document.querySelectorAll("input[name='tests']");
-            const companySelect = document.getElementById("id_company");
-            const transactionTotalField = document.getElementById("id_transaction_total");
-
-            purposeSelect?.addEventListener("change", () => {
-                const selectedPurpose = purposeSelect.value;
-                const companyId = companySelect?.value;
-
-                // Auto-check tests for this purpose
-                fetch(`/setpackages/ajax/get-tests-by-purpose/${encodeURIComponent(selectedPurpose)}/`)
-                    .then(res => res.json())
-                    .then(data => {
-                        const checkedTestIds = data.test_ids.map(String);
-                        testCheckboxes.forEach(cb => {
-                            cb.checked = checkedTestIds.includes(cb.value);
-                        });
-
-                        // After test update, recalculate totals
-                        updateTransactionTotal();
-                        updateDiscountRate();
-                        updateDiscountedTotal();
-                    });
-
-                // If not CUSTOM TEST PACKAGE, fetch promo price
-                if (selectedPurpose !== "CUSTOM TEST PACKAGE" && companyId) {
-                    fetch(`/setpackages/ajax/get-package-price/?purpose=${encodeURIComponent(selectedPurpose)}&company_id=${companyId}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.promo_price !== null) {
-                                transactionTotalField.value = Math.round(data.promo_price);
-                            } else {
-                                transactionTotalField.value = 0;
-                            }
-                            updateDiscountRate();
-                            updateDiscountedTotal();
-                        });
-                } else {
-                    updateTransactionTotal();  // Use test-based calculation
-                    updateDiscountRate();
-                    updateDiscountedTotal();
-                }
-            });
-
-            transactionPurposeField?.addEventListener("change", () => {
-                const purpose = transactionPurposeField.value;
-                const companyId = companyField.value;
-
-                if (discountTypeField) discountTypeField.value = "No Discount";
-                if (discountRateField) discountRateField.value = 0;
-
-                if (discountedTotalField) discountedTotalField.value = 0;
-
-                testCheckboxes.forEach(cb => cb.checked = false);
-
-                fetch(`/setpackages/ajax/get-tests-by-purpose/${encodeURIComponent(purpose)}/`)
-                    .then(res => res.json())
-                    .then(data => {
-                        const checkedTestIds = data.test_ids.map(String);
-                        testCheckboxes.forEach(cb => {
-                            cb.checked = checkedTestIds.includes(cb.value);
-                        });
-
-                        updateTransactionTotal();
-                        updateDiscountRate();
-                        updateDiscountedTotal();
-                    });
-
-                if (purpose !== "CUSTOM TEST PACKAGE" && companyId) {
-                    fetch(`/setpackages/ajax/get-package-price/?purpose=${encodeURIComponent(purpose)}&company_id=${companyId}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.promo_price !== null) {
-                                transactionTotalField.value = Math.round(data.promo_price);
-                            } else {
-                                transactionTotalField.value = 0;
-                            }
-                            updateDiscountRate();
-                            updateDiscountedTotal();
-                        });
-                } else {
-                    updateTransactionTotal();
-                    updateDiscountRate();
-                    updateDiscountedTotal();
-                }
-            });
-        });
-
-    </script>
 </head>
 <body>
     <div class="nav">
@@ -406,80 +43,38 @@
             <!-- Patient Information -->
             <fieldset>
                 <legend>Patient Information</legend>
-                <div class="form-group">
-                    <label for="patient">Patient</label>
-                    {{ form.patient }}
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    {{ form.address }}
-                </div>
-                <div class="form-group">
-                    <label for="contact_no">Contact Number</label>
-                    {{ form.contact_no }}
-                </div>
-                <div class="form-group">
-                    <label for="age">Age</label>
-                    {{ form.age }}
-                </div>
+                <div class="form-group"><label for="patient">Patient</label>{{ form.patient }}</div>
+                <div class="form-group"><label for="address">Address</label>{{ form.address }}</div>
+                <div class="form-group"><label for="contact_no">Contact Number</label>{{ form.contact_no }}</div>
+                <div class="form-group"><label for="age">Age</label>{{ form.age }}</div>
             </fieldset>
 
             <!-- Transaction Details -->
             <fieldset>
                 <legend>Transaction Details</legend>
-                <div class="form-group">
-                    <label for="transaction_type">Transaction Type</label>
-                    {{ form.transaction_type }}
-                </div>
-                <div class="form-group">
-                    <label for="company_id">Company</label>
-                    {{ form.company }}
-                </div>
-                <input type="hidden" id="id_company_peme_rate"
-                       value="{{ form.instance.company.company_peme_rate|default:0 }}">
-                <div class="form-group">
-                    <label for="transaction_purpose">Transaction Purpose</label>
+                <div class="form-group"><label for="transaction_type">Transaction Type</label>{{ form.transaction_type }}</div>
+                <div class="form-group"><label for="company_id">Company</label>{{ form.company }}</div>
+                <input type="hidden" id="id_company_peme_rate" value="{{ form.instance.company.company_peme_rate|default:0 }}">
+                <div class="form-group"><label for="transaction_purpose">Transaction Purpose</label>
                     <select id="id_transaction_purpose" name="transaction_purpose">
                         <option value="">Select Purpose</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="transaction_status">Transaction Status</label>
-                    {{ form.transaction_status }}
-                </div>
-                <div class="form-group">
-                    <label for="payment_type">Payment Type</label>
-                    {{ form.payment_type }}
-                </div>
-                <div class="form-group">
-                    <label for="has_drug_test">Has Drug Test</label>
-                    {{ form.has_drug_test }}
-                </div>
-                <div class="form-group">
-                    <label for="custody_control_form_submitted">
-                        Custody Control Form Submitted
-                    </label>
-                    {{ form.custody_control_form_submitted }}
-                </div>
+                <div class="form-group"><label for="transaction_status">Transaction Status</label>{{ form.transaction_status }}</div>
+                <div class="form-group"><label for="payment_type">Payment Type</label>{{ form.payment_type }}</div>
+                <div class="form-group"><label for="has_drug_test">Has Drug Test</label>{{ form.has_drug_test }}</div>
+                <div class="form-group"><label for="custody_control_form_submitted">Custody Control Form Submitted</label>{{ form.custody_control_form_submitted }}</div>
             </fieldset>
 
             <!-- Test Selection -->
             <fieldset>
                 <legend>Test Selection</legend>
-                <div class="form-group">
-                    <label for="tests">Tests</label>
+                <div class="form-group"><label for="tests">Tests</label>
                     <div class="tests-container">
                         {% for test in form.fields.tests.queryset %}
                         <div class="test-option">
-                            <input type="checkbox"
-                                   name="tests"
-                                   value="{{ test.pk }}"
-                                   id="test_{{ test.pk }}"
-                                   data-price="{{ test.test_price }}"
-                                   {% if test.pk in form.tests.value %}checked{% endif %}>
-                            <label for="test_{{ test.pk }}">
-                                {{ test.test_name }} (₱{{ test.test_price }})
-                            </label>
+                            <input type="checkbox" name="tests" value="{{ test.pk }}" id="test_{{ test.pk }}" data-price="{{ test.test_price }}"{% if test.pk in form.tests.value %} checked{% endif %}>
+                            <label for="test_{{ test.pk }}">{{ test.test_name }} (₱{{ test.test_price }})</label>
                         </div>
                         {% endfor %}
                     </div>
@@ -489,32 +84,154 @@
             <!-- Discounts & Totals -->
             <fieldset>
                 <legend>Discounts & Totals</legend>
-                <div class="form-group">
-                    <label for="discount_type">Discount Type</label>
-                    {{ form.discount_type }}
-                </div>
-                <div class="form-group">
-                    <label for="discount_rate">Discount Rate</label>
-                    {{ form.discount_rate }}
-                </div>
-                <div class="form-group">
-                    <label for="transaction_total">Transaction Total</label>
-                    {{ form.transaction_total }}
-                </div>
-                <div class="form-group">
-                    <label for="discounted_total">Discounted Total</label>
-                    {{ form.discounted_total }}
-                </div>
+                <div class="form-group"><label for="discount_type">Discount Type</label>{{ form.discount_type }}</div>
+                <div class="form-group"><label for="discount_rate">Discount Rate</label>{{ form.discount_rate }}</div>
+                <div class="form-group"><label for="transaction_total">Transaction Total</label>{{ form.transaction_total }}</div>
+                <div class="form-group"><label for="discounted_total">Discounted Total</label>{{ form.discounted_total }}</div>
             </fieldset>
 
-            {% if form.errors %}
-            <div class="error">
-                {{ form.errors }}
-            </div>
-            {% endif %}
-
+            {% if form.errors %}<div class="error">{{ form.errors }}</div>{% endif %}
             <button type="submit">Save Transaction</button>
         </form>
     </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const companySelect              = document.getElementById("id_company");
+        const transactionPurposeField    = document.getElementById("id_transaction_purpose");
+        const testCheckboxes             = document.querySelectorAll("input[name='tests']");
+        const discountTypeField          = document.getElementById("id_discount_type");
+        const discountRateField          = document.getElementById("id_discount_rate");
+        const transactionTotalField      = document.getElementById("id_transaction_total");
+        const companyPemeRateField       = document.getElementById("id_company_peme_rate");
+        const discountedTotalField       = document.getElementById("id_discounted_total");
+
+        function calculateTestTotal() {
+            let total = 0;
+            const purpose = transactionPurposeField.value;
+            if (purpose === "Pre-Employment Examination (PEME)" || purpose === "Annual Physical Examination (APE)") {
+                total = parseInt(companyPemeRateField.value) || 0;
+            } else {
+                testCheckboxes.forEach(cb => { if (cb.checked) total += parseInt(cb.dataset.price) || 0; });
+            }
+            return total;
+        }
+
+        function updateTransactionTotal() {
+            transactionTotalField.value = calculateTestTotal();
+        }
+
+        function updateDiscountRate() {
+            const type = discountTypeField.value;
+            const testTotal = calculateTestTotal();
+            if (type === "Philhealth") {
+                discountRateField.value = 500;
+            } else if (type === "Senior Citizen" || type === "PWD") {
+                discountRateField.value = Math.round(testTotal * 0.2);
+            } else if (type === "No Discount") {
+                discountRateField.value = 0;
+            } else {
+                discountRateField.value = "";
+            }
+        }
+
+        function updateDiscountedTotal() {
+            const testTotal = calculateTestTotal();
+            const type = discountTypeField.value;
+            let rate = parseInt(discountRateField.value) || 0;
+            if (type === "Senior Citizen" || type === "PWD") {
+                rate = Math.round(testTotal * 0.2);
+                discountRateField.value = rate;
+            }
+            const finalTotal = testTotal - rate;
+            discountedTotalField.value = finalTotal >= 0 ? finalTotal : 0;
+        }
+
+        function reloadPurposes() {
+            const companyId = companySelect.value;
+            transactionPurposeField.innerHTML = '<option value="">Select Purpose</option>';
+            if (!companyId) return;
+
+            const url = '/setpackages/ajax/get-available-transaction-purposes/' + companyId + '/';
+            fetch(url)
+                .then(res => { if (!res.ok) throw new Error(res.statusText); return res.json(); })
+                .then(data => {
+                    data.purposes.forEach(p => {
+                        const opt = document.createElement("option");
+                        opt.value = p;
+                        opt.textContent = p;
+                        if (p === "{{ form.initial.transaction_purpose|escapejs }}") opt.selected = true;
+                        transactionPurposeField.appendChild(opt);
+                    });
+                    transactionPurposeField.dispatchEvent(new Event("change"));
+                })
+                .catch(err => console.error("Error loading purposes:", err));
+        }
+
+        companySelect.addEventListener("change", function() {
+            reloadPurposes();
+            const cid = companySelect.value;
+            if (cid) {
+                fetch('/transactions/ajax/get-company-peme-rate/' + cid + '/')
+                    .then(res => res.json())
+                    .then(data => {
+                        companyPemeRateField.value = data.peme_rate || 0;
+                        updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+                    })
+                    .catch(() => {
+                        companyPemeRateField.value = 0;
+                        updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+                    });
+            }
+        });
+
+        transactionPurposeField.addEventListener("change", function() {
+            updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+            const purpose = transactionPurposeField.value;
+            const companyId = companySelect.value;
+            if (purpose && companyId) {
+                const urlTests = '/setpackages/ajax/get-tests-by-purpose/' + companyId + '/' + encodeURIComponent(purpose) + '/';
+                fetch(urlTests)
+                    .then(res => res.json())
+                    .then(data => {
+                        const ids = data.test_ids.map(String);
+                        testCheckboxes.forEach(cb => { cb.checked = ids.includes(cb.value); });
+                        updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+                    })
+                    .catch(err => console.error('Error loading tests:', err));
+
+                if (purpose !== "CUSTOM TEST PACKAGE") {
+                    const urlPrice = '/setpackages/ajax/get-package-price/?purpose=' + encodeURIComponent(purpose) + '&company_id=' + companyId;
+                    fetch(urlPrice)
+                        .then(res => res.json())
+                        .then(data => {
+                            transactionTotalField.value = data.promo_price !== null ? Math.round(data.promo_price) : 0;
+                            updateDiscountRate(); updateDiscountedTotal();
+                        });
+                }
+            }
+        });
+
+        discountTypeField.addEventListener("change", function() {
+            updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+        });
+        discountRateField.addEventListener("input", updateDiscountedTotal);
+        testCheckboxes.forEach(cb => cb.addEventListener("change", function() {
+            updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+        }));
+
+        document.querySelector('form').addEventListener('submit', function() {
+            if (!document.getElementById('id_payment_type').value) document.getElementById('id_payment_type').value = 'Cash';
+            if (!document.getElementById('id_transaction_status').value) document.getElementById('id_transaction_status').value = 'Ongoing';
+            if (isNaN(parseInt(discountRateField.value))) discountRateField.value = 0;
+            if (isNaN(parseInt(transactionTotalField.value))) transactionTotalField.value = 0;
+            if (isNaN(parseInt(discountedTotalField.value))) discountedTotalField.value = 0;
+        });
+
+        // initial load
+        reloadPurposes();
+        updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+    });
+    </script>
 </body>
 </html>
