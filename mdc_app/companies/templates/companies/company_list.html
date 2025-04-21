@@ -78,6 +78,7 @@
                 <th>Can Have Commission</th>
                 <th>Commission Type</th>
                 <th>Commission Rate</th>
+                <th>PEME Rate</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -89,6 +90,7 @@
                 <td>{{ company.commission_eligible }}</td>
                 <td>{{ company.commission_type }}</td>
                 <td>{{ company.commission_rate }}</td>
+                <td>{{ company.company_peme_rate }}</td>
                 <td class="action-links">
                     <a href="{% url 'company_detail' company.id %}">View</a>
                 </td>
