@@ -919,3 +919,90 @@ KeyError: 'setpackage_name'
 [2025-04-22 07:10:26,957] INFO django.utils.autoreload Watching for file changes with StatReloader
 [2025-04-22 07:10:36,533] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
 [2025-04-22 07:10:36,968] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 07:11:20,066] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:11:20,083] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:11:20,083] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:11:22,901] INFO django.server "GET /transactions/ajax/get-company-peme-rate/3/ HTTP/1.1" 200 18
+[2025-04-22 07:11:24,862] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 07:11:26,718] INFO django.server "GET /transactions/ajax/get-company-peme-rate/4/ HTTP/1.1" 200 18
+[2025-04-22 07:11:28,334] INFO django.server "GET /transactions/ajax/get-company-peme-rate/5/ HTTP/1.1" 200 18
+[2025-04-22 07:11:29,950] INFO django.server "GET /transactions/ajax/get-company-peme-rate/3/ HTTP/1.1" 200 18
+[2025-04-22 07:11:31,744] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 07:11:33,371] INFO django.server "GET /transactions/ajax/get-company-peme-rate/6/ HTTP/1.1" 200 18
+[2025-04-22 07:11:36,239] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:11:36,258] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:11:36,258] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:11:36,574] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:11:36,588] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:11:36,588] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:11:36,718] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:11:36,738] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:11:36,738] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:11:36,843] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:11:36,862] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:11:36,862] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:11:36,947] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:11:36,964] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:11:36,965] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:11:37,212] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:11:37,226] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:11:37,226] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:11:39,278] INFO django.server "GET /transactions/ajax/get-company-peme-rate/4/ HTTP/1.1" 200 18
+[2025-04-22 07:11:41,218] INFO django.server "GET /transactions/ajax/get-company-peme-rate/5/ HTTP/1.1" 200 18
+[2025-04-22 07:11:42,817] INFO django.server "GET /transactions/ajax/get-company-peme-rate/3/ HTTP/1.1" 200 18
+[2025-04-22 07:12:21,182] INFO django.server "GET //setpackages/ajax/get-available-transaction-purposes/3/ HTTP/1.1" 200 22
+[2025-04-22 07:12:27,805] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/3/ HTTP/1.1" 200 22
+[2025-04-22 07:12:39,207] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/4/ HTTP/1.1" 200 16
+[2025-04-22 07:12:44,047] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/5 HTTP/1.1" 301 0
+[2025-04-22 07:12:44,051] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/5/ HTTP/1.1" 200 16
+[2025-04-22 07:12:48,999] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/6/ HTTP/1.1" 200 16
+[2025-04-22 07:12:53,636] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 47
+[2025-04-22 07:13:12,984] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:13:13,003] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:13:13,003] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:13:14,742] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 07:13:41,131] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:13:41,131] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:14:17,262] WARNING django.request Not Found: /setpackages/ajax/get-available-transaction-purposes/${companyId}/
+[2025-04-22 07:14:17,262] WARNING django.server "GET /setpackages/ajax/get-available-transaction-purposes/$%7BcompanyId%7D/ HTTP/1.1" 404 7546
+[2025-04-22 07:14:19,742] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 07:14:24,043] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73515
+[2025-04-22 07:14:28,440] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 07:14:38,872] INFO django.server "GET /transactions/ajax/get-company-peme-rate/4/ HTTP/1.1" 200 18
+[2025-04-22 07:14:40,389] INFO django.server "GET /transactions/ajax/get-company-peme-rate/5/ HTTP/1.1" 200 18
+[2025-04-22 07:14:41,812] INFO django.server "GET /transactions/ajax/get-company-peme-rate/3/ HTTP/1.1" 200 18
+[2025-04-22 07:14:43,300] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 07:14:44,812] INFO django.server "GET /transactions/ajax/get-company-peme-rate/6/ HTTP/1.1" 200 18
+[2025-04-22 07:16:44,812] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73890
+[2025-04-22 07:16:45,131] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73890
+[2025-04-22 07:16:46,917] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 07:19:32,938] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43190
+[2025-04-22 07:19:35,817] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 07:19:35,817] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 47
+[2025-04-22 07:19:37,376] WARNING django.request Not Found: /setpackages/ajax/get-tests-by-purpose/7/BUNTIS PACKAGE/
+[2025-04-22 07:19:37,376] WARNING django.server "GET /setpackages/ajax/get-tests-by-purpose/7/BUNTIS%20PACKAGE/ HTTP/1.1" 404 7514
+[2025-04-22 07:19:37,378] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=BUNTIS%20PACKAGE&company_id=7 HTTP/1.1" 200 23
+[2025-04-22 07:21:44,396] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 07:21:44,831] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 07:21:46,424] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43190
+[2025-04-22 07:21:50,389] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 07:21:50,389] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 47
+[2025-04-22 07:21:51,385] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=BUNTIS%20PACKAGE&company_id=7 HTTP/1.1" 200 23
+[2025-04-22 07:21:51,398] ERROR django.request Internal Server Error: /setpackages/ajax/get-tests-by-purpose/7/BUNTIS PACKAGE/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\decorators\http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_tests_by_transaction_purpose() got an unexpected keyword argument 'company_id'
+[2025-04-22 07:21:51,399] ERROR django.server "GET /setpackages/ajax/get-tests-by-purpose/7/BUNTIS%20PACKAGE/ HTTP/1.1" 500 74170
+[2025-04-22 07:22:28,221] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 07:22:28,656] INFO django.utils.autoreload Watching for file changes with StatReloader

@@ -20,7 +20,7 @@ urlpatterns = [
     path('setpackages/<int:pk>/edit/', views.SetpackageUpdateView.as_view(), name='setpackage_edit'),
     path('setpackages/<int:pk>/delete/', views.SetpackageDeleteView.as_view(), name='setpackage_delete'),
     path('ajax/get-available-transaction-purposes/', get_available_transaction_purposes, name='get_available_transaction_purposes'),
-    path('ajax/get-tests-by-purpose/<str:purpose>/', get_tests_by_transaction_purpose, name='get_tests_by_transaction_purpose'),
+    path('ajax/get-tests-by-purpose/<int:company_id>/<str:purpose>/', views.get_tests_by_transaction_purpose, name='get_tests_by_transaction_purpose'),
     path('ajax/get-package-price/', get_package_price, name='get_package_price'),
     path("ajax/get-available-transaction-purposes/<int:company_id>/", views.get_available_transaction_purposes, name="ajax-get-available-transaction-purposes"
     ),
