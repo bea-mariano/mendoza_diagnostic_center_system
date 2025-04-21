@@ -41,6 +41,7 @@ class Transaction(models.Model):
     ]
 
     TRANSACTION_STATUS_CHOICES = [
+        ('Paid', 'Paid'),
         ('Ongoing', 'Ongoing'),
         ('Cancelled', 'Cancelled'),
         ('Completed', 'Completed'),
