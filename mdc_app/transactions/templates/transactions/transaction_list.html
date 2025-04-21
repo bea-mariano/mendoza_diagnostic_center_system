@@ -212,7 +212,7 @@
   const logoUrl = "{% static 'images/mdc_logo.jpg' %}";
 
   function printAcknowledgementReceipt(transactionId) {
-    document.getElementById("transaction-status-" + transactionId).innerText = "Completed";
+    // document.getElementById("transaction-status-" + transactionId).innerText = "Completed";
     const row = document.querySelector('tr[data-transaction-id="' + transactionId + '"]');
     if (row) {
       let basicTableHtml = "<div style='text-align:center; margin-bottom:10px;'><img src='" + logoUrl + "' style='width:60px; height:auto;'></div>";

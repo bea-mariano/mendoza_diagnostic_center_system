@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Package</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 100px;
+        }
+        .test-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .test-box label {
+            flex: 1;
+            margin: 0;
+        }
+        .test-box input[type="number"] {
+            width: 120px;
+            margin-left: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <h1>{% if form.instance.pk %}Edit{% else %}Create New{% endif %} Package</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Package Fields -->
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+            <div class="error">
+                {% for error in field.errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <!-- Tests and Exclusion Amounts -->
+        <h3>Associate Tests & Exclusion Rates</h3>
+        {% for test in tests %}
+        <div class="test-box">
+            <label>
+                <input type="checkbox" name="tests" value="{{ test.id }}" {% if test.is_checked %}checked{% endif %}>
+                {{ test.test_name }}
+            </label>
+            <input type="number" step="0.01" name="exclusion_{{ test.id }}" placeholder="Exclusion ₱"
+                   value="{{ test.exclusion_amount }}">
+        </div>
+        {% endfor %}
+
+        <button type="submit">{% if form.instance.pk %}Update{% else %}Create{% endif %} Package</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Package Detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .info-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .field {
+            margin-bottom: 10px;
+        }
+        .label {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .nav {
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin-right: 15px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .btn-danger {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <h1>Package Detail</h1>
+
+    <div class="info-box">
+        <div class="field">
+            <span class="label">Package Name:</span> {{ setpackage.package_name }}
+        </div>
+        <div class="field">
+            <span class="label">Transaction Purpose:</span> {{ setpackage.package_transaction_purpose }}
+        </div>
+        <div class="field">
+            <span class="label">Company:</span> {{ setpackage.company.company_name }}
+        </div>
+        <div class="field">
+            <span class="label">Promo Price:</span> ₱{{ setpackage.package_promo_price }}
+        </div>
+    </div>
+
+    <h2>Included Tests</h2>
+
+    {% if setpackage.tests.all %}
+    <table>
+        <thead>
+            <tr>
+                <th>Test Name</th>
+                <th>Test Price</th>
+                <th>Exclusion Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pt in setpackage.tests.all %}
+            <tr>
+                <td>{{ pt.test.test_name }}</td>
+                <td>₱{{ pt.test.test_price }}</td>
+                <td>₱{{ pt.exclusion_amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No tests are currently assigned to this package.</p>
+    {% endif %}
+
+    <div class="actions" style="margin-top: 30px;">
+        <a href="{% url 'setpackage_edit' setpackage.id %}" class="btn">Edit</a>
+        <a href="{% url 'setpackage_delete' setpackage.id %}" class="btn btn-danger" onclick="return confirm('Delete this package?');">Delete</a>
+        <a href="{% url 'setpackage_list' %}" class="btn">Back to List</a>
+    </div>
+
+</body>
+</html>
