@@ -251,7 +251,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             const purposeSelect = document.getElementById("id_transaction_purpose");
 
-            fetch('/setpackages/ajax/get-available-transaction-purposes/')
+            fetch(`/setpackages/ajax/get-available-transaction-purposes/${companyId}/`)
                 .then(response => response.json())
                 .then(data => {
                     data.purposes.forEach(purpose => {
@@ -273,15 +273,22 @@
             const purposeSelect = document.getElementById("id_transaction_purpose");
             const testCheckboxes = document.querySelectorAll("input[name='tests']");
 
-            purposeSelect?.addEventListener("change", () => {
+            purposeSelect?.addEventListener("change", function () {
                 const selectedPurpose = purposeSelect.value;
 
-                // Call backend to get test IDs for this purpose
-                fetch(`/setpackages/ajax/get-tests-by-purpose/${encodeURIComponent(selectedPurpose)}/`)
-                    .then(res => res.json())
-                    .then(data => {
-                        const checkedTestIds = data.test_ids.map(String);
-                        testCheckboxes.forEach(cb => {
+                // build URL with string concatenation
+                var url = '/setpackages/ajax/get-tests-by-purpose/' 
+                        + encodeURIComponent(selectedPurpose) 
+                        + '/';
+
+                fetch(url)
+                    .then(function(res) {
+                        if (!res.ok) throw new Error(res.statusText);
+                        return res.json();
+                    })
+                    .then(function(data) {
+                        var checkedTestIds = data.test_ids.map(String);
+                        testCheckboxes.forEach(function(cb) {
                             cb.checked = checkedTestIds.includes(cb.value);
                         });
 
@@ -289,6 +296,9 @@
                         if (typeof updateTransactionTotal === 'function') updateTransactionTotal();
                         if (typeof updateDiscountRate === 'function') updateDiscountRate();
                         if (typeof updateDiscountedTotal === 'function') updateDiscountedTotal();
+                    })
+                    .catch(function(err) {
+                        console.error('Failed to fetch tests by purpose:', err);
                     });
             });
         });
