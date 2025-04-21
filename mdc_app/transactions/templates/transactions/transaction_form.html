@@ -292,6 +292,96 @@
                     });
             });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const purposeSelect = document.getElementById("id_transaction_purpose");
+            const testCheckboxes = document.querySelectorAll("input[name='tests']");
+            const companySelect = document.getElementById("id_company");
+            const transactionTotalField = document.getElementById("id_transaction_total");
+
+            purposeSelect?.addEventListener("change", () => {
+                const selectedPurpose = purposeSelect.value;
+                const companyId = companySelect?.value;
+
+                // Auto-check tests for this purpose
+                fetch(`/setpackages/ajax/get-tests-by-purpose/${encodeURIComponent(selectedPurpose)}/`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const checkedTestIds = data.test_ids.map(String);
+                        testCheckboxes.forEach(cb => {
+                            cb.checked = checkedTestIds.includes(cb.value);
+                        });
+
+                        // After test update, recalculate totals
+                        updateTransactionTotal();
+                        updateDiscountRate();
+                        updateDiscountedTotal();
+                    });
+
+                // If not CUSTOM TEST PACKAGE, fetch promo price
+                if (selectedPurpose !== "CUSTOM TEST PACKAGE" && companyId) {
+                    fetch(`/setpackages/ajax/get-package-price/?purpose=${encodeURIComponent(selectedPurpose)}&company_id=${companyId}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.promo_price !== null) {
+                                transactionTotalField.value = Math.round(data.promo_price);
+                            } else {
+                                transactionTotalField.value = 0;
+                            }
+                            updateDiscountRate();
+                            updateDiscountedTotal();
+                        });
+                } else {
+                    updateTransactionTotal();  // Use test-based calculation
+                    updateDiscountRate();
+                    updateDiscountedTotal();
+                }
+            });
+
+            transactionPurposeField?.addEventListener("change", () => {
+                const purpose = transactionPurposeField.value;
+                const companyId = companyField.value;
+
+                if (discountTypeField) discountTypeField.value = "No Discount";
+                if (discountRateField) discountRateField.value = 0;
+
+                if (discountedTotalField) discountedTotalField.value = 0;
+
+                testCheckboxes.forEach(cb => cb.checked = false);
+
+                fetch(`/setpackages/ajax/get-tests-by-purpose/${encodeURIComponent(purpose)}/`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const checkedTestIds = data.test_ids.map(String);
+                        testCheckboxes.forEach(cb => {
+                            cb.checked = checkedTestIds.includes(cb.value);
+                        });
+
+                        updateTransactionTotal();
+                        updateDiscountRate();
+                        updateDiscountedTotal();
+                    });
+
+                if (purpose !== "CUSTOM TEST PACKAGE" && companyId) {
+                    fetch(`/setpackages/ajax/get-package-price/?purpose=${encodeURIComponent(purpose)}&company_id=${companyId}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.promo_price !== null) {
+                                transactionTotalField.value = Math.round(data.promo_price);
+                            } else {
+                                transactionTotalField.value = 0;
+                            }
+                            updateDiscountRate();
+                            updateDiscountedTotal();
+                        });
+                } else {
+                    updateTransactionTotal();
+                    updateDiscountRate();
+                    updateDiscountedTotal();
+                }
+            });
+        });
+
     </script>
 </head>
 <body>
