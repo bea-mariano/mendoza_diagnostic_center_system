@@ -62,7 +62,7 @@ class Transaction(models.Model):
     payment_type = models.CharField(max_length=25, choices=PAYMENT_TYPE_CHOICES)
     transaction_type = models.CharField(max_length=25, choices=TRANSACTION_TYPE_CHOICES)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='transactions')
-    transaction_purpose = models.CharField(max_length=50, choices=TRANSACTION_PURPOSE_CHOICES)
+    transaction_purpose = models.CharField(max_length=100, blank=True, null=True)
     has_drug_test = models.BooleanField(default=False)
     custody_control_form_submitted = models.BooleanField(default=False)
     transaction_date = models.DateField(auto_now_add=True)

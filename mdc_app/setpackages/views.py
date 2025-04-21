@@ -132,3 +132,13 @@ def get_tests_by_transaction_purpose(request, purpose):
         package__package_transaction_purpose=purpose
     ).values_list('test_id', flat=True).distinct()
     return JsonResponse({'test_ids': list(test_ids)})
+
+@login_required
+def get_package_price(request):
+    purpose = request.GET.get("purpose")
+    company_id = request.GET.get("company_id")
+    try:
+        package = Setpackage.objects.get(package_transaction_purpose=purpose, company_id=company_id)
+        return JsonResponse({'promo_price': float(package.package_promo_price)})
+    except Setpackage.DoesNotExist:
+        return JsonResponse({'promo_price': None})

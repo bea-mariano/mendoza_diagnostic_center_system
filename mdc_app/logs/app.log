@@ -826,3 +826,59 @@ KeyError: 'setpackage_name'
 [2025-04-22 06:12:39,569] INFO django.utils.autoreload Watching for file changes with StatReloader
 [2025-04-22 06:13:04,404] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
 [2025-04-22 06:13:04,836] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:13:43,926] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 06:13:47,095] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 69231
+[2025-04-22 06:13:47,108] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/ HTTP/1.1" 200 40
+[2025-04-22 06:13:50,420] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 06:16:26,883] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 06:16:29,148] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34024
+[2025-04-22 06:16:54,267] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 302 0
+[2025-04-22 06:16:54,277] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4111
+[2025-04-22 06:17:06,258] INFO django.server "GET /setpackages/setpackages/6/edit/ HTTP/1.1" 200 34069
+[2025-04-22 06:17:11,777] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 06:20:00,596] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 06:20:01,046] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:20:11,670] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 06:20:12,123] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:20:17,503] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\urls.py changed, reloading.
+[2025-04-22 06:20:17,979] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:21:23,683] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 06:21:24,464] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 71542
+[2025-04-22 06:21:24,480] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/ HTTP/1.1" 200 55
+[2025-04-22 06:21:27,263] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-22 06:21:27,267] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-22 06:21:39,130] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 06:21:39,134] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 06:23:39,099] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73358
+[2025-04-22 06:23:39,112] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/ HTTP/1.1" 200 55
+[2025-04-22 06:23:43,118] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-22 06:23:43,124] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-22 06:23:54,986] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 06:23:54,990] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 06:24:52,217] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73502
+[2025-04-22 06:24:52,233] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/ HTTP/1.1" 200 55
+[2025-04-22 06:24:56,461] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-22 06:24:56,463] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-22 06:25:11,943] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 06:25:11,946] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 06:25:26,657] INFO django.server "GET / HTTP/1.1" 200 6106
+[2025-04-22 06:25:29,028] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4111
+[2025-04-22 06:28:44,718] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 40384
+[2025-04-22 06:28:51,801] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 40384
+[2025-04-22 06:30:44,685] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 40467
+[2025-04-22 06:31:43,064] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73489
+[2025-04-22 06:31:51,327] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73489
+[2025-04-22 06:31:51,772] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73489
+[2025-04-22 06:31:51,948] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 73489
+[2025-04-22 06:34:42,069] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 34405
+[2025-04-22 06:39:06,822] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/ HTTP/1.1" 200 55
+[2025-04-22 06:44:24,451] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\forms.py changed, reloading.
+[2025-04-22 06:44:24,912] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:44:34,500] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\forms.py changed, reloading.
+[2025-04-22 06:44:34,938] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:45:13,016] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\models.py changed, reloading.
+[2025-04-22 06:45:13,452] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:45:19,888] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\models.py changed, reloading.
+[2025-04-22 06:45:20,279] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 06:46:23,822] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\models.py changed, reloading.
+[2025-04-22 06:46:24,250] INFO django.utils.autoreload Watching for file changes with StatReloader
