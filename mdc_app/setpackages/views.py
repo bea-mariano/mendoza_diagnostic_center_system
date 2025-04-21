@@ -118,12 +118,19 @@ class SetpackageDeleteView(DeleteView):
     success_url = reverse_lazy('setpackage_list')
 
 
+@require_GET
 @login_required
-def get_available_transaction_purposes(request):
-    purposes = list(
-        Setpackage.objects.values_list('package_transaction_purpose', flat=True).distinct()
+def get_available_transaction_purposes(request, company_id):
+    """
+    Return only the distinct purposes defined for this company.
+    """
+    purposes = (
+        Setpackage.objects
+                  .filter(company_id=company_id)
+                  .values_list('package_transaction_purpose', flat=True)
+                  .distinct()
     )
-    return JsonResponse({'purposes': purposes})
+    return JsonResponse({'purposes': list(purposes)})
 
 @require_GET
 @login_required

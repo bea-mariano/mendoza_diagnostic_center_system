@@ -22,4 +22,6 @@ urlpatterns = [
     path('ajax/get-available-transaction-purposes/', get_available_transaction_purposes, name='get_available_transaction_purposes'),
     path('ajax/get-tests-by-purpose/<str:purpose>/', get_tests_by_transaction_purpose, name='get_tests_by_transaction_purpose'),
     path('ajax/get-package-price/', get_package_price, name='get_package_price'),
+    path("ajax/get-available-transaction-purposes/<int:company_id>/", views.get_available_transaction_purposes, name="ajax-get-available-transaction-purposes"
+    ),
 ]
