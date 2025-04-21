@@ -2,3 +2,7 @@
 *.sqlite3
 *.sqlite3-journal
 
+# Log files
+mdc_app\logs\app.log
+
+*.pyc
