@@ -55,11 +55,13 @@
                 <div class="form-group"><label for="transaction_type">Transaction Type</label>{{ form.transaction_type }}</div>
                 <div class="form-group"><label for="company_id">Company</label>{{ form.company }}</div>
                 <input type="hidden" id="id_company_peme_rate" value="{{ form.instance.company.company_peme_rate|default:0 }}">
-                <div class="form-group"><label for="transaction_purpose">Transaction Purpose</label>
-                    <select id="id_transaction_purpose" name="transaction_purpose">
-                        <option value="">Select Purpose</option>
-                    </select>
-                </div>
+                <div class="form-group">
+                    <label for="transaction_purpose">
+                      Transaction Purpose
+                    </label>
+                    {{ form.transaction_purpose }}
+                  </div>
+                  
                 <div class="form-group"><label for="transaction_status">Transaction Status</label>{{ form.transaction_status }}</div>
                 <div class="form-group"><label for="payment_type">Payment Type</label>{{ form.payment_type }}</div>
                 <div class="form-group"><label for="has_drug_test">Has Drug Test</label>{{ form.has_drug_test }}</div>
@@ -122,28 +124,37 @@
         }
 
         function updateDiscountRate() {
-            const type = discountTypeField.value;
-            const testTotal = calculateTestTotal();
+            const type      = discountTypeField.value;
+            // use the current transactionTotalField (which, on package purposes, is the promo price)
+            const baseTotal = parseInt(transactionTotalField.value) || 0;
+
             if (type === "Philhealth") {
                 discountRateField.value = 500;
-            } else if (type === "Senior Citizen" || type === "PWD") {
-                discountRateField.value = Math.round(testTotal * 0.2);
-            } else if (type === "No Discount") {
+            } 
+            else if (type === "Senior Citizen" || type === "PWD") {
+                // 20% of the package price, not the sum of checkboxes
+                discountRateField.value = Math.round(baseTotal * 0.2);
+            } 
+            else if (type === "No Discount") {
                 discountRateField.value = 0;
-            } else {
+            } 
+            else {
                 discountRateField.value = "";
             }
         }
 
         function updateDiscountedTotal() {
-            const testTotal = calculateTestTotal();
-            const type = discountTypeField.value;
-            let rate = parseInt(discountRateField.value) || 0;
-            if (type === "Senior Citizen" || type === "PWD") {
-                rate = Math.round(testTotal * 0.2);
+            // again, base off the transactionTotalField (package or test sum)
+            const baseTotal = parseInt(transactionTotalField.value) || 0;
+            let rate        = parseInt(discountRateField.value)   || 0;
+
+            // re‑apply the 20% rule if senior/PWD (keeps rate in sync if they manually edited it)
+            if (discountTypeField.value === "Senior Citizen" || discountTypeField.value === "PWD") {
+                rate = Math.round(baseTotal * 0.2);
                 discountRateField.value = rate;
             }
-            const finalTotal = testTotal - rate;
+
+            const finalTotal = baseTotal - rate;
             discountedTotalField.value = finalTotal >= 0 ? finalTotal : 0;
         }
 
@@ -213,7 +224,7 @@
         });
 
         discountTypeField.addEventListener("change", function() {
-            updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+            updateDiscountRate(); updateDiscountedTotal();
         });
         discountRateField.addEventListener("input", updateDiscountedTotal);
         testCheckboxes.forEach(cb => cb.addEventListener("change", function() {

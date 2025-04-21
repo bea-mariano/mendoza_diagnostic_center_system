@@ -25,7 +25,7 @@ class TransactionForm(forms.ModelForm):
             'transaction_type', 
             'company', 
             'payment_type', 
-            # 'transaction_purpose', 
+            'transaction_purpose', 
             'has_drug_test', 
             'custody_control_form_submitted', 
             'transaction_status', 
