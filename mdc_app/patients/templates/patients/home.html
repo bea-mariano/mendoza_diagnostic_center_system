@@ -7,7 +7,7 @@
 <style>
     .container {
         max-width: 1200px;
-        margin: 15px auto 30px auto;
+        margin: 15px auto;
         padding: 30px 40px;
     }
 
@@ -32,6 +32,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
+        margin-bottom: 30px;
     }
 
     .btn {
@@ -50,6 +51,36 @@
         opacity: 0.9;
     }
 
+    /* dashboard layout */
+    .dashboard {
+        display: flex;
+        gap: 30px;
+        align-items: flex-start;
+    }
+    .left-panel, .right-panel {
+        flex: 1;
+    }
+    .right-panel {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    .summary-table th,
+    .summary-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    .summary-table th {
+        background: #007BFF;
+        color: #fff;
+    }
+
     .footer {
         margin-top: 60px;
         border-top: 1px solid #ccc;
@@ -62,50 +93,71 @@
 {% endblock %}
 
 {% block content %}
-<div class="logo-container">
-    <img src="{% static 'images/mdc_logo.jpg' %}" alt="Mendoza Logo" style="width:100px; height:auto;">
-</div>
-<h1>Mendoza Diagnostic Center</h1>
+<div class="container">
+    <div class="logo-container">
+        <img src="{% static 'images/mdc_logo.jpg' %}" alt="Mendoza Logo" style="width:100px; height:auto;">
+    </div>
+    <h1>Mendoza Diagnostic Center</h1>
 
-<h2>Cashier and Billing</h2>
-<div class="section-buttons">
-    <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
-    <a href="{% url 'transaction_active_list' %}" class="btn">Today's Transactions</a>
-    <a href="{% url 'transaction_list' %}" class="btn">All Transactions</a>
-</div>
+    <div class="dashboard">
+        <!-- left panel: buttons and logo -->
+        <div class="left-panel">
+            <h2>Cashier and Billing</h2>
+            <div class="section-buttons">
+                <a href="{% url 'transaction_new' %}" class="btn">Create New Transaction</a>
+                <a href="{% url 'transaction_active_list' %}" class="btn">Today's Transactions</a>
+                <a href="{% url 'transaction_list' %}" class="btn">All Transactions</a>
+            </div>
 
-<h2>Patient Management</h2>
-<div class="section-buttons">
-    <a href="{% url 'patient_new' %}" class="btn">Add New Patient</a>
-    <a href="{% url 'patient_list' %}" class="btn">View Patients</a>
-</div>
+            <h2>Patient Management</h2>
+            <div class="section-buttons">
+                <a href="{% url 'patient_new' %}" class="btn">Add New Patient</a>
+                <a href="{% url 'patient_list' %}" class="btn">View Patients</a>
+            </div>
 
-<h2>Company Charge</h2>
-<div class="section-buttons">
-    <a href="{% url 'company_list' %}" class="btn">View Company Charge</a>
-    <a href="{% url 'company_new' %}" class="btn">Add New Company</a>
-</div>
+            <h2>Company Charge</h2>
+            <div class="section-buttons">
+                <a href="{% url 'company_list' %}" class="btn">View Company Charge</a>
+                <a href="{% url 'company_new' %}" class="btn">Add New Company</a>
+            </div>
 
-<h2>Packages</h2>
-<div class="section-buttons">
-    <a href="{% url 'setpackage_list' %}" class="btn">View Packages</a>
-    <a href="{% url 'setpackage_new' %}" class="btn">Create New Package</a>
-</div>
+            <h2>Packages</h2>
+            <div class="section-buttons">
+                <a href="{% url 'setpackage_list' %}" class="btn">View Packages</a>
+                <a href="{% url 'setpackage_new' %}" class="btn">Create New Package</a>
+            </div>
+        </div>
 
-<!-- Optional future sections:
-<h2>Test Management</h2>
-<div class="section-buttons">
-    <a href="{% url 'test_new' %}" class="btn">Add New Test</a>
-    <a href="{% url 'test_list' %}" class="btn">View Tests</a>
-</div>
+        <!-- right panel: today's summary -->
+        <div class="right-panel">
+            <h2>Today's Summary ({{ daily_count }} transactions)</h2>
+            <p><strong>Gross Total:</strong> ₱{{ daily_total }}</p>
+            <p><strong>Discounted Total:</strong> ₱{{ daily_discounted_total }}</p>
+            <p><strong>Total Discounts Given:</strong> ₱{{ daily_discounts }}</p>
 
-<h2>Company Management</h2>
-<div class="section-buttons">
-    <a href="{% url 'company_new' %}" class="btn">Add New Company</a>
-</div>
--->
-
-<div class="footer">
-    &copy; {{ now.year }} Mendoza Diagnostic Center. All rights reserved.
+            <h2>Transactions by Test</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in tests_summary %}
+                    <tr>
+                        <td>{{ row.test__test_name }}</td>
+                        <td>{{ row.count }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="2">No tests performed today.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; {{ now.year }} Mendoza Diagnostic Center. All rights reserved.
+    </div>
 </div>
 {% endblock %}
