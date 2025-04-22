@@ -126,14 +126,34 @@
                 <a href="{% url 'setpackage_list' %}" class="btn">View Packages</a>
                 <a href="{% url 'setpackage_new' %}" class="btn">Create New Package</a>
             </div>
+
+            <h2>Tests</h2>
+            <div class="section-buttons">
+                <a href="{% url 'test_list' %}" class="btn">View Tests</a>
+                <a href="{% url 'test_new' %}" class="btn">Create New Test</a>
+            </div>
         </div>
 
         <!-- right panel: today's summary -->
         <div class="right-panel">
             <h2>Today's Summary ({{ daily_count }} transactions)</h2>
-            <p><strong>Gross Total:</strong> ₱{{ daily_total }}</p>
-            <p><strong>Discounted Total:</strong> ₱{{ daily_discounted_total }}</p>
-            <p><strong>Total Discounts Given:</strong> ₱{{ daily_discounts }}</p>
+
+            <table class="summary-table">
+                <tbody>
+                    <tr>
+                        <td>Gross Total:</td>
+                        <td>₱{{ daily_total }}</td>
+                    </tr>
+                    <tr>
+                        <td>Discounted Total:</td>
+                        <td>₱{{ daily_discounted_total }}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Discounts Given:</td>
+                        <td>₱{{ daily_discounts }}</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <h2>Transactions by Test</h2>
             <table class="summary-table">
