@@ -53,6 +53,7 @@ from django.db.models import Sum, Count
 
 from itertools import groupby
 from operator import attrgetter
+from django.db.models import Q
 
 
 def create_pdf(company, transactions):
@@ -297,6 +298,30 @@ class CompanyListView(ListView):
     model = Company
     template_name = 'companies/company_list.html'
     context_object_name = 'companies'
+    ordering = ['company_name']
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.request.GET.get('q', '').strip()
+        if q:
+            if q.isdigit():
+                # search by numeric ID OR by name
+                qs = qs.filter(
+                    Q(id=int(q)) |
+                    Q(company_name__icontains=q)
+                )
+            else:
+                # search only by name
+                qs = qs.filter(
+                    Q(company_name__icontains=q)
+                )
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # so your template can pre‑fill the search box
+        context['q'] = self.request.GET.get('q', '')
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class CompanyDetailView(DetailView):

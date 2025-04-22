@@ -9,6 +9,7 @@ from .models import Setpackage, SetpackageTest
 from .forms import SetpackageForm
 from tests.models import Test
 from django.views.decorators.http import require_GET
+from django.db.models import Q
 
 
 @method_decorator(login_required, name='dispatch')
@@ -16,6 +17,29 @@ class SetpackageListView(ListView):
     model = Setpackage
     template_name = 'setpackages/setpackage_list.html'
     context_object_name = 'setpackages'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.request.GET.get('q', '').strip()
+        if q:
+            if q.isdigit():
+                # search by numeric ID OR by name
+                qs = qs.filter(
+                    Q(id=int(q)) |
+                    Q(package_name__icontains=q)
+                )
+            else:
+                # search only by name
+                qs = qs.filter(
+                    Q(package_name__icontains=q)
+                )
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # so your template can pre‑fill the search box
+        context['q'] = self.request.GET.get('q', '')
+        return context
 
 
 @method_decorator(login_required, name='dispatch')

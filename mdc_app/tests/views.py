@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from .models import Test
 from .forms import TestForm
+from django.db.models import Q
 
 
 @method_decorator(login_required, name='dispatch')
@@ -13,6 +14,29 @@ class TestListView(ListView):
     model = Test
     template_name = 'tests/test_list.html'
     context_object_name = 'tests'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.request.GET.get('q', '').strip()
+        if q:
+            if q.isdigit():
+                # search by numeric ID OR by name
+                qs = qs.filter(
+                    Q(id=int(q)) |
+                    Q(test_name__icontains=q)
+                )
+            else:
+                # search only by name
+                qs = qs.filter(
+                    Q(test_name__icontains=q)
+                )
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # so your template can pre‑fill the search box
+        context['q'] = self.request.GET.get('q', '')
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class TestDetailView(DetailView):
