@@ -1006,3 +1006,4 @@ TypeError: get_tests_by_transaction_purpose() got an unexpected keyword argument
 [2025-04-22 07:21:51,399] ERROR django.server "GET /setpackages/ajax/get-tests-by-purpose/7/BUNTIS%20PACKAGE/ HTTP/1.1" 500 74170
 [2025-04-22 07:22:28,221] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
 [2025-04-22 07:22:28,656] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 08:01:24,162] INFO django.utils.autoreload Watching for file changes with StatReloader
