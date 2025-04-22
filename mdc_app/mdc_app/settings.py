@@ -154,3 +154,12 @@ LOGGING = {
         },
     },
 }
+
+# If you’re not redirecting HTTP→HTTPS in this environment:
+SECURE_SSL_REDIRECT = False
+
+# …then later…
+if not SECURE_SSL_REDIRECT:
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+else:
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
