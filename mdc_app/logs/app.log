@@ -1225,3 +1225,176 @@ AttributeError: 'Company' object has no attribute 'name'
 [2025-04-22 09:21:32,139] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 24940
 [2025-04-22 09:22:29,765] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
 [2025-04-22 09:22:30,191] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 09:22:42,824] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 24940
+[2025-04-22 09:22:43,869] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 24940
+[2025-04-22 09:22:44,729] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 24940
+[2025-04-22 09:22:45,169] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 24940
+[2025-04-22 12:11:59,155] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:13:00,472] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34024
+[2025-04-22 12:20:13,415] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 302 0
+[2025-04-22 12:20:13,455] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 12:20:20,622] INFO django.server "GET /setpackages/setpackages/7/ HTTP/1.1" 200 3385
+[2025-04-22 12:21:22,607] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:21:40,141] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43605
+[2025-04-22 12:22:16,616] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31133
+[2025-04-22 12:22:19,514] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:22:22,681] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34024
+[2025-04-22 12:22:25,717] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:22:28,452] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 12:23:23,393] INFO django.server "GET /setpackages/setpackages/3/edit/ HTTP/1.1" 200 34083
+[2025-04-22 12:23:35,714] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:23:39,530] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 12:24:16,775] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:24:18,960] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43605
+[2025-04-22 12:24:23,606] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 70
+[2025-04-22 12:24:23,607] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 12:24:53,950] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=7 HTTP/1.1" 200 23
+[2025-04-22 12:24:53,954] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 29
+[2025-04-22 12:26:18,298] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31133
+[2025-04-22 12:26:23,201] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43605
+[2025-04-22 12:26:26,874] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 12:26:26,876] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 70
+[2025-04-22 12:26:28,948] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=7 HTTP/1.1" 200 23
+[2025-04-22 12:26:28,950] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 29
+[2025-04-22 12:27:39,828] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=CUSTOM%20TEST&company_id=7 HTTP/1.1" 200 20
+[2025-04-22 12:27:39,831] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-22 12:28:31,095] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31133
+[2025-04-22 12:28:33,095] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:28:41,280] INFO django.server "GET /companies/company/new/ HTTP/1.1" 200 5114
+[2025-04-22 12:29:22,590] INFO django.server "POST /companies/company/new/ HTTP/1.1" 200 5400
+[2025-04-22 12:29:25,071] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:29:29,133] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34092
+[2025-04-22 12:30:21,257] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34130
+[2025-04-22 12:30:26,581] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34130
+[2025-04-22 12:30:44,102] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34130
+[2025-04-22 12:30:49,237] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:30:52,781] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 12:30:57,111] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34092
+[2025-04-22 12:31:31,550] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34130
+[2025-04-22 12:31:39,335] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:31:42,102] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 12:31:49,150] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:31:55,456] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-22 12:32:00,583] INFO django.server "GET /transactions/ajax/get-company-peme-rate/3/ HTTP/1.1" 200 18
+[2025-04-22 12:32:00,584] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/3/ HTTP/1.1" 200 22
+[2025-04-22 12:32:02,488] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=PEME&company_id=3 HTTP/1.1" 200 22
+[2025-04-22 12:32:02,491] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/3/PEME/ HTTP/1.1" 200 20
+[2025-04-22 12:32:36,123] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31133
+[2025-04-22 12:32:41,438] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 7381
+[2025-04-22 12:32:44,126] INFO django.server "GET /companies/company/3/ HTTP/1.1" 200 6565
+[2025-04-22 12:32:47,753] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 12:33:08,664] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 12:33:12,213] INFO django.server "GET /setpackages/setpackages/7/edit/ HTTP/1.1" 200 34203
+[2025-04-22 12:33:23,244] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 18:42:44,236] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 18:42:44,250] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
+[2025-04-22 18:42:47,188] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-22 18:43:15,832] INFO django.server "GET /transactions/ajax/get-company-peme-rate/8/ HTTP/1.1" 200 18
+[2025-04-22 18:43:15,832] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/8/ HTTP/1.1" 200 16
+[2025-04-22 18:43:20,549] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31133
+[2025-04-22 18:43:45,608] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 18:43:47,865] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 18:44:00,095] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 18:44:03,644] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-22 18:44:25,253] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 70
+[2025-04-22 18:44:25,253] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 18:46:27,006] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 29
+[2025-04-22 18:46:27,008] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=7 HTTP/1.1" 200 23
+[2025-04-22 18:46:35,771] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 18:46:35,773] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=BUNTIS%20PACKAGE&company_id=7 HTTP/1.1" 200 23
+[2025-04-22 18:46:54,453] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-22 18:46:57,356] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 18:46:57,358] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 70
+[2025-04-22 18:46:59,531] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=BUNTIS%20PACKAGE&company_id=7 HTTP/1.1" 200 23
+[2025-04-22 18:46:59,531] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-22 18:48:17,999] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-22 18:48:24,219] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31133
+[2025-04-22 18:48:29,062] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 18:48:32,720] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 24940
+[2025-04-22 18:52:35,122] INFO django.server "GET / HTTP/1.1" 200 9619
+[2025-04-22 18:53:41,659] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 48478
+[2025-04-22 18:54:25,367] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 49369
+[2025-04-22 18:54:28,725] ERROR django.request Internal Server Error: /tests/test/2/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'patient_edit' with arguments '('',)' not found. 2 pattern(s) tried: ['patient/(?P<pk>[0-9]+)/edit/\\Z', 'patients/patient/(?P<pk>[0-9]+)/edit/\\Z']
+[2025-04-22 18:54:28,727] ERROR django.server "GET /tests/test/2/ HTTP/1.1" 500 124837
+[2025-04-22 18:54:32,797] ERROR django.request Internal Server Error: /tests/test/4/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'patient_edit' with arguments '('',)' not found. 2 pattern(s) tried: ['patient/(?P<pk>[0-9]+)/edit/\\Z', 'patients/patient/(?P<pk>[0-9]+)/edit/\\Z']
+[2025-04-22 18:54:32,798] ERROR django.server "GET /tests/test/4/ HTTP/1.1" 500 124981
