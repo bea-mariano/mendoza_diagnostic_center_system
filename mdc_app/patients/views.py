@@ -16,14 +16,51 @@ from companies.forms import CompanyForm
 import logging
 from django.forms.models import model_to_dict
 from django.db.models import Q
+from django.utils import timezone
+import pytz
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum, Count
+from transactions.models import Transaction, TransactionTest
 
 logger = logging.getLogger('mdc_app')
 
 @method_decorator(login_required, name='dispatch')
-class HomeView(ListView):
-    model = Patient
+class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'patients/home.html'
-    context_object_name = 'patients'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+
+        # 1. Compute “today” in Manila
+        manila_tz = pytz.timezone('Asia/Manila')
+        today = timezone.now().astimezone(manila_tz).date()
+
+        # 2. All transactions for today
+        todays = Transaction.objects.filter(transaction_date=today)
+
+        # a) How many
+        ctx['daily_count'] = todays.count()
+
+        # b) Total of transaction_total
+        ctx['daily_total'] = todays.aggregate(total=Sum('transaction_total'))['total'] or 0
+
+        # c) Total of discounted_total
+        ctx['daily_discounted_total'] = todays.aggregate(total=Sum('discounted_total'))['total'] or 0
+
+        # d) Discounts given = gross – discounted
+        ctx['daily_discounts'] = ctx['daily_total'] - ctx['daily_discounted_total']
+
+        # 3. Summary of test counts
+        ctx['tests_summary'] = (
+            TransactionTest.objects
+            .filter(transaction__transaction_date=today)
+            .values('test__test_name')
+            .annotate(count=Count('id'))
+            .order_by('-count')
+        )
+
+        return ctx
 
 @method_decorator(login_required, name='dispatch')
 class PatientListView(ListView):
