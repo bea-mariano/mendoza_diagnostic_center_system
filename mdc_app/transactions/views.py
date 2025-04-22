@@ -49,6 +49,7 @@ class TransactionActiveListView(ListView):
     model = Transaction
     template_name = 'transactions/transaction_active_list.html'
     context_object_name = 'transactions'
+    ordering = ['-transaction_date', '-transaction_time']
 
     def get_queryset(self):
         return Transaction.objects.ongoing()

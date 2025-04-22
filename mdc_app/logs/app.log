@@ -1216,3 +1216,12 @@ AttributeError: 'Company' object has no attribute 'name'
 [2025-04-22 08:46:28,541] INFO django.server "GET / HTTP/1.1" 200 9384
 [2025-04-22 08:53:34,277] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\mdc_app\settings.py changed, reloading.
 [2025-04-22 08:54:56,267] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 08:57:43,922] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\mdc_app\settings.py changed, reloading.
+[2025-04-22 08:57:44,317] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 09:17:38,556] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 25503
+[2025-04-22 09:20:12,880] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 09:20:17,745] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 25503
+[2025-04-22 09:21:31,339] INFO django.server "GET / HTTP/1.1" 200 9384
+[2025-04-22 09:21:32,139] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 24940
+[2025-04-22 09:22:29,765] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-04-22 09:22:30,191] INFO django.utils.autoreload Watching for file changes with StatReloader
