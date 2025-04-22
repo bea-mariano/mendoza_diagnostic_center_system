@@ -5,6 +5,7 @@ import pytz
 from patients.models import Patient
 from tests.models import Test
 from companies.models import Company
+from setpackages.models import Setpackage
 
 def get_manila_date():
     return timezone.now().astimezone(pytz.timezone('Asia/Manila')).date()
@@ -80,6 +81,36 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"Transaction #{self.pk} - {self.patient}"
+    
+    def save(self, *args, **kwargs):
+        # 1. Debug what values Django sees:
+        print(f"▶ Saving Transaction: company_id={self.company_id!r}, purpose={self.transaction_purpose!r}")
+
+        # 2. Only try to match if both are present
+        if self.company_id and self.transaction_purpose:
+            # trim whitespace and do case‑insensitive match
+            purpose_clean = self.transaction_purpose.strip()
+            pkg = (
+                Setpackage.objects
+                .filter(
+                    company_id=self.company_id,
+                    package_transaction_purpose__iexact=purpose_clean
+                )
+                .first()   # .first() returns None if nothing found
+            )
+            print(f"   → matched package: {pkg!r}")
+            self.setpackage = pkg
+
+        super().save(*args, **kwargs)
+
+
+    setpackage = models.ForeignKey(
+        Setpackage,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        help_text="The company/package combo selected for this transaction, if applicable"
+    )
 
 class TransactionTest(models.Model):
     transaction = models.ForeignKey('Transaction', on_delete=models.CASCADE, related_name='transaction_tests')
