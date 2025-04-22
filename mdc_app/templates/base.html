@@ -11,7 +11,7 @@
         /* Paste your navbar CSS here */
         .navbar {
             background-color: #007BFF;
-            padding: 10px 20px;
+            padding: 20px 20px;
             display: flex;
             flex-wrap: wrap;  /* allow wrapping on smaller screens */
             justify-content: space-between;
@@ -29,7 +29,7 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 10px;
+            gap: 30px;
         }
         .nav-left img {
             height: 40px;
@@ -102,6 +102,8 @@
             <a href="{% url 'patient_list' %}">Patient</a>
             <a href="{% url 'transaction_list' %}">Transactions</a>
             <a href="{% url 'company_list' %}">Company</a>
+            <a href="{% url 'setpackage_list' %}">Packages</a>
+            <a href="{% url 'test_list' %}">Tests</a>
         </div>
         <div class="nav-right">
             <span>Logged in as {{ user.username }}</span>

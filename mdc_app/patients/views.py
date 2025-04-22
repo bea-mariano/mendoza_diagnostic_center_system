@@ -106,7 +106,6 @@ class PatientDetailView(DetailView):
         context['transactions'] = Transaction.objects.filter(patient=patient)
         return context
 
-@method_decorator(login_required, name='dispatch')
 class PatientCreateView(CreateView):
     model = Patient
     form_class = PatientForm
@@ -122,11 +121,17 @@ class PatientCreateView(CreateView):
             date_of_birth=data['date_of_birth'],
         ).first()
 
+        # safe username lookup
+        username = (
+            self.request.user.username
+            if self.request.user.is_authenticated
+            else 'anonymous'
+        )
+
         if existing_patient:
-            # Pass this info to template context
             logger.info(
-                f"Patient CREATED by user={self.request.user.username!r}: "
-                f"Patient already exists with ID {existing_patient.id}, name={self.object.first_name} {self.object.last_name}"
+                f"Patient CREATE attempted by user={username!r}: "
+                f"already exists (ID={existing_patient.id})"
             )
             return self.render_to_response(self.get_context_data(
                 form=form,
@@ -136,12 +141,10 @@ class PatientCreateView(CreateView):
             ))
         else:
             self.object = form.save()
-
             logger.info(
-                f"Patient CREATED by user={self.request.user.username!r}: "
+                f"Patient CREATED by user={username!r}: "
                 f"id={self.object.pk}, name={self.object.first_name} {self.object.last_name}"
             )
-
             return self.render_to_response(self.get_context_data(
                 form=self.get_form_class()(instance=self.object),
                 new_patient=self.object,

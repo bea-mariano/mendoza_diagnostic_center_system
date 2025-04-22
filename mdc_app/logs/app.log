@@ -1398,3 +1398,327 @@ Traceback (most recent call last):
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'patient_edit' with arguments '('',)' not found. 2 pattern(s) tried: ['patient/(?P<pk>[0-9]+)/edit/\\Z', 'patients/patient/(?P<pk>[0-9]+)/edit/\\Z']
 [2025-04-22 18:54:32,798] ERROR django.server "GET /tests/test/4/ HTTP/1.1" 500 124981
+[2025-04-22 19:52:27,995] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 19:52:31,079] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 7932
+[2025-04-22 19:53:31,537] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\companies\views.py changed, reloading.
+[2025-04-22 19:53:31,941] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 19:53:43,506] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\companies\views.py changed, reloading.
+[2025-04-22 19:53:43,956] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 19:54:02,603] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 7932
+[2025-04-22 19:54:14,244] ERROR django.request Internal Server Error: /companies/company/list/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\generic\list.py", line 158, in get
+    self.object_list = self.get_queryset()
+                       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\companies\views.py", line 315, in get_queryset
+    Q(company_name__icontains=q)
+    ^
+NameError: name 'Q' is not defined
+[2025-04-22 19:54:14,247] ERROR django.server "GET /companies/company/list/?q=ELNET HTTP/1.1" 500 93203
+[2025-04-22 19:54:40,516] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\companies\views.py changed, reloading.
+[2025-04-22 19:54:40,951] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 19:54:41,762] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 7932
+[2025-04-22 19:54:47,662] INFO django.server "GET /companies/company/list/?q=glacier HTTP/1.1" 200 6204
+[2025-04-22 19:54:50,315] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 7932
+[2025-04-22 19:55:25,575] INFO django.server "GET /companies/company/new/ HTTP/1.1" 200 5114
+[2025-04-22 19:55:38,539] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8226
+[2025-04-22 19:55:47,667] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 7932
+[2025-04-22 19:56:29,092] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8328
+[2025-04-22 20:00:49,778] INFO django.server "GET /companies/company/new/ HTTP/1.1" 200 5114
+[2025-04-22 20:00:53,428] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31133
+[2025-04-22 20:00:55,067] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8226
+[2025-04-22 20:00:58,727] INFO django.server - Broken pipe from ('127.0.0.1', 53084)
+[2025-04-22 20:00:58,731] INFO django.server "GET / HTTP/1.1" 200 9975
+[2025-04-22 20:03:09,503] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:03:11,572] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:03:12,332] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8342
+[2025-04-22 20:03:13,203] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 20:03:14,078] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:03:15,053] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 20:03:18,374] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:03:19,104] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 49369
+[2025-04-22 20:03:20,867] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:03:22,673] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:05:09,551] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 20:05:32,626] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34092
+[2025-04-22 20:05:46,550] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:05:48,207] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 20:08:16,751] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:08:26,489] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-22 20:08:49,378] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-22 20:08:49,378] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 70
+[2025-04-22 20:08:51,553] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 29
+[2025-04-22 20:08:51,554] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=7 HTTP/1.1" 200 23
+[2025-04-22 20:09:28,453] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 20:09:29,481] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 20:09:33,154] INFO django.server "GET /setpackages/setpackages/7/ HTTP/1.1" 200 3385
+[2025-04-22 20:09:56,823] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 20:09:58,855] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:10:02,880] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 20:10:54,366] INFO django.server "GET /setpackages/setpackages/7/ HTTP/1.1" 200 3385
+[2025-04-22 20:10:57,983] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 20:11:01,702] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:11:34,216] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:11:34,905] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 4711
+[2025-04-22 20:13:28,983] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 8003
+[2025-04-22 20:13:31,574] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:13:32,347] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 8003
+[2025-04-22 20:13:33,548] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:13:34,685] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 8003
+[2025-04-22 20:13:35,387] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:13:36,284] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 8003
+[2025-04-22 20:13:37,906] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:13:40,220] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 8003
+[2025-04-22 20:13:41,354] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:13:43,113] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 8003
+[2025-04-22 20:14:23,490] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 7556
+[2025-04-22 20:14:56,408] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 7520
+[2025-04-22 20:15:53,589] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 7721
+[2025-04-22 20:16:09,332] INFO django.server "GET /setpackages/setpackages/list/?q=BUNTIS HTTP/1.1" 200 7721
+[2025-04-22 20:16:10,445] INFO django.server "GET /setpackages/setpackages/list/?q= HTTP/1.1" 200 7721
+[2025-04-22 20:17:36,259] INFO django.server "GET /setpackages/setpackages/list/?q= HTTP/1.1" 200 7818
+[2025-04-22 20:18:27,197] INFO django.server "GET /setpackages/setpackages/list/?q= HTTP/1.1" 200 8345
+[2025-04-22 20:19:58,853] INFO django.server "GET /setpackages/setpackages/list/?q= HTTP/1.1" 200 9661
+[2025-04-22 20:20:00,865] INFO django.server "GET /setpackages/setpackages/3/ HTTP/1.1" 200 2987
+[2025-04-22 20:20:05,229] INFO django.server "GET /setpackages/setpackages/3/edit/ HTTP/1.1" 200 34151
+[2025-04-22 20:20:17,388] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:20:18,511] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 20:20:23,165] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8342
+[2025-04-22 20:20:24,456] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 20:20:25,235] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:20:26,163] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:20:30,017] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 49369
+[2025-04-22 20:20:43,468] INFO django.server "GET /setpackages/setpackages/list/?q=custom HTTP/1.1" 200 9661
+[2025-04-22 20:20:47,206] INFO django.server "GET /setpackages/setpackages/list/?q=custom HTTP/1.1" 200 9661
+[2025-04-22 20:20:52,108] INFO django.server "GET /setpackages/setpackages/list/?q=CUSTOM HTTP/1.1" 200 9661
+[2025-04-22 20:20:52,704] INFO django.server "GET /setpackages/setpackages/list/?q= HTTP/1.1" 200 9661
+[2025-04-22 20:22:02,703] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 20:22:03,124] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 20:22:13,684] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-22 20:22:14,108] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 20:22:15,856] INFO django.server "GET /setpackages/setpackages/list/?q= HTTP/1.1" 200 9661
+[2025-04-22 20:22:20,700] INFO django.server "GET /setpackages/setpackages/list/?q=BUNTIS HTTP/1.1" 200 7224
+[2025-04-22 20:22:32,270] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:22:33,364] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:22:39,568] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 20:23:12,547] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 49369
+[2025-04-22 20:33:47,304] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 49369
+[2025-04-22 20:33:49,928] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:33:53,086] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:33:59,945] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 49369
+[2025-04-22 20:46:58,965] ERROR django.request Internal Server Error: /tests/test/list/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 590, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 6: 'block'. Looking for one of: endblock.
+[2025-04-22 20:46:58,967] ERROR django.server "GET /tests/test/list/ HTTP/1.1" 500 174777
+[2025-04-22 20:47:00,620] ERROR django.request Internal Server Error: /tests/test/list/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\template\base.py", line 590, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 6: 'block'. Looking for one of: endblock.
+[2025-04-22 20:47:00,621] ERROR django.server "GET /tests/test/list/ HTTP/1.1" 500 174777
+[2025-04-22 20:47:37,096] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 52933
+[2025-04-22 20:47:51,281] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:47:52,321] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:47:53,981] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:47:55,196] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:47:58,067] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 52933
+[2025-04-22 20:48:36,012] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 52791
+[2025-04-22 20:49:01,512] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:49:03,241] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 20:49:04,220] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:49:04,987] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:49:05,949] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 52791
+[2025-04-22 20:49:07,231] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:49:59,622] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:50:00,655] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:50:01,583] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 117781
+[2025-04-22 20:50:03,566] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 117781
+[2025-04-22 20:50:31,294] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 118338
+[2025-04-22 20:52:54,853] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:53:25,690] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\tests\views.py changed, reloading.
+[2025-04-22 20:53:26,265] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 20:53:54,266] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\tests\views.py changed, reloading.
+[2025-04-22 20:53:54,863] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 20:53:56,549] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:54:03,144] INFO django.server "GET /tests/test/list/?q=FECALYSIS HTTP/1.1" 200 8324
+[2025-04-22 20:54:12,320] INFO django.server "GET /tests/test/list/?q=FECALYSIS HTTP/1.1" 200 8324
+[2025-04-22 20:54:12,761] INFO django.server "GET /tests/test/list/?q=FECALYSIS HTTP/1.1" 200 8324
+[2025-04-22 20:54:14,107] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:54:25,983] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:54:27,184] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:54:28,412] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:54:29,501] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:54:30,868] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 20:54:32,335] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8342
+[2025-04-22 20:54:33,103] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:54:34,155] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 8444
+[2025-04-22 20:55:21,465] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 9010
+[2025-04-22 20:56:35,180] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 11990
+[2025-04-22 20:56:43,469] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 10844
+[2025-04-22 20:56:59,943] INFO django.server "GET /companies/company/list/?q=GLACIER HTTP/1.1" 200 7291
+[2025-04-22 20:57:02,624] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 10844
+[2025-04-22 20:57:17,905] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 10907
+[2025-04-22 20:57:22,895] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 20:57:33,488] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8342
+[2025-04-22 20:57:34,883] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 20:57:36,654] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 10907
+[2025-04-22 20:57:38,543] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:57:39,749] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:58:39,902] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:58:50,041] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:58:58,387] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:59:29,613] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:59:37,370] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:59:55,190] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:59:56,491] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 20:59:58,537] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 9661
+[2025-04-22 20:59:59,999] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 10907
+[2025-04-22 21:00:00,858] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-22 21:00:01,587] INFO django.server "GET /patient/list/ HTTP/1.1" 200 8342
+[2025-04-22 21:00:02,341] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 21:00:21,081] INFO django.server "GET /tests/test/new/ HTTP/1.1" 200 3381
+[2025-04-22 21:00:23,880] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 92686
+[2025-04-22 21:01:35,941] INFO django.server "GET /tests/test/2/ HTTP/1.1" 200 2346
+[2025-04-22 21:01:38,837] INFO django.server "GET /tests/test/2/edit/ HTTP/1.1" 200 3408
+[2025-04-22 21:01:41,212] INFO django.server "GET /tests/test/2/delete/ HTTP/1.1" 200 1795
+[2025-04-22 21:01:46,572] INFO django.server "GET / HTTP/1.1" 200 10091
+[2025-04-22 21:01:59,265] INFO django.server "POST /accounts/logout/ HTTP/1.1" 302 0
+[2025-04-22 21:01:59,277] INFO django.server "GET /accounts/login/ HTTP/1.1" 200 1862
+[2025-04-22 21:05:46,238] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-22 21:05:46,754] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-22 21:06:07,878] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
+[2025-04-22 21:06:08,428] INFO django.utils.autoreload Watching for file changes with StatReloader
