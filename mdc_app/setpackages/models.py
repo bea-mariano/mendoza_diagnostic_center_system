@@ -1,12 +1,26 @@
+# setpackages/models.py
+
 from django.db import models
 from companies.models import Company
 from tests.models import Test
 
 class Setpackage(models.Model):
     package_name = models.CharField(max_length=100)
-    package_transaction_purpose = models.CharField(max_length=100)  # e.g., "PEME", "APE"
+    package_transaction_purpose = models.CharField(max_length=100)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     package_promo_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    'company',
+                    'package_name',
+                    'package_transaction_purpose'
+                ],
+                name='unique_package_per_company'
+            )
+        ]
 
     def __str__(self):
         return f"{self.company.company_name} - {self.package_name} ({self.package_transaction_purpose})"
