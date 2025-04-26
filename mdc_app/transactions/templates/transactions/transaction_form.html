@@ -55,7 +55,7 @@
                 <div class="form-group"><label for="transaction_type">Transaction Type</label>{{ form.transaction_type }}</div>
                 <div class="form-group"><label for="company_id">Company</label>{{ form.company }}</div>
                 <input type="hidden" id="id_company_peme_rate" value="{{ form.instance.company.company_peme_rate|default:0 }}">
-                <div class="form-group"><label for="transaction_purpose">Transaction Purpose</label>
+                <div class="form-group"><label for="transaction_purpose">Package Name (Select CUSTOM TEST if OPD)</label>
                     <select id="id_transaction_purpose" name="transaction_purpose">
                         <option value="">Select Purpose</option>
                     </select>
