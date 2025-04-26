@@ -1722,3 +1722,143 @@ django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 6: 'block'.
 [2025-04-22 21:05:46,754] INFO django.utils.autoreload Watching for file changes with StatReloader
 [2025-04-22 21:06:07,878] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\patients\views.py changed, reloading.
 [2025-04-22 21:06:08,428] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 07:36:45,488] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 07:36:58,231] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 07:36:58,250] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
+[2025-04-26 07:36:58,285] WARNING django.request Not Found: /favicon.ico
+[2025-04-26 07:36:58,286] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 4751
+[2025-04-26 07:37:07,137] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34092
+[2025-04-26 07:37:36,778] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 302 0
+[2025-04-26 07:37:36,789] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 10509
+[2025-04-26 07:37:41,568] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34092
+[2025-04-26 07:38:13,344] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34130
+[2025-04-26 07:38:23,712] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34130
+[2025-04-26 07:38:36,316] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 302 0
+[2025-04-26 07:38:36,336] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 07:44:21,574] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34098
+[2025-04-26 07:44:38,145] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34136
+[2025-04-26 12:41:47,222] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 12:42:06,812] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 12:42:06,874] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 200 41664
+[2025-04-26 12:42:06,937] WARNING django.request Not Found: /favicon.ico
+[2025-04-26 12:42:06,937] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 4751
+[2025-04-26 12:42:30,736] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-26 12:42:35,644] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-26 12:42:40,121] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 12:42:44,549] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-26 12:42:45,160] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-26 12:42:59,524] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 12:43:03,447] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 12:43:08,903] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-26 12:43:08,907] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 70
+[2025-04-26 12:43:10,499] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-26 12:43:10,500] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=BUNTIS%20PACKAGE&company_id=7 HTTP/1.1" 200 23
+[2025-04-26 12:43:24,852] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 43673
+[2025-04-26 12:43:30,975] INFO django.server "GET /transactions/ajax/get-company-peme-rate/7/ HTTP/1.1" 200 16
+[2025-04-26 12:43:30,975] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/7/ HTTP/1.1" 200 70
+[2025-04-26 12:43:32,752] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/7/BUNTIS%20PACKAGE/ HTTP/1.1" 200 29
+[2025-04-26 12:43:32,754] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=BUNTIS%20PACKAGE&company_id=7 HTTP/1.1" 200 23
+[2025-04-26 12:43:39,890] INFO django.server "GET /setpackages/setpackages/5/ HTTP/1.1" 200 3505
+[2025-04-26 12:43:58,168] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 31249
+[2025-04-26 12:43:59,534] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 12:44:01,862] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 34098
+[2025-04-26 12:44:20,971] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34157
+[2025-04-26 12:44:29,028] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34157
+[2025-04-26 12:46:42,610] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 12:46:43,076] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 12:47:26,319] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34761
+[2025-04-26 12:47:28,866] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34761
+[2025-04-26 12:47:35,703] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34761
+[2025-04-26 12:48:39,258] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 12:48:39,655] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 12:53:54,257] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34761
+[2025-04-26 12:54:01,759] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34761
+[2025-04-26 12:54:04,609] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 34761
+[2025-04-26 12:58:39,932] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 12:58:45,983] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 12:58:49,475] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 12:58:52,717] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 13:00:13,095] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:00:13,485] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:00:40,021] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 13:00:41,850] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 48700
+[2025-04-26 13:01:05,928] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:01:17,424] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:02:39,970] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:02:40,394] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:03:49,922] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:03:50,363] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:04:09,128] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:04:09,623] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:04:11,307] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:04:16,400] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:08:25,515] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:08:25,946] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:09:02,392] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:09:02,833] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:10:20,558] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:10:22,552] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:10:25,195] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 48700
+[2025-04-26 13:10:38,599] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:10:44,374] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:11:12,258] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:11:14,119] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:11:19,785] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 48759
+[2025-04-26 13:11:26,519] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:11:28,421] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 48700
+[2025-04-26 13:32:50,323] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:32:50,718] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:32:58,212] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\models.py changed, reloading.
+[2025-04-26 13:32:58,632] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:33:08,196] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\forms.py changed, reloading.
+[2025-04-26 13:33:08,584] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:33:18,319] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46336
+[2025-04-26 13:33:19,762] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:33:21,515] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46336
+[2025-04-26 13:33:47,995] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46336
+[2025-04-26 13:33:49,019] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:33:50,305] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46336
+[2025-04-26 13:34:03,789] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 200 46958
+[2025-04-26 13:34:09,262] INFO django.server "GET /setpackages/setpackages/5/ HTTP/1.1" 200 3505
+[2025-04-26 13:34:40,586] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:34:42,284] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46336
+[2025-04-26 13:34:43,245] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46336
+[2025-04-26 13:35:00,039] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46339
+[2025-04-26 13:35:00,588] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46339
+[2025-04-26 13:35:00,755] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46339
+[2025-04-26 13:35:00,949] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46339
+[2025-04-26 13:35:01,558] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46339
+[2025-04-26 13:35:01,756] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46339
+[2025-04-26 13:35:20,938] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 46336
+[2025-04-26 13:35:37,007] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:35:38,309] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 13:35:40,448] INFO django.server "GET /setpackages/setpackages/3/edit/ HTTP/1.1" 200 46395
+[2025-04-26 13:35:46,291] INFO django.server "POST /setpackages/setpackages/3/edit/ HTTP/1.1" 302 0
+[2025-04-26 13:35:46,311] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 13:35:49,292] INFO django.server "GET /setpackages/setpackages/3/edit/ HTTP/1.1" 200 46395
+[2025-04-26 13:36:04,253] INFO django.server "POST /setpackages/setpackages/3/edit/ HTTP/1.1" 200 46415
+[2025-04-26 13:36:10,714] INFO django.server "GET /setpackages/setpackages/3/edit/ HTTP/1.1" 200 46395
+[2025-04-26 13:36:14,003] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:36:15,852] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 13:37:55,152] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:37:55,684] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:39:29,761] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-26 13:39:30,202] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 13:39:36,198] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:39:41,437] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 13:39:44,953] INFO django.server "GET /setpackages/setpackages/3/edit/ HTTP/1.1" 200 46395
+[2025-04-26 13:40:02,966] INFO django.server "POST /setpackages/setpackages/3/edit/ HTTP/1.1" 200 46978
+[2025-04-26 13:40:09,783] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-26 13:40:13,784] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 13:40:15,146] INFO django.server "GET /setpackages/setpackages/3/edit/ HTTP/1.1" 200 46395
+[2025-04-26 13:40:21,434] INFO django.server "POST /setpackages/setpackages/3/edit/ HTTP/1.1" 302 0
+[2025-04-26 13:40:21,443] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 11325
+[2025-04-26 14:02:34,951] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 14:03:30,515] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-26 14:03:36,306] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 302 0
+[2025-04-26 14:03:36,326] INFO django.server "GET /accounts/login/?next=/setpackages/setpackages/list/ HTTP/1.1" 200 1862
+[2025-04-26 14:03:38,001] INFO django.server "POST /accounts/login/?next=/setpackages/setpackages/list/ HTTP/1.1" 302 0
+[2025-04-26 14:03:38,049] INFO django.server "GET /patient/list/ HTTP/1.1" 200 130997
+[2025-04-26 14:03:43,860] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 29038
+[2025-04-26 14:03:47,607] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 302369
+[2025-04-26 14:03:52,326] INFO django.server "GET /transactions/transaction/list/?q=84 HTTP/1.1" 200 13591
