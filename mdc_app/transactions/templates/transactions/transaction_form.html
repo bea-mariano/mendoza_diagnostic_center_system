@@ -37,7 +37,7 @@
     </div>
     <div class="container">
         <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Transaction</h1>
-        <form method="POST">
+        <form method="POST" data-pk="{{ form.instance.pk|default_if_none:'' }}">
             {% csrf_token %}
 
             <!-- Patient Information -->
@@ -334,11 +334,12 @@
                 if (isNaN(parseInt(discountedTotalField.value, 10))) discountedTotalField.value = 0;
             });
         
-            // --- 9) Initial load ---
-            reloadPurposes();
-            updateTransactionTotal(null);
-            updateDiscountRate();
-            updateDiscountedTotal();
+            // --- 9) Initial load: only on CREATE pages ---
+            const isEdit = !!document.querySelector("form").dataset.pk;
+            if (!isEdit) {
+                // on a NEW transaction we need to load package → tests → promoPrice → recalc
+                reloadPurposes();
+            }
         });
     </script>
         
