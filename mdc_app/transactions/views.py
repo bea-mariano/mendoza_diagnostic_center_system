@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Transaction, TransactionTest  # 👈 Import TransactionTest
+from .models import Transaction, TransactionTest
 from .forms import TransactionForm
 from companies.models import Company
 from django.http import JsonResponse

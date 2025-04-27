@@ -109,13 +109,34 @@
         function calculateTestTotal() {
             let total = 0;
             const purpose = transactionPurposeField.value;
+
             if (purpose === "Pre-Employment Examination (PEME)" || purpose === "Annual Physical Examination (APE)") {
-                total = parseInt(companyPemeRateField.value) || 0;
+                // simple package: take full promo price
+                total = parseInt(companyPemeRateField.value, 10) || 0;
+
+            } else if (purpose === "CUSTOM TEST") {
+                // custom tests: sum all checked test prices
+                testCheckboxes.forEach(cb => {
+                    if (cb.checked) {
+                        total += parseInt(cb.dataset.price, 10) || 0;
+                    }
+                });
+
             } else {
-                testCheckboxes.forEach(cb => { if (cb.checked) total += parseInt(cb.dataset.price) || 0; });
+                // dynamic package: start at promo price, then subtract any unchecked test values
+                total = parseInt(companyPemeRateField.value, 10) || 0;
+
+                testCheckboxes.forEach(cb => {
+                    if (!cb.checked) {
+                        // assume data-price holds the amount to subtract for each exclusion
+                        total -= parseInt(cb.dataset.exclusion_amount, 10) || 0;
+                    }
+                });
             }
+
             return total;
         }
+
 
         function updateTransactionTotal() {
             transactionTotalField.value = calculateTestTotal();
@@ -203,13 +224,21 @@
                 fetch(urlTests)
                     .then(res => res.json())
                     .then(data => {
-                        const ids = data.test_ids.map(String);
-                        testCheckboxes.forEach(cb => { cb.checked = ids.includes(cb.value); });
-                        updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
-                    })
+                        // pick out the IDs
+                        const ids = Array.isArray(data.test_ids)
+                            ? data.test_ids.map(item => String(item.test_id))
+                            : [];
+
+                        testCheckboxes.forEach(cb => {
+                            cb.checked = ids.includes(cb.value);
+                        });
+                        updateTransactionTotal();
+                        updateDiscountRate();
+                        updateDiscountedTotal();
+                        })
                     .catch(err => console.error('Error loading tests:', err));
 
-                if (purpose !== "CUSTOM TEST PACKAGE") {
+                if (purpose !== "CUSTOM TEST") {
                     const urlPrice = '/setpackages/ajax/get-package-price/?purpose=' + encodeURIComponent(purpose) + '&company_id=' + companyId;
                     fetch(urlPrice)
                         .then(res => res.json())
