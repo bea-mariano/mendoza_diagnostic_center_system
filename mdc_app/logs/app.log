@@ -1984,3 +1984,14 @@ django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 6: 'block'.
 [2025-04-28 06:14:36,785] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20B&company_id=2 HTTP/1.1" 200 23
 [2025-04-28 06:18:21,717] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
 [2025-04-28 06:18:22,200] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 06:18:23,734] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61078
+[2025-04-28 06:18:34,265] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 06:18:34,266] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 06:18:36,853] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-28 06:18:55,251] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 557
+[2025-04-28 06:18:55,252] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
+[2025-04-28 06:24:36,666] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61341
+[2025-04-28 06:24:41,678] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 06:24:41,678] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 06:24:44,561] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 557
+[2025-04-28 06:24:44,562] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
