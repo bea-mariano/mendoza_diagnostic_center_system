@@ -1895,3 +1895,92 @@ django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 6: 'block'.
 [2025-04-26 14:24:45,583] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
 [2025-04-26 14:24:47,969] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/CUSTOM%20TEST/ HTTP/1.1" 200 16
 [2025-04-26 14:24:47,969] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=CUSTOM%20TEST&company_id=2 HTTP/1.1" 200 20
+[2025-04-27 09:57:02,235] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-27 09:57:13,589] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-27 09:57:13,650] WARNING django.request Not Found: /favicon.ico
+[2025-04-27 09:57:13,650] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 4751
+[2025-04-27 09:59:40,829] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 308048
+[2025-04-27 10:00:10,827] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 60347
+[2025-04-27 10:00:29,878] INFO django.server "GET /transactions/ajax/get-company-peme-rate/6/ HTTP/1.1" 200 16
+[2025-04-27 10:00:29,881] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/6/ HTTP/1.1" 200 32
+[2025-04-27 10:00:32,201] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/6/PEME%20CHANMAMEL/ HTTP/1.1" 200 44
+[2025-04-27 10:00:32,202] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=PEME%20CHANMAMEL&company_id=6 HTTP/1.1" 200 22
+[2025-04-27 10:00:49,041] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 308048
+[2025-04-27 10:00:55,020] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 51899
+[2025-04-27 10:01:02,944] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 29043
+[2025-04-27 10:01:05,074] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 29043
+[2025-04-27 10:01:05,941] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 106716
+[2025-04-27 10:05:33,694] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-27 10:05:35,461] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 308048
+[2025-04-27 23:10:16,951] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-27 23:10:30,677] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-27 23:10:30,692] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
+[2025-04-27 23:10:30,732] WARNING django.request Not Found: /favicon.ico
+[2025-04-27 23:10:30,733] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 4751
+[2025-04-27 23:10:56,175] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61213
+[2025-04-27 23:11:01,554] INFO django.server "GET /transactions/ajax/get-company-peme-rate/11/ HTTP/1.1" 200 16
+[2025-04-27 23:11:01,555] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/11/ HTTP/1.1" 200 16
+[2025-04-27 23:11:10,200] INFO django.server "GET /transactions/ajax/get-company-peme-rate/53/ HTTP/1.1" 200 18
+[2025-04-27 23:11:10,201] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/53/ HTTP/1.1" 200 16
+[2025-04-27 23:11:15,513] INFO django.server "GET /transactions/ajax/get-company-peme-rate/55/ HTTP/1.1" 200 18
+[2025-04-27 23:11:15,513] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/55/ HTTP/1.1" 200 39
+[2025-04-27 23:11:29,985] INFO django.server "GET /transactions/ajax/get-company-peme-rate/40/ HTTP/1.1" 200 16
+[2025-04-27 23:11:29,986] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/40/ HTTP/1.1" 200 16
+[2025-04-27 23:11:54,259] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 308048
+[2025-04-27 23:11:55,682] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 29043
+[2025-04-27 23:12:15,738] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 308048
+[2025-04-27 23:12:16,852] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61213
+[2025-04-27 23:12:21,357] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-27 23:12:21,358] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-27 23:12:23,768] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-04-27 23:12:23,769] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=CUSTOM%20TEST&company_id=2 HTTP/1.1" 200 20
+[2025-04-27 23:12:35,404] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 63
+[2025-04-27 23:12:35,404] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
+[2025-04-27 23:13:35,187] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20B/ HTTP/1.1" 200 16
+[2025-04-27 23:13:35,188] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20B&company_id=2 HTTP/1.1" 200 23
+[2025-04-27 23:15:06,860] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-04-27 23:15:07,268] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 00:20:09,450] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-28 00:20:09,901] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 00:22:02,618] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-28 00:22:03,157] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 00:22:52,220] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-28 00:22:52,648] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 00:22:56,536] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61213
+[2025-04-28 00:23:04,645] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 00:23:04,645] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 00:23:06,593] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
+[2025-04-28 00:23:06,595] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 104
+[2025-04-28 00:23:29,699] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-04-28 00:23:32,790] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 29043
+[2025-04-28 00:23:35,823] INFO django.server "GET /setpackages/setpackages/1/ HTTP/1.1" 200 4546
+[2025-04-28 00:23:47,159] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61213
+[2025-04-28 00:23:55,415] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 00:23:55,418] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 00:23:57,841] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 104
+[2025-04-28 00:23:57,842] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
+[2025-04-28 00:25:52,114] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61260
+[2025-04-28 00:27:30,429] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-28 00:27:30,968] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 00:31:19,603] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-28 00:31:19,996] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 00:31:37,712] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-28 00:31:38,162] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 00:32:24,954] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61260
+[2025-04-28 00:33:12,292] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61196
+[2025-04-28 00:33:42,350] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61205
+[2025-04-28 00:36:16,048] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61149
+[2025-04-28 00:37:35,826] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 00:37:35,829] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 00:37:37,969] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
+[2025-04-28 00:37:37,969] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 554
+[2025-04-28 06:13:52,837] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61141
+[2025-04-28 06:14:09,049] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 61078
+[2025-04-28 06:14:19,760] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 06:14:19,762] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 06:14:22,278] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
+[2025-04-28 06:14:22,279] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 554
+[2025-04-28 06:14:36,785] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20B/ HTTP/1.1" 200 13
+[2025-04-28 06:14:36,785] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20B&company_id=2 HTTP/1.1" 200 23
+[2025-04-28 06:18:21,717] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\setpackages\views.py changed, reloading.
+[2025-04-28 06:18:22,200] INFO django.utils.autoreload Watching for file changes with StatReloader

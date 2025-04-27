@@ -222,17 +222,19 @@ def get_available_transaction_purposes(request, company_id):
 @require_GET
 @login_required
 def get_tests_by_transaction_purpose(request, company_id, purpose):
-    test_ids = (
+    tests = (
         SetpackageTest.objects
         .filter(
             package__company_id=company_id,
             package__package_transaction_purpose=purpose
         )
-        .values_list('test_id', flat=True)
+        .values('test_id', 'exclusion_amount')
         .distinct()
     )
-    return JsonResponse({'test_ids': list(test_ids)})
 
+    return JsonResponse({
+        'test_ids': list(tests)
+    })
 
 @login_required
 def get_package_price(request):
@@ -243,6 +245,8 @@ def get_package_price(request):
             package_transaction_purpose=purpose,
             company_id=company_id
         )
-        return JsonResponse({'promo_price': float(package.package_promo_price)})
+        return JsonResponse({
+            'promo_price': float(package.package_promo_price)
+            })
     except Setpackage.DoesNotExist:
         return JsonResponse({'promo_price': None})
