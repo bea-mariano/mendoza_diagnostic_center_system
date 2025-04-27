@@ -96,180 +96,251 @@
     </div>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const companySelect              = document.getElementById("id_company");
-        const transactionPurposeField    = document.getElementById("id_transaction_purpose");
-        const testCheckboxes             = document.querySelectorAll("input[name='tests']");
-        const discountTypeField          = document.getElementById("id_discount_type");
-        const discountRateField          = document.getElementById("id_discount_rate");
-        const transactionTotalField      = document.getElementById("id_transaction_total");
-        const companyPemeRateField       = document.getElementById("id_company_peme_rate");
-        const discountedTotalField       = document.getElementById("id_discounted_total");
+        document.addEventListener("DOMContentLoaded", function () {
+            // --- 1) Globals to hold exclusion amounts and the current promo price ---
+            let exclusionMap = {};
+            let currentPromoPrice = null;
+        
+            // --- 2) Element references ---
+            const companySelect           = document.getElementById("id_company");
+            const transactionPurposeField = document.getElementById("id_transaction_purpose");
+            const testCheckboxes          = document.querySelectorAll("input[name='tests']");
+            const discountTypeField       = document.getElementById("id_discount_type");
+            const discountRateField       = document.getElementById("id_discount_rate");
+            const transactionTotalField   = document.getElementById("id_transaction_total");
+            const companyPemeRateField    = document.getElementById("id_company_peme_rate");
+            const discountedTotalField    = document.getElementById("id_discounted_total");
+        
+            // --- 3) Core calculator ---
+            function calculateTestTotal(promoPrice) {
 
-        function calculateTestTotal() {
-            let total = 0;
-            const purpose = transactionPurposeField.value;
-
-            if (purpose === "Pre-Employment Examination (PEME)" || purpose === "Annual Physical Examination (APE)") {
-                // simple package: take full promo price
-                total = parseInt(companyPemeRateField.value, 10) || 0;
-
-            } else if (purpose === "CUSTOM TEST") {
-                // custom tests: sum all checked test prices
-                testCheckboxes.forEach(cb => {
-                    if (cb.checked) {
-                        total += parseInt(cb.dataset.price, 10) || 0;
-                    }
-                });
-
-            } else {
-                // dynamic package: start at promo price, then subtract any unchecked test values
-                total = parseInt(companyPemeRateField.value, 10) || 0;
-
-                testCheckboxes.forEach(cb => {
-                    if (!cb.checked) {
-                        // assume data-price holds the amount to subtract for each exclusion
-                        total -= parseInt(cb.dataset.exclusion_amount, 10) || 0;
-                    }
-                });
-            }
-
-            return total;
-        }
-
-
-        function updateTransactionTotal() {
-            transactionTotalField.value = calculateTestTotal();
-        }
-
-        function updateDiscountRate() {
-            const type      = discountTypeField.value;
-            // use the current transactionTotalField (which, on package purposes, is the promo price)
-            const baseTotal = parseInt(transactionTotalField.value) || 0;
-
-            if (type === "Philhealth") {
-                discountRateField.value = 500;
-            } 
-            else if (type === "Senior Citizen" || type === "PWD") {
-                // 20% of the package price, not the sum of checkboxes
-                discountRateField.value = Math.round(baseTotal * 0.2);
-            } 
-            else if (type === "No Discount") {
-                discountRateField.value = 0;
-            } 
-            else {
-                discountRateField.value = "";
-            }
-        }
-
-        function updateDiscountedTotal() {
-            // again, base off the transactionTotalField (package or test sum)
-            const baseTotal = parseInt(transactionTotalField.value) || 0;
-            let rate        = parseInt(discountRateField.value)   || 0;
-
-            // re‑apply the 20% rule if senior/PWD (keeps rate in sync if they manually edited it)
-            if (discountTypeField.value === "Senior Citizen" || discountTypeField.value === "PWD") {
-                rate = Math.round(baseTotal * 0.2);
-                discountRateField.value = rate;
-            }
-
-            const finalTotal = baseTotal - rate;
-            discountedTotalField.value = finalTotal >= 0 ? finalTotal : 0;
-        }
-
-        function reloadPurposes() {
-            const companyId = companySelect.value;
-            transactionPurposeField.innerHTML = '<option value="">Select Purpose</option>';
-            if (!companyId) return;
-
-            const url = '/setpackages/ajax/get-available-transaction-purposes/' + companyId + '/';
-            fetch(url)
-                .then(res => { if (!res.ok) throw new Error(res.statusText); return res.json(); })
-                .then(data => {
-                    data.purposes.forEach(p => {
-                        const opt = document.createElement("option");
-                        opt.value = p;
-                        opt.textContent = p;
-                        if (p === "{{ form.initial.transaction_purpose|escapejs }}") opt.selected = true;
-                        transactionPurposeField.appendChild(opt);
+                // decide base price (either the passed promo or the hidden field)
+                const basePrice = promoPrice != null
+                    ? promoPrice
+                    : (parseInt(companyPemeRateField.value, 10) || 0);
+                console.log("basePrice:", basePrice);
+        
+                let total = 0;
+                const purpose = transactionPurposeField.value;
+        
+                if (purpose === "CUSTOM TEST") {
+                    // sum only the checked tests' own prices
+                    testCheckboxes.forEach(cb => {
+                        if (cb.checked) {
+                            total += parseInt(cb.dataset.price, 10) || 0;
+                        }
                     });
-                    transactionPurposeField.dispatchEvent(new Event("change"));
-                })
-                .catch(err => console.error("Error loading purposes:", err));
-        }
-
-        companySelect.addEventListener("change", function() {
-            reloadPurposes();
-            const cid = companySelect.value;
-            if (cid) {
-                fetch('/transactions/ajax/get-company-peme-rate/' + cid + '/')
+                } else {
+                    // start at the promo/base, subtract each unchecked exclusion
+                    total = basePrice;
+                    testCheckboxes.forEach(cb => {
+                        if (!cb.checked) {
+                            total -= exclusionMap[cb.value] || 0;
+                        }
+                    });
+                }
+        
+                console.log("calculated total:", total);
+                return total;
+            }
+        
+            // --- 4) Update helpers ---
+            function updateTransactionTotal(promoPrice) {
+                console.log("updateTransactionTotal with promoPrice:", promoPrice);
+                transactionTotalField.value = calculateTestTotal(promoPrice);
+            }
+        
+            function updateDiscountRate() {
+                const type      = discountTypeField.value;
+                const baseTotal = parseInt(transactionTotalField.value, 10) || 0;
+        
+                if (type === "Philhealth") {
+                    discountRateField.value = 500;
+                } else if (type === "Senior Citizen" || type === "PWD") {
+                    discountRateField.value = Math.round(baseTotal * 0.2);
+                } else if (type === "No Discount") {
+                    discountRateField.value = 0;
+                } else {
+                    discountRateField.value = "";
+                }
+            }
+        
+            function updateDiscountedTotal() {
+                const baseTotal = parseInt(transactionTotalField.value, 10) || 0;
+                let rate        = parseInt(discountRateField.value, 10) || 0;
+        
+                if (discountTypeField.value === "Senior Citizen" || discountTypeField.value === "PWD") {
+                    rate = Math.round(baseTotal * 0.2);
+                    discountRateField.value = rate;
+                }
+        
+                const finalTotal = baseTotal - rate;
+                discountedTotalField.value = finalTotal >= 0 ? finalTotal : 0;
+            }
+        
+            // --- 5) Fetch and reload purposes ---
+            function reloadPurposes() {
+                const companyId = companySelect.value;
+                transactionPurposeField.innerHTML = '<option value="">Select Purpose</option>';
+                if (!companyId) return;
+        
+                fetch(`/setpackages/ajax/get-available-transaction-purposes/${companyId}/`)
+                    .then(res => {
+                        if (!res.ok) throw new Error(res.statusText);
+                        return res.json();
+                    })
+                    .then(data => {
+                        data.purposes.forEach(p => {
+                            const opt = document.createElement("option");
+                            opt.value = p;
+                            opt.textContent = p;
+                            if (p === "{{ form.initial.transaction_purpose|escapejs }}") {
+                                opt.selected = true;
+                            }
+                            transactionPurposeField.appendChild(opt);
+                        });
+                        // trigger a change so the rest of the logic runs
+                        transactionPurposeField.dispatchEvent(new Event("change"));
+                    })
+                    .catch(err => console.error("Error loading purposes:", err));
+            }
+        
+            // --- 6) Handlers ---
+        
+            // When company changes, reload purposes and get the P E M E rate
+            companySelect.addEventListener("change", function() {
+                reloadPurposes();
+                const cid = companySelect.value;
+                if (!cid) return;
+        
+                fetch(`/transactions/ajax/get-company-peme-rate/${cid}/`)
                     .then(res => res.json())
                     .then(data => {
                         companyPemeRateField.value = data.peme_rate || 0;
-                        updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+                        // recalc using no promo override (will read hidden field)
+                        updateTransactionTotal(null);
+                        updateDiscountRate();
+                        updateDiscountedTotal();
                     })
                     .catch(() => {
                         companyPemeRateField.value = 0;
-                        updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
+                        updateTransactionTotal(null);
+                        updateDiscountRate();
+                        updateDiscountedTotal();
                     });
-            }
-        });
-
-        transactionPurposeField.addEventListener("change", function() {
-            updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
-            const purpose = transactionPurposeField.value;
-            const companyId = companySelect.value;
-            if (purpose && companyId) {
-                const urlTests = '/setpackages/ajax/get-tests-by-purpose/' + companyId + '/' + encodeURIComponent(purpose) + '/';
-                fetch(urlTests)
+            });
+        
+            // When purpose changes, fetch tests + exclusion, then (if package) fetch promo price
+            transactionPurposeField.addEventListener("change", function() {
+                const purpose   = transactionPurposeField.value;
+                const companyId = companySelect.value;
+        
+                // always reset transactional fields first
+                updateTransactionTotal(null);
+                updateDiscountRate();
+                updateDiscountedTotal();
+        
+                if (!(purpose && companyId)) return;
+        
+                // 1) get tests + exclusion_amount
+                fetch(`/setpackages/ajax/get-tests-by-purpose/${companyId}/${encodeURIComponent(purpose)}/`)
                     .then(res => res.json())
                     .then(data => {
-                        // pick out the IDs
-                        const ids = Array.isArray(data.test_ids)
-                            ? data.test_ids.map(item => String(item.test_id))
-                            : [];
-
+                        exclusionMap = {};
+                        data.test_ids.forEach(item => {
+                            exclusionMap[String(item.test_id)] = parseFloat(item.exclusion_amount) || 0;
+                        });
+        
+                        // check the defaults
+                        const ids = Object.keys(exclusionMap);
                         testCheckboxes.forEach(cb => {
                             cb.checked = ids.includes(cb.value);
                         });
-                        updateTransactionTotal();
-                        updateDiscountRate();
-                        updateDiscountedTotal();
-                        })
-                    .catch(err => console.error('Error loading tests:', err));
+        
+                        // 2) if it’s a package, fetch its promo price
+                        if (purpose !== "CUSTOM TEST") {
+                            fetch(`/setpackages/ajax/get-package-price/?purpose=${encodeURIComponent(purpose)}&company_id=${companyId}`)
+                                .then(res => res.json())
+                                .then(pkg => {
+                                    // store the promo once
+                                    currentPromoPrice = pkg.promo_price != null
+                                        ? Math.round(pkg.promo_price)
+                                        : 0;
+                                    // use it to initialize the field & recalc
+                                    updateTransactionTotal(currentPromoPrice);
+                                    updateDiscountRate();
+                                    updateDiscountedTotal();
+                                })
+                                .catch(err => {
+                                    console.error("Error loading promo price:", err);
+                                    currentPromoPrice = null;
+                                });
+                        } else {
+                            // custom test → no promo
+                            currentPromoPrice = null;
+                            updateTransactionTotal(null);
+                            updateDiscountRate();
+                            updateDiscountedTotal();
+                        }
+                    })
+                    .catch(err => console.error("Error loading tests:", err));
+            });
+        
+            // When discount type changes
+            discountTypeField.addEventListener("change", function() {
+                updateDiscountRate();
+                updateDiscountedTotal();
+            });
+        
+            // When user manually edits discount rate
+            discountRateField.addEventListener("input", updateDiscountedTotal);
+        
+            // 7) **KEY**: Listen for user check/uncheck of tests
+            testCheckboxes.forEach(cb =>
+            cb.addEventListener("change", function() {
+                // only on uncheck
+                if (!cb.checked) {
+                const testId = cb.value;
+                // find the <label> text and strip off the price in parentheses
+                const labelEl = document.querySelector(`label[for="${cb.id}"]`);
+                const rawText = labelEl ? labelEl.textContent : testId;
+                const testName = rawText.split(" (")[0]; 
 
-                if (purpose !== "CUSTOM TEST") {
-                    const urlPrice = '/setpackages/ajax/get-package-price/?purpose=' + encodeURIComponent(purpose) + '&company_id=' + companyId;
-                    fetch(urlPrice)
-                        .then(res => res.json())
-                        .then(data => {
-                            transactionTotalField.value = data.promo_price !== null ? Math.round(data.promo_price) : 0;
-                            updateDiscountRate(); updateDiscountedTotal();
-                        });
+                const exclusionAmt = exclusionMap[testId] || 0;
+                const purpose = transactionPurposeField.value;
+
+                console.log(
+                    `${testId} ${testName} WITH EXCLUSION AMOUNT OF ${exclusionAmt} REMOVED FROM ${purpose}`
+                );
                 }
-            }
-        });
 
-        discountTypeField.addEventListener("change", function() {
-            updateDiscountRate(); updateDiscountedTotal();
-        });
-        discountRateField.addEventListener("input", updateDiscountedTotal);
-        testCheckboxes.forEach(cb => cb.addEventListener("change", function() {
-            updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
-        }));
+                // then do your normal recalc
+                console.log("Checkbox changed — using promoPrice:", currentPromoPrice);
+                updateTransactionTotal(currentPromoPrice);
+                updateDiscountRate();
+                updateDiscountedTotal();
+            })
+            );
 
-        document.querySelector('form').addEventListener('submit', function() {
-            if (!document.getElementById('id_payment_type').value) document.getElementById('id_payment_type').value = 'Cash';
-            if (!document.getElementById('id_transaction_status').value) document.getElementById('id_transaction_status').value = 'Ongoing';
-            if (isNaN(parseInt(discountRateField.value))) discountRateField.value = 0;
-            if (isNaN(parseInt(transactionTotalField.value))) transactionTotalField.value = 0;
-            if (isNaN(parseInt(discountedTotalField.value))) discountedTotalField.value = 0;
+        
+            // 8) Form submit defaults
+            document.querySelector("form").addEventListener("submit", function() {
+                if (!document.getElementById("id_payment_type").value)
+                    document.getElementById("id_payment_type").value = "Cash";
+                if (!document.getElementById("id_transaction_status").value)
+                    document.getElementById("id_transaction_status").value = "Ongoing";
+                if (isNaN(parseInt(discountRateField.value, 10))) discountRateField.value = 0;
+                if (isNaN(parseInt(transactionTotalField.value, 10))) transactionTotalField.value = 0;
+                if (isNaN(parseInt(discountedTotalField.value, 10))) discountedTotalField.value = 0;
+            });
+        
+            // --- 9) Initial load ---
+            reloadPurposes();
+            updateTransactionTotal(null);
+            updateDiscountRate();
+            updateDiscountedTotal();
         });
-
-        // initial load
-        reloadPurposes();
-        updateTransactionTotal(); updateDiscountRate(); updateDiscountedTotal();
-    });
     </script>
+        
 </body>
 </html>
