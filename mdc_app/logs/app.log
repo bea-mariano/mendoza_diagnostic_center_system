@@ -2121,3 +2121,16 @@ django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 6: 'block'.
 [2025-04-28 09:09:13,647] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 309802
 [2025-04-28 09:09:16,358] INFO django.server "GET /patient/list/ HTTP/1.1" 200 130997
 [2025-04-28 09:09:19,600] INFO django.server "GET /patient/list/?q=ELVIRA HTTP/1.1" 200 7716
+[2025-04-28 09:14:54,506] INFO django.server "GET /patient/list/?q=ELVIRA HTTP/1.1" 200 7716
+[2025-04-28 09:14:55,889] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 309802
+[2025-04-28 09:14:56,427] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 76788
+[2025-04-28 09:16:45,000] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 77432
+[2025-04-28 09:17:03,073] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 77380
+[2025-04-28 09:17:55,000] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 77742
+[2025-04-28 09:20:01,706] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 79224
+[2025-04-28 09:33:08,869] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 79748
+[2025-04-28 09:33:17,371] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 09:33:17,372] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 09:33:23,264] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 79748
+[2025-04-28 09:33:33,970] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 09:33:33,971] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
