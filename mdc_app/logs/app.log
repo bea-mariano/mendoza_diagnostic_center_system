@@ -2239,3 +2239,10 @@ django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 122: '
 [2025-04-28 10:13:33,464] ERROR django.server "GET /transactions/transaction/207/ HTTP/1.1" 500 177732
 [2025-04-28 10:14:27,714] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
 [2025-04-28 10:14:28,245] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 10:14:50,359] INFO django.server "GET /transactions/transaction/207/ HTTP/1.1" 200 5342
+[2025-04-28 10:15:37,254] INFO django.server "GET /transactions/transaction/207/ HTTP/1.1" 200 7119
+[2025-04-28 10:16:56,708] INFO django.server "GET / HTTP/1.1" 200 9925
+[2025-04-28 10:17:41,278] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 311619
+[2025-04-28 10:17:44,028] INFO django.server "GET /transactions/transaction/list/?q=84 HTTP/1.1" 200 13595
+[2025-04-28 10:17:53,983] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 311619
+[2025-04-28 10:18:04,840] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 78958
