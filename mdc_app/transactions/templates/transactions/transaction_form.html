@@ -238,6 +238,11 @@
             const transactionTotalField   = document.getElementById("id_transaction_total");
             const companyPemeRateField    = document.getElementById("id_company_peme_rate");
             const discountedTotalField    = document.getElementById("id_discounted_total");
+
+            const ph     = document.getElementById('discount_philhealth');
+            const phFree = document.getElementById('discount_philhealth_free');
+            const scBox  = document.getElementById('discount_senior_citizen');
+            const pwdBox = document.getElementById('discount_pwd');
         
             // --- 3) Core calculator ---
             function calculateTestTotal(promoPrice) {
@@ -279,32 +284,33 @@
             }
         
             function updateDiscountRate() {
-                const type      = discountTypeField.value;
-                const baseTotal = parseInt(transactionTotalField.value, 10) || 0;
-        
-                if (type === "Philhealth") {
-                    discountRateField.value = 500;
-                } else if (type === "Senior Citizen" || type === "PWD") {
-                    discountRateField.value = Math.round(baseTotal * 0.2);
-                } else if (type === "No Discount") {
-                    discountRateField.value = 0;
+                const base = parseInt(transactionTotalField.value, 10) || 0;
+                let rate = 0;
+            
+                if (phFree.checked) {
+                  // Philhealth Free = entire bill
+                  rate = base;
                 } else {
-                    discountRateField.value = "";
+                  if (ph.checked) rate += 500;
+                  if (scBox.checked || pwdBox.checked) rate += Math.round(base * 0.2);
                 }
-            }
+            
+                discountRateField.value = rate;
+              }
+
         
             function updateDiscountedTotal() {
-                const baseTotal = parseInt(transactionTotalField.value, 10) || 0;
-                let rate        = parseInt(discountRateField.value, 10) || 0;
-        
-                if (discountTypeField.value === "Senior Citizen" || discountTypeField.value === "PWD") {
-                    rate = Math.round(baseTotal * 0.2);
-                    discountRateField.value = rate;
-                }
-        
-                const finalTotal = baseTotal - rate;
-                discountedTotalField.value = finalTotal >= 0 ? finalTotal : 0;
+                const base = parseInt(transactionTotalField.value, 10) || 0;
+                const rate = parseInt(discountRateField.value, 10) || 0;
+                discountedTotalField.value = Math.max(0, base - rate);
             }
+
+            [transactionTotalField, ph, phFree, scBox, pwdBox].forEach(el =>
+                el.addEventListener('change', () => {
+                updateDiscountRate();
+                updateDiscountedTotal();
+                })
+            );
         
             // --- 5) Fetch and reload purposes ---
             function reloadPurposes() {
@@ -414,14 +420,11 @@
                     .catch(err => console.error("Error loading tests:", err));
             });
         
-            // When discount type changes
-            discountTypeField.addEventListener("change", function() {
-                updateDiscountRate();
-                updateDiscountedTotal();
-            });
         
             // When user manually edits discount rate
-            discountRateField.addEventListener("input", updateDiscountedTotal);
+            discountRateField.addEventListener("input", () => {
+                updateDiscountedTotal();
+              });
         
             // 7) **KEY**: Listen for user check/uncheck of tests
             testCheckboxes.forEach(cb =>
@@ -468,31 +471,29 @@
                 // on a NEW transaction we need to load package → tests → promoPrice → recalc
                 reloadPurposes();
             }
+
+            // --- MUTUALLY EXCLUSIVE: Philhealth vs Philhealth Free ---
+
+            function toggleExclusive(box, other) {
+            if (box.checked) {
+                other.checked  = false;
+                other.disabled = true;
+            } else {
+                other.disabled = false;
+            }
+            }
+
+            ph.addEventListener('change', () => toggleExclusive(ph, phFree));
+            phFree.addEventListener('change', () => toggleExclusive(phFree, ph));
+
+            // --- MUTUALLY EXCLUSIVE: Senior Citizen vs PWD ---
+
+            scBox.addEventListener('change', () => toggleExclusive(scBox, pwdBox));
+            pwdBox.addEventListener('change', () => toggleExclusive(pwdBox, scBox));
+
         });
 
-        // --- MUTUALLY EXCLUSIVE: Philhealth vs Philhealth Free ---
-        const ph      = document.getElementById('discount_philhealth');
-        const phFree  = document.getElementById('discount_philhealth_free');
-
-        function toggleExclusive(box, other) {
-        if (box.checked) {
-            other.checked  = false;
-            other.disabled = true;
-        } else {
-            other.disabled = false;
-        }
-        }
-
-        ph.addEventListener('change', () => toggleExclusive(ph, phFree));
-        phFree.addEventListener('change', () => toggleExclusive(phFree, ph));
-
-        // --- MUTUALLY EXCLUSIVE: Senior Citizen vs PWD ---
-        const scBox = document.getElementById('discount_senior_citizen');
-        const pwdBox = document.getElementById('discount_pwd');
-
-        scBox.addEventListener('change', () => toggleExclusive(scBox, pwdBox));
-        pwdBox.addEventListener('change', () => toggleExclusive(pwdBox, scBox));
-
+        
     </script>
         
 </body>
