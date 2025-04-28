@@ -57,15 +57,29 @@ class TransactionActiveListView(ListView):
 
 @method_decorator(login_required, name='dispatch')
 class TransactionDetailView(DetailView):
-    model = Transaction
-    template_name = 'transactions/transaction_detail.html'
+    model               = Transaction
+    template_name       = 'transactions/transaction_detail.html'
     context_object_name = 'transaction'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['patient'] = self.object.patient
-        context['tests'] = self.object.transaction_tests.all()  # 👈 Add test details
+
+        # Build a simple list of applied discount names
+        discounts = []
+        txn = self.object
+        if txn.is_philhealth:
+            discounts.append('Philhealth')
+        if txn.is_philhealth_free:
+            discounts.append('Philhealth Free')
+        if txn.is_senior_citizen:
+            discounts.append('Senior Citizen')
+        if txn.is_pwd:
+            discounts.append('PWD')
+
+        context['discounts'] = discounts  # e.g. ['Philhealth', 'PWD'] or []
+
         return context
+
 
 class TransactionCreateView(CreateView):
     model         = Transaction
@@ -95,6 +109,25 @@ class TransactionCreateView(CreateView):
         self.object.transaction_status = 'Ongoing'
         if not self.object.payment_type:
             self.object.payment_type = 'Cash'
+
+        # discount logic
+        selected = self.request.POST.getlist('discounts')
+        self.object.is_philhealth      = 'Philhealth'     in selected
+        self.object.is_philhealth_free = 'Philhealth Free' in selected
+        self.object.is_senior_citizen  = 'Senior Citizen'  in selected
+        self.object.is_pwd             = 'PWD'             in selected
+
+        base = self.object.transaction_total
+        rate = 0
+        if self.object.is_philhealth_free:
+            rate = base
+        else:
+            if self.object.is_philhealth:
+                rate += 500
+            if self.object.is_senior_citizen or self.object.is_pwd:
+                rate += round(base * 0.2)
+        self.object.discount_rate    = rate
+        self.object.discounted_total = max(base - rate, 0)
 
         self.object.save()
         form.save_m2m()
@@ -137,6 +170,25 @@ class TransactionUpdateView(UpdateView):
         transaction.transaction_status = form.cleaned_data.get('transaction_status', 'Ongoing')
         if not transaction.payment_type:
             transaction.payment_type = 'Cash'
+
+        # mirror the same discount logic:
+        selected = self.request.POST.getlist('discounts')
+        transaction.is_philhealth      = 'Philhealth'     in selected
+        transaction.is_philhealth_free = 'Philhealth Free' in selected
+        transaction.is_senior_citizen  = 'Senior Citizen'  in selected
+        transaction.is_pwd             = 'PWD'             in selected
+
+        base = transaction.transaction_total
+        rate = 0
+        if transaction.is_philhealth_free:
+            rate = base
+        else:
+            if transaction.is_philhealth:
+                rate += 500
+            if transaction.is_senior_citizen or transaction.is_pwd:
+                rate += round(base * 0.2)
+        transaction.discount_rate    = rate
+        transaction.discounted_total = max(base - rate, 0)
 
         transaction.save()
         form.save_m2m()

@@ -73,6 +73,10 @@ class Transaction(models.Model):
     discount_rate = models.PositiveIntegerField(default=0)
     discounted_total = models.PositiveIntegerField(default=0)
     transaction_total = models.PositiveIntegerField(default=0)
+    is_philhealth        = models.BooleanField(default=False)
+    is_philhealth_free   = models.BooleanField(default=False)
+    is_senior_citizen    = models.BooleanField(default=False)
+    is_pwd               = models.BooleanField(default=False)
 
     objects = TransactionManager()
 

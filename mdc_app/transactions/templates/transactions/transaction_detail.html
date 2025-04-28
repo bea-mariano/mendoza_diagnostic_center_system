@@ -153,9 +153,16 @@
                 <th>Transaction Status</th>
                 <td>{{ transaction.get_transaction_status_display }}</td>
             </tr>
+            <!-- New Discounts Applied row -->
             <tr>
-                <th>Discount Type</th>
-                <td>{{ transaction.discount_type }}</td>
+                <th>Discounts Applied</th>
+                <td>
+                    {% if discounts %}
+                      {{ discounts|join:", " }}
+                    {% else %}
+                      None
+                    {% endif %}
+                  </td>
             </tr>
             <tr>
                 <th>Discount Rate</th>
