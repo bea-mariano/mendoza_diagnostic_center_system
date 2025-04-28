@@ -17,6 +17,7 @@ class TransactionForm(forms.ModelForm):
 
     class Meta:
         model = Transaction
+        exclude = ['discount_type']  # remove the old dropdown
         fields = [
             'patient', 
             'address', 
