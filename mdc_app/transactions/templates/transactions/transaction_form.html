@@ -29,6 +29,38 @@
         .test-option { display: flex; align-items: center; }
         .test-option input[type="checkbox"] { margin-right: 8px; transform: scale(1.2); }
         .error { color: #d9534f; margin-top: 5px; }
+        .discount-groups {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+          }
+          
+          .discount-group {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 12px;
+            flex: 1;
+            min-width: 200px;
+          }
+          
+          .discount-group legend {
+            padding: 0 6px;
+            font-weight: bold;
+            color: #007BFF;
+            background: #fff;
+          }
+          
+          .discount-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+          }
+          
+          .discount-option input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+          }
+          
     </style>
 </head>
 <body>
@@ -84,11 +116,68 @@
             <!-- Discounts & Totals -->
             <fieldset>
                 <legend>Discounts & Totals</legend>
-                <div class="form-group"><label for="discount_type">Discount Type</label>{{ form.discount_type }}</div>
-                <div class="form-group"><label for="discount_rate">Discount Rate</label>{{ form.discount_rate }}</div>
-                <div class="form-group"><label for="transaction_total">Transaction Total</label>{{ form.transaction_total }}</div>
-                <div class="form-group"><label for="discounted_total">Discounted Total</label>{{ form.discounted_total }}</div>
-            </fieldset>
+                
+                <!-- Grouped discount boxes -->
+                <div class="form-group">
+                    <label>Discounts</label>
+                    <div class="discount-groups">
+                    
+                    <!-- Philhealth options -->
+                    <fieldset class="discount-group">
+                        <legend>Philhealth</legend>
+                        <div class="discount-option">
+                        <input type="checkbox"
+                                id="discount_philhealth"
+                                name="discounts"
+                                value="Philhealth">
+                        <label for="discount_philhealth">Philhealth</label>
+                        </div>
+                        <div class="discount-option">
+                        <input type="checkbox"
+                                id="discount_philhealth_free"
+                                name="discounts"
+                                value="Philhealth Free">
+                        <label for="discount_philhealth_free">Philhealth Free</label>
+                        </div>
+                    </fieldset>
+                
+                    <!-- Senior Citizen / PWD options -->
+                    <fieldset class="discount-group">
+                        <legend>Other Discounts</legend>
+                        <div class="discount-option">
+                        <input type="checkbox"
+                                id="discount_senior_citizen"
+                                name="discounts"
+                                value="Senior Citizen">
+                        <label for="discount_senior_citizen">Senior Citizen</label>
+                        </div>
+                        <div class="discount-option">
+                        <input type="checkbox"
+                                id="discount_pwd"
+                                name="discounts"
+                                value="PWD">
+                        <label for="discount_pwd">PWD</label>
+                        </div>
+                    </fieldset>
+                
+                    </div>
+                </div>
+                
+                <!-- keep these as-is for later logic -->
+                <div class="form-group">
+                    <label for="discount_rate">Discount Rate</label>
+                    {{ form.discount_rate }}
+                </div>
+                <div class="form-group">
+                    <label for="transaction_total">Transaction Total</label>
+                    {{ form.transaction_total }}
+                </div>
+                <div class="form-group">
+                    <label for="discounted_total">Discounted Total</label>
+                    {{ form.discounted_total }}
+                </div>
+                </fieldset>
+              
 
             {% if form.errors %}<div class="error">{{ form.errors }}</div>{% endif %}
             <button type="submit">Save Transaction</button>
@@ -380,6 +469,30 @@
                 reloadPurposes();
             }
         });
+
+        // --- MUTUALLY EXCLUSIVE: Philhealth vs Philhealth Free ---
+        const ph      = document.getElementById('discount_philhealth');
+        const phFree  = document.getElementById('discount_philhealth_free');
+
+        function toggleExclusive(box, other) {
+        if (box.checked) {
+            other.checked  = false;
+            other.disabled = true;
+        } else {
+            other.disabled = false;
+        }
+        }
+
+        ph.addEventListener('change', () => toggleExclusive(ph, phFree));
+        phFree.addEventListener('change', () => toggleExclusive(phFree, ph));
+
+        // --- MUTUALLY EXCLUSIVE: Senior Citizen vs PWD ---
+        const scBox = document.getElementById('discount_senior_citizen');
+        const pwdBox = document.getElementById('discount_pwd');
+
+        scBox.addEventListener('change', () => toggleExclusive(scBox, pwdBox));
+        pwdBox.addEventListener('change', () => toggleExclusive(pwdBox, scBox));
+
     </script>
         
 </body>
