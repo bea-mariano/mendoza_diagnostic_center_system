@@ -11,6 +11,16 @@ from django.db.models import Q
 from setpackages.models import Setpackage
 from patients.models import Patient
 
+from io import BytesIO
+from django.http       import HttpResponse
+from django.shortcuts  import get_object_or_404
+from reportlab.lib     import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen  import canvas
+from reportlab.platypus import Table, TableStyle
+
+from .models import Transaction
+
 
 
 @method_decorator(login_required, name='dispatch')
@@ -232,3 +242,182 @@ def get_company_peme_rate(request, company_id):
         return JsonResponse({'peme_rate': company.company_peme_rate})
     except Company.DoesNotExist:
         return JsonResponse({'peme_rate': 0})
+    
+from io import BytesIO
+from django.http       import HttpResponse
+from django.shortcuts  import get_object_or_404
+from reportlab.lib     import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen  import canvas
+from reportlab.platypus import Table, TableStyle
+
+from .models import Transaction
+
+from io import BytesIO
+from django.http       import HttpResponse
+from django.shortcuts  import get_object_or_404
+from reportlab.lib     import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen  import canvas
+from reportlab.platypus import Table, TableStyle
+
+from .models import Transaction
+
+def transaction_lab_pdf(request, pk):
+    txn = get_object_or_404(Transaction, pk=pk)
+
+    buf   = BytesIO()
+    p     = canvas.Canvas(buf, pagesize=letter)
+    width, height   = letter
+    margin  = 40
+    avail   = width - 2*margin
+    gap     = 6
+
+    # Header
+    y = height - margin
+    p.setFont("Helvetica-Bold", 12)
+    p.drawString(margin, y, "Mendoza Diagnostic Center")
+    p.setFont("Helvetica", 10)
+    p.drawString(margin, y - 15, "Laboratory Working Paper")
+    p.line(margin, y - 20, width - margin, y - 20)
+
+    # Prep data
+    dob     = txn.patient.date_of_birth
+    tx_date = txn.transaction_date
+    age     = (
+        tx_date.year - dob.year
+        - ((tx_date.month, tx_date.day) < (dob.month, dob.day))
+    )
+    name    = f"{txn.patient.last_name}, {txn.patient.first_name}"
+    gender  = txn.patient.get_gender_display()
+    contact = txn.contact_no
+    addr    = txn.address
+
+    # Style for each small table
+    style = TableStyle([
+        ("FONT",       (0,0), (-1,-1), "Helvetica", 9),
+        ("GRID",       (0,0), (-1,-1), 0.25, colors.black),
+        ("BACKGROUND", (0,0), (0,0),   colors.lightgrey),
+    ])
+
+    basic_style = TableStyle([
+        ("FONT", (0, 0), (-1, -1), "Helvetica", 9),
+        # no GRID, no BACKGROUND
+    ])
+
+    # Start drawing groups below header
+    y -= 30
+
+    # --- Group 1: Transaction ID (60%) | Date (20%) ---
+    tx_w   = avail * 0.6
+    date_w = avail * 0.4
+    # Transaction ID table
+    tbl_tx = Table([[ "Transaction ID", f":    {str(txn.id)}" ]],
+                   colWidths=[tx_w * 0.25, tx_w * 0.75])
+    tbl_tx.setStyle(basic_style)
+    tbl_tx.wrapOn(p, margin, y)
+    tbl_tx.drawOn(p, margin, y - tbl_tx._height)
+    # Date table
+    tbl_dt = Table([[ "Date", f""":    {tx_date.strftime("%Y-%m-%d")}""" ]],
+                   colWidths=[date_w * 0.3, date_w * 0.7])
+    tbl_dt.setStyle(basic_style)
+    x_dt = margin + tx_w + gap
+    tbl_dt.wrapOn(p, x_dt, y)
+    tbl_dt.drawOn(p, x_dt, y - tbl_dt._height)
+    y -= tbl_tx._height + 5
+
+    # --- Group 2: Patient ID (60%) | Gender (20%) ---
+    tbl_pid = Table([[ "Patient ID", f":    {str(txn.patient.id)}" ]],
+                    colWidths=[tx_w * 0.25, tx_w * 0.75])
+    tbl_pid.setStyle(basic_style)
+    tbl_pid.wrapOn(p, margin, y)
+    tbl_pid.drawOn(p, margin, y - tbl_pid._height)
+
+    tbl_gn = Table([[ "Gender", f":    {gender}" ]],
+                   colWidths=[date_w * 0.3, date_w * 0.7])
+    tbl_gn.setStyle(basic_style)
+    tbl_gn.wrapOn(p, margin+tx_w+gap, y)
+    tbl_gn.drawOn(p, margin+tx_w+gap, y - tbl_gn._height)
+    y -= tbl_pid._height + 5
+
+    # --- Group 3: Name (60%) | Age (20%) ---
+    tbl_nm = Table([[ "Name", f":    {name}" ]],
+                   colWidths=[tx_w * 0.25, tx_w * 0.75])
+    tbl_nm.setStyle(basic_style)
+    tbl_nm.wrapOn(p, margin, y)
+    tbl_nm.drawOn(p, margin, y - tbl_nm._height)
+
+    tbl_ag = Table([[ "Age", f":    {str(age)}" ]],
+                   colWidths=[date_w * 0.3, date_w * 0.7])
+    tbl_ag.setStyle(basic_style)
+    tbl_ag.wrapOn(p, margin+tx_w+gap, y)
+    tbl_ag.drawOn(p, margin+tx_w+gap, y - tbl_ag._height)
+    y -= tbl_nm._height + 5
+
+    # --- Group 4: Birthdate (60%) | Contact No. (20%) ---
+    tbl_bd = Table([[ "Birthdate", f""":    {dob.strftime("%Y-%m-%d")}""" ]],
+                   colWidths=[tx_w * 0.25, tx_w * 0.75])
+    tbl_bd.setStyle(basic_style)
+    tbl_bd.wrapOn(p, margin, y)
+    tbl_bd.drawOn(p, margin, y - tbl_bd._height)
+
+    tbl_cn = Table([[ "Contact No.", f":    {contact}" ]],
+                   colWidths=[date_w * 0.3, date_w * 0.7])
+    tbl_cn.setStyle(basic_style)
+    tbl_cn.wrapOn(p, margin+tx_w+gap, y)
+    tbl_cn.drawOn(p, margin+tx_w+gap, y - tbl_cn._height)
+    y -= tbl_bd._height + 5
+
+    # --- Group 5: Address full width (100%) ---
+    tbl_ad = Table([[ "Address", f":    {addr}" ]],
+                   colWidths=[avail * 0.15, avail * 0.85])
+    tbl_ad.setStyle(basic_style)
+    tbl_ad.wrapOn(p, margin, y)
+    tbl_ad.drawOn(p, margin, y - tbl_ad._height)
+    y -= tbl_ad._height + 20
+
+    # --- Group 6: Package Name (60%) | Company (20%) (no borders, no background) ---
+    
+
+    tbl_bd = Table(
+        [[ "PACKAGE NAME:", txn.transaction_purpose ]],
+        colWidths=[tx_w * 0.30, tx_w * 0.70]
+    )
+    tbl_bd.setStyle(basic_style)
+    tbl_bd.wrapOn(p, margin, y)
+    tbl_bd.drawOn(p, margin, y - tbl_bd._height)
+
+    tbl_cn = Table(
+        [[ "COMPANY:", txn.company.company_name ]],
+        colWidths=[date_w * 0.3, date_w * 0.7]
+    )
+    tbl_cn.setStyle(basic_style)
+    tbl_cn.wrapOn(p, margin + tx_w + gap, y)
+    tbl_cn.drawOn(p, margin + tx_w + gap, y - tbl_cn._height)
+    y -= tbl_cn._height + 5
+
+
+    # --- Tests (names only, no borders, no header) ---
+    tests_data = [
+        [tt.test.test_name]
+        for tt in txn.transaction_tests.all()
+    ]
+
+    tbl_tests = Table(tests_data, colWidths=[avail])
+    tbl_tests.setStyle(TableStyle([
+        ("FONT",       (0, 0), (-1, -1), "Helvetica", 7),
+        # no GRID, no BACKGROUND
+    ]))
+    tbl_tests.wrapOn(p, margin, y)
+    tbl_tests.drawOn(p, margin, y - tbl_tests._height)
+
+
+    # Finish PDF
+    p.showPage()
+    p.save()
+
+    pdf = buf.getvalue()
+    buf.close()
+    resp = HttpResponse(pdf, content_type="application/pdf")
+    resp["Content-Disposition"] = f'inline; filename="lab_worksheet_{txn.id}.pdf"'
+    return resp

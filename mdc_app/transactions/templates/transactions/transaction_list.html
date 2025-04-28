@@ -6,7 +6,7 @@
 {% block extra_head %}
 <style>
     .container {
-        max-width: 1200px;
+        max-width: 80%;
         margin: 15px auto 30px auto;
         padding: 30px 40px;
     }
@@ -133,6 +133,8 @@
     }
 
     .col-transaction-id { width: 4%; }
+
+    .btn-lab { background-color: #6F42C1; }
 </style>
 {% endblock %}
 
@@ -186,6 +188,7 @@
               <div class="action-group">
                 <a href="{% url 'transaction_edit' transaction.id %}" class="btn-edit btn-action" title="Edit"><i class="fas fa-pen"></i></a>
                 <a href="javascript:void(0)" onclick="printAcknowledgementReceipt({{ transaction.id }})" class="btn-print btn-action" title="Print"><i class="fas fa-print"></i></a>
+                <a href="{% url 'transaction_lab_pdf' transaction.id %}" target="_blank" class="btn-lab btn-action" title="Lab Worksheet"> <i class="fas fa-vial"></i></a>
                 <a href="{% url 'transaction_delete' transaction.id %}" class="btn-delete btn-action" title="Delete"><i class="fas fa-trash"></i></a>
               </div>
             </td>
