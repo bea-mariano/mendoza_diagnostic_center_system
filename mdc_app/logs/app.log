@@ -2083,3 +2083,37 @@ django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 6: 'block'.
 [2025-04-28 07:14:33,390] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
 [2025-04-28 07:14:35,897] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 559
 [2025-04-28 07:14:35,905] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
+[2025-04-28 07:17:17,850] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-04-28 07:17:18,587] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 309830
+[2025-04-28 07:17:23,729] INFO django.server "GET /transactions/transaction/206/ HTTP/1.1" 200 6785
+[2025-04-28 07:19:01,848] INFO django.server "GET /transactions/transaction/206/ HTTP/1.1" 200 6804
+[2025-04-28 07:19:07,073] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 309830
+[2025-04-28 07:19:39,253] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 64749
+[2025-04-28 07:19:46,883] INFO django.server "GET /transactions/transaction/206/edit/ HTTP/1.1" 200 64887
+[2025-04-28 07:19:46,912] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 07:20:08,169] INFO django.server "POST /transactions/transaction/206/edit/ HTTP/1.1" 302 0
+[2025-04-28 07:20:09,147] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 309802
+[2025-04-28 07:20:11,374] INFO django.server "GET /transactions/transaction/206/ HTTP/1.1" 200 6791
+[2025-04-28 07:20:14,515] INFO django.server "GET /transactions/transaction/206/edit/ HTTP/1.1" 200 64889
+[2025-04-28 07:20:14,535] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 07:29:04,378] INFO django.server "GET /transactions/transaction/206/edit/ HTTP/1.1" 200 64898
+[2025-04-28 07:29:04,401] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 07:29:07,199] INFO django.server "GET /transactions/transaction/206/edit/ HTTP/1.1" 200 64898
+[2025-04-28 07:29:07,221] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 07:30:12,300] INFO django.server "GET / HTTP/1.1" 200 9759
+[2025-04-28 07:30:15,955] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.1" 200 13681
+[2025-04-28 07:30:23,793] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 309802
+[2025-04-28 07:30:25,538] INFO django.server "GET /transactions/transaction/206/edit/ HTTP/1.1" 200 64898
+[2025-04-28 07:30:25,559] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 07:31:48,626] INFO django.server "GET / HTTP/1.1" 200 9759
+[2025-04-28 07:31:51,204] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 309802
+[2025-04-28 07:31:52,989] INFO django.server "GET /transactions/transaction/206/edit/ HTTP/1.1" 200 65029
+[2025-04-28 07:31:58,841] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 64886
+[2025-04-28 07:32:09,410] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/2/ HTTP/1.1" 200 116
+[2025-04-28 07:32:09,410] INFO django.server "GET /transactions/ajax/get-company-peme-rate/2/ HTTP/1.1" 200 16
+[2025-04-28 07:32:10,799] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/2/EXECUTIVE%20PACKAGE%20A/ HTTP/1.1" 200 559
+[2025-04-28 07:32:10,809] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=EXECUTIVE%20PACKAGE%20A&company_id=2 HTTP/1.1" 200 23
+[2025-04-28 09:04:53,331] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-04-28 09:04:53,770] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-04-28 09:05:14,665] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-04-28 09:05:15,094] INFO django.utils.autoreload Watching for file changes with StatReloader

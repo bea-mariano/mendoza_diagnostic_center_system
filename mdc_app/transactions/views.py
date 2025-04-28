@@ -9,6 +9,7 @@ from companies.models import Company
 from django.http import JsonResponse
 from django.db.models import Q
 from setpackages.models import Setpackage
+from patients.models import Patient
 
 
 
@@ -72,45 +73,41 @@ class TransactionCreateView(CreateView):
     template_name = 'transactions/transaction_form.html'
     success_url   = reverse_lazy('transaction_list')
 
-    def form_valid(self, form):
-        # 1. Build but don’t save yet
-        self.object = form.save(commit=False)
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['patients'] = Patient.objects.all()
+        return ctx
 
-        # 2. Ensure transaction_purpose is taken from POST (or cleaned_data)
-        tp = self.request.POST.get('transaction_purpose') \
-             or form.cleaned_data.get('transaction_purpose')
+    def form_valid(self, form):
+        # … your existing form_valid logic unchanged …
+        self.object = form.save(commit=False)
+        tp = self.request.POST.get('transaction_purpose') or form.cleaned_data.get('transaction_purpose')
         self.object.transaction_purpose = tp.strip() if tp else None
 
-        # 3. Lookup the matching Setpackage
+        pkg = None
         if self.object.company_id and self.object.transaction_purpose:
             pkg = Setpackage.objects.filter(
                 company=self.object.company,
                 package_transaction_purpose__iexact=self.object.transaction_purpose
             ).first()
-        else:
-            pkg = None
         self.object.setpackage = pkg
 
-        # 4. Set your defaults
         self.object.transaction_status = 'Ongoing'
         if not self.object.payment_type:
             self.object.payment_type = 'Cash'
 
-        # 5. Save the instance and m2m
         self.object.save()
         form.save_m2m()
 
-        # 6. Create the TransactionTest rows
-        selected_tests = form.cleaned_data.get('tests', [])
-        for test in selected_tests:
+        for test in form.cleaned_data.get('tests', []):
             TransactionTest.objects.create(
                 transaction=self.object,
                 test=test,
                 test_price=test.test_price
             )
 
-        # 7. Finally redirect
         return redirect(self.success_url)
+
 
 class TransactionUpdateView(UpdateView):
     model         = Transaction
@@ -118,34 +115,33 @@ class TransactionUpdateView(UpdateView):
     template_name = 'transactions/transaction_form.html'
     success_url   = reverse_lazy('transaction_list')
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['patients'] = Patient.objects.all()
+        return ctx
+
     def form_valid(self, form):
-        # build but don’t save
         transaction = form.save(commit=False)
 
-        # re-bind purpose
-        tp = self.request.POST.get('transaction_purpose') \
-             or form.cleaned_data.get('transaction_purpose')
+        tp = self.request.POST.get('transaction_purpose') or form.cleaned_data.get('transaction_purpose')
         transaction.transaction_purpose = tp.strip() if tp else None
 
-        # re-lookup package
+        pkg = None
         if transaction.company_id and transaction.transaction_purpose:
             pkg = Setpackage.objects.filter(
                 company=transaction.company,
                 package_transaction_purpose__iexact=transaction.transaction_purpose
             ).first()
-        else:
-            pkg = None
         transaction.setpackage = pkg
 
-        # default values
         transaction.transaction_status = form.cleaned_data.get('transaction_status', 'Ongoing')
         if not transaction.payment_type:
             transaction.payment_type = 'Cash'
 
-        # save and refresh tests
         transaction.save()
         form.save_m2m()
-        self.object.transaction_tests.all().delete()
+        transaction.transaction_tests.all().delete()
+
         for test in form.cleaned_data.get('tests', []):
             TransactionTest.objects.create(
                 transaction=transaction,
