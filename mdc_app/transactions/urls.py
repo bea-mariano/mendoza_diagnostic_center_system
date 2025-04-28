@@ -9,4 +9,5 @@ urlpatterns = [
     path('transaction/<int:pk>/edit/', views.TransactionUpdateView.as_view(), name='transaction_edit'),
     path('transaction/<int:pk>/delete/', views.TransactionDeleteView.as_view(), name='transaction_delete'),
     path('ajax/get-company-peme-rate/<int:company_id>/', views.get_company_peme_rate, name='get_company_peme_rate'),
+    path('transaction/<int:pk>/lab/', views.transaction_lab_pdf, name='transaction_lab_pdf'),
 ]
