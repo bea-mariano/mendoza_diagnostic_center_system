@@ -97,6 +97,45 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // --- AGE AUTO-CALCULATION SETUP ---
+            // 1) Build a map of patient-ID → birthday (YYYY-MM-DD)
+            const patientBirthdays = {
+                {% for patient in patients %}
+                "{{ patient.pk }}": "{{ patient.date_of_birth|date:'Y-m-d' }}"{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            };
+
+            // 2) Grab the DOM nodes
+            const patientSelect = document.getElementById("id_patient");
+            const ageField      = document.getElementById("id_age");
+
+            // 3) Age calculation helper
+            function calculateAge(dob) {
+                const today = new Date();
+                let age = today.getFullYear() - dob.getFullYear();
+                const m = today.getMonth() - dob.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+
+            // 4) On patient change, look up DOB, compute & set age
+            patientSelect.addEventListener("change", function(){
+                const dobStr = patientBirthdays[this.value];
+                if (dobStr) {
+                    const [y, m, d] = dobStr.split('-').map(Number);
+                    ageField.value = calculateAge(new Date(y, m - 1, d));
+                } else {
+                    ageField.value = '';
+                }
+            });
+
+            // 5) If editing an existing transaction, fire the change once on load
+            if (patientSelect.value) {
+                patientSelect.dispatchEvent(new Event('change'));
+            }
+
             // --- 1) Globals to hold exclusion amounts and the current promo price ---
             let exclusionMap = {};
             let currentPromoPrice = null;
