@@ -132,11 +132,18 @@
                         <legend>Philhealth</legend>
                         <div class="discount-option">
                         <input type="checkbox"
-                                id="discount_philhealth"
+                                id="discount_philhealth_500"
                                 name="discounts"
                                 value="Philhealth">
-                        <label for="discount_philhealth">Philhealth</label>
+                        <label for="discount_philhealth_500">Philhealth 500</label>
                         </div>
+                        <div class="discount-option">
+                            <input type="checkbox"
+                                    id="discount_philhealth_700"
+                                    name="discounts"
+                                    value="Philhealth">
+                            <label for="discount_philhealth_700">Philhealth 700</label>
+                            </div>
                         <div class="discount-option">
                         <input type="checkbox"
                                 id="discount_philhealth_free"
@@ -244,7 +251,8 @@
             const companyPemeRateField    = document.getElementById("id_company_peme_rate");
             const discountedTotalField    = document.getElementById("id_discounted_total");
 
-            const ph     = document.getElementById('discount_philhealth');
+            const ph500     = document.getElementById('discount_philhealth_500');
+            const ph700     = document.getElementById('discount_philhealth_700');
             const phFree = document.getElementById('discount_philhealth_free');
             const scBox  = document.getElementById('discount_senior_citizen');
             const pwdBox = document.getElementById('discount_pwd');
@@ -295,10 +303,13 @@
                 if (phFree.checked) {
                   // Philhealth Free = entire bill
                   rate = base;
-                } else {
-                  if (ph.checked) rate += 500;
+                } else if (ph500.checked) {
+                  if (ph500.checked) rate += 500;
                   if (scBox.checked || pwdBox.checked) rate += Math.round(base * 0.2);
-                }
+                } else if (ph700.checked) {
+                    if (ph700.checked) rate += 700;
+                    if (scBox.checked || pwdBox.checked) rate += Math.round(base * 0.2);
+                  }
             
                 discountRateField.value = rate;
               }
@@ -310,7 +321,7 @@
                 discountedTotalField.value = Math.max(0, base - rate);
             }
 
-            [transactionTotalField, ph, phFree, scBox, pwdBox].forEach(el =>
+            [transactionTotalField, ph500, ph700, phFree, scBox, pwdBox].forEach(el =>
                 el.addEventListener('change', () => {
                 updateDiscountRate();
                 updateDiscountedTotal();
@@ -479,17 +490,28 @@
 
             // --- MUTUALLY EXCLUSIVE: Philhealth vs Philhealth Free ---
 
-            function toggleExclusive(box, other) {
+            function toggleExclusive(box, other, other2) {
             if (box.checked) {
                 other.checked  = false;
                 other.disabled = true;
-            } else {
-                other.disabled = false;
-            }
+                other2.checked  = false;
+                other2.disabled = true;
+            } else if (other.checked) {
+                box.checked  = false;
+                box.disabled = true;
+                other2.checked  = false;
+                other2.disabled = true;
+            } else if (other2.checked) {
+                box.checked  = false;
+                box.disabled = true;
+                other.checked  = false;
+                other.disabled = true;
+            } 
             }
 
-            ph.addEventListener('change', () => toggleExclusive(ph, phFree));
-            phFree.addEventListener('change', () => toggleExclusive(phFree, ph));
+            ph500.addEventListener('change', () => toggleExclusive(ph500, phFree, ph700));
+            ph700.addEventListener('change', () => toggleExclusive(ph700, ph500, phFree));
+            phFree.addEventListener('change', () => toggleExclusive(phFree, ph500, ph700));
 
             // --- MUTUALLY EXCLUSIVE: Senior Citizen vs PWD ---
 
