@@ -421,3 +421,48 @@ def transaction_lab_pdf(request, pk):
     resp = HttpResponse(pdf, content_type="application/pdf")
     resp["Content-Disposition"] = f'inline; filename="lab_worksheet_{txn.id}.pdf"'
     return resp
+
+
+# ------- REPORTS VIEWS ----------
+from django.utils import timezone
+from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
+import pytz
+from datetime import datetime
+
+from .models import Transaction
+
+def get_manila_date():
+    return timezone.now().astimezone(pytz.timezone('Asia/Manila')).date()
+
+@method_decorator(login_required, name='dispatch')
+class TransactionPhilhealthListView(ListView):
+    """
+    Lists ALL transactions, and if ?date=YYYY-MM-DD is provided,
+    filters transaction_date to that date (Manila).
+    """
+    model = Transaction
+    template_name = 'transactions/report_home.html'
+    context_object_name = 'transactions'
+    ordering = ['-transaction_date', '-transaction_time']
+
+    def get_queryset(self):
+        date_str = self.request.GET.get('date')
+        if date_str:
+            try:
+                # parse the incoming date
+                filter_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+            except ValueError:
+                filter_date = get_manila_date()
+        else:
+            filter_date = get_manila_date()
+
+        return Transaction.objects.filter(transaction_date=filter_date)
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        # echo back into the date-picker, default to today Manila
+        ctx['selected_date'] = self.request.GET.get('date', get_manila_date().isoformat())
+        return ctx

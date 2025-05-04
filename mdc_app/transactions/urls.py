@@ -10,4 +10,5 @@ urlpatterns = [
     path('transaction/<int:pk>/delete/', views.TransactionDeleteView.as_view(), name='transaction_delete'),
     path('ajax/get-company-peme-rate/<int:company_id>/', views.get_company_peme_rate, name='get_company_peme_rate'),
     path('transaction/<int:pk>/lab/', views.transaction_lab_pdf, name='transaction_lab_pdf'),
+    path('reports/', views.TransactionPhilhealthListView.as_view(), name='report_home'),
 ]

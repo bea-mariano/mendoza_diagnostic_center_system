@@ -2597,3 +2597,61 @@ AttributeError: 'str' object has no attribute 'package_name'
 [2025-04-28 11:24:36,101] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
 [2025-04-28 11:24:36,498] INFO django.utils.autoreload Watching for file changes with StatReloader
 [2025-04-28 11:24:36,760] INFO django.server "GET /transactions/transaction/207/lab/ HTTP/1.1" 200 2228
+[2025-05-04 13:41:24,057] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:41:28,410] INFO django.server "GET / HTTP/1.1" 200 8304
+[2025-05-04 13:41:28,458] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 200 41664
+[2025-05-04 13:41:28,616] WARNING django.request Not Found: /favicon.ico
+[2025-05-04 13:41:28,616] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 4751
+[2025-05-04 13:42:09,498] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\urls.py changed, reloading.
+[2025-05-04 13:42:09,909] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:43:04,326] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-05-04 13:43:04,716] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:44:07,242] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-05-04 13:44:07,631] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:44:20,246] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-05-04 13:44:20,647] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:44:29,185] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-05-04 13:44:29,575] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:44:41,204] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-05-04 13:44:41,587] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:44:56,271] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\models.py changed, reloading.
+[2025-05-04 13:44:56,692] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:45:05,201] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\models.py changed, reloading.
+[2025-05-04 13:45:05,615] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:45:22,793] WARNING django.request Not Found: /reports/
+[2025-05-04 13:45:22,793] WARNING django.server "GET /reports/ HTTP/1.1" 404 4742
+[2025-05-04 13:46:13,271] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\urls.py changed, reloading.
+[2025-05-04 13:46:13,715] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:46:17,375] INFO django.server "GET / HTTP/1.1" 200 8361
+[2025-05-04 13:46:18,718] ERROR django.request Internal Server Error: /transactions/reports/
+Traceback (most recent call last):
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bea\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: transaction_lab_pdf() missing 1 required positional argument: 'pk'
+[2025-05-04 13:46:18,719] ERROR django.server "GET /transactions/reports/ HTTP/1.1" 500 65930
+[2025-05-04 13:46:48,052] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\urls.py changed, reloading.
+[2025-05-04 13:46:48,517] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:46:49,828] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 6522
+[2025-05-04 13:49:04,496] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-05-04 13:49:04,915] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:49:57,438] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 6976
+[2025-05-04 13:50:05,449] INFO django.server "GET /transactions/reports/?date=2025-04-21 HTTP/1.1" 200 10458
+[2025-05-04 13:50:11,119] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 341365
+[2025-05-04 13:50:12,922] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 6976
+[2025-05-04 13:50:18,922] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 7640
+[2025-05-04 13:52:39,690] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\models.py changed, reloading.
+[2025-05-04 13:52:40,182] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-04 13:52:42,538] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 7640
+[2025-05-04 13:52:44,696] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 7640
+[2025-05-04 13:52:45,172] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 7640
+[2025-05-04 13:52:45,339] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 7640
+[2025-05-04 13:52:46,750] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 7640
+[2025-05-04 13:52:48,918] INFO django.server "GET / HTTP/1.1" 200 8361
+[2025-05-04 13:52:52,213] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 6976
+[2025-05-04 13:52:56,504] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 7640
+[2025-05-04 13:55:27,306] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
+[2025-05-04 13:55:27,742] INFO django.utils.autoreload Watching for file changes with StatReloader

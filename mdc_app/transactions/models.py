@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 import pytz
+
 from patients.models import Patient
 from tests.models import Test
 from companies.models import Company
@@ -17,6 +18,10 @@ class TransactionManager(models.Manager):
     def ongoing(self):
         # Returns all transactions made on the current day (Manila date)
         return self.filter(transaction_date=get_manila_date())
+    
+    def philhealth(self):
+        # Returns all philhealth transactions made on the current day (Manila date)
+        return self.filter(transaction_date=get_manila_date())
 
 class Transaction(models.Model):
     GENDER_CHOICES = [
@@ -27,18 +32,18 @@ class Transaction(models.Model):
 
     PAYMENT_TYPE_CHOICES = [
         ('Cash', 'Cash'),
-        ('Charged', 'Charged')
+        ('Charged', 'Charged'),
     ]
 
     TRANSACTION_TYPE_CHOICES = [
         ('Company', 'Company'),
-        ('Walk-in', 'Walk-in')
+        ('Walk-in', 'Walk-in'),
     ]
 
     TRANSACTION_PURPOSE_CHOICES = [
         ('Pre-Employment Examination (PEME)', 'Pre-Employment Examination (PEME)'),
         ('Annual Physical Examination (APE)', 'Annual Physical Examination (APE)'),
-        ('Other Test', 'Other Test')
+        ('Other Test', 'Other Test'),
     ]
 
     TRANSACTION_STATUS_CHOICES = [
@@ -53,7 +58,7 @@ class Transaction(models.Model):
         ('Senior Citizen', 'Senior Citizen'),
         ('PWD', 'PWD'),
         ('Package Exclusion', 'Package Exclusion'),
-        ('No Discount', 'No Discount')
+        ('No Discount', 'No Discount'),
     ]
 
     address = models.TextField()
@@ -66,17 +71,27 @@ class Transaction(models.Model):
     transaction_purpose = models.CharField(max_length=100, blank=True, null=True)
     has_drug_test = models.BooleanField(default=False)
     custody_control_form_submitted = models.BooleanField(default=False)
-    transaction_date = models.DateField(auto_now_add=True)
-    transaction_time = models.TimeField(auto_now_add=True)
+
+    # Record date/time in Manila rather than UTC
+    transaction_date = models.DateField(
+        default=get_manila_date,
+        help_text="Date based on Asia/Manila"
+    )
+    transaction_time = models.TimeField(
+        default=get_manila_time,
+        help_text="Time based on Asia/Manila"
+    )
+
     transaction_status = models.CharField(max_length=50, choices=TRANSACTION_STATUS_CHOICES)
     discount_type = models.CharField(max_length=25, choices=DISCOUNT_TYPE_CHOICES, default='No Discount')
     discount_rate = models.PositiveIntegerField(default=0)
     discounted_total = models.PositiveIntegerField(default=0)
     transaction_total = models.PositiveIntegerField(default=0)
-    is_philhealth        = models.BooleanField(default=False)
-    is_philhealth_free   = models.BooleanField(default=False)
-    is_senior_citizen    = models.BooleanField(default=False)
-    is_pwd               = models.BooleanField(default=False)
+
+    is_philhealth      = models.BooleanField(default=False)
+    is_philhealth_free = models.BooleanField(default=False)
+    is_senior_citizen  = models.BooleanField(default=False)
+    is_pwd             = models.BooleanField(default=False)
 
     objects = TransactionManager()
 
@@ -87,12 +102,11 @@ class Transaction(models.Model):
         return f"Transaction #{self.pk} - {self.patient}"
     
     def save(self, *args, **kwargs):
-        # 1. Debug what values Django sees:
+        # Debug current values
         print(f"▶ Saving Transaction: company_id={self.company_id!r}, purpose={self.transaction_purpose!r}")
 
-        # 2. Only try to match if both are present
+        # Match and set package if both company and purpose are provided
         if self.company_id and self.transaction_purpose:
-            # trim whitespace and do case‑insensitive match
             purpose_clean = self.transaction_purpose.strip()
             pkg = (
                 Setpackage.objects
@@ -100,13 +114,12 @@ class Transaction(models.Model):
                     company_id=self.company_id,
                     package_transaction_purpose__iexact=purpose_clean
                 )
-                .first()   # .first() returns None if nothing found
+                .first()
             )
             print(f"   → matched package: {pkg!r}")
             self.setpackage = pkg
 
         super().save(*args, **kwargs)
-
 
     setpackage = models.ForeignKey(
         Setpackage,
