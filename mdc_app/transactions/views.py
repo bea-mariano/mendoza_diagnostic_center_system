@@ -331,8 +331,8 @@ def transaction_lab_pdf(request, pk):
     row_spacing = -3
 
     # --- Group 1: Transaction ID (60%) | Date (20%) ---
-    tx_w   = avail * 0.6
-    date_w = avail * 0.4
+    tx_w   = avail * 0.48
+    date_w = avail * 0.52
     # Transaction ID table
     tbl_tx = Table([[ "Transaction ID", f":    {str(txn.id)}" ]],
                    colWidths=[tx_w * 0.25, tx_w * 0.75])
