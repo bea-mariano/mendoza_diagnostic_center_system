@@ -3092,3 +3092,5 @@ fileName='/static/mdc_app/static/images/mdc_logo.jpg' identity=[ImageReader@0x11
 [2025-05-05 12:28:13,954] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
 [2025-05-05 12:28:14,546] INFO django.utils.autoreload Watching for file changes with StatReloader
 [2025-05-05 12:28:15,680] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:32:11,704] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 21101
+[2025-05-05 12:32:14,881] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
