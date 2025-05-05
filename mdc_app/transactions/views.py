@@ -440,8 +440,8 @@ def get_manila_date():
 @method_decorator(login_required, name='dispatch')
 class TransactionPhilhealthListView(ListView):
     """
-    Lists ALL transactions, and if ?date=YYYY-MM-DD is provided,
-    filters transaction_date to that date (Manila).
+    Lists transactions that are marked as Philhealth AND Philhealth-free.
+    If ?date=YYYY-MM-DD is provided, filters transaction_date to that date (Manila time).
     """
     model = Transaction
     template_name = 'transactions/report_home.html'
@@ -452,17 +452,19 @@ class TransactionPhilhealthListView(ListView):
         date_str = self.request.GET.get('date')
         if date_str:
             try:
-                # parse the incoming date
                 filter_date = datetime.strptime(date_str, '%Y-%m-%d').date()
             except ValueError:
                 filter_date = get_manila_date()
         else:
             filter_date = get_manila_date()
 
-        return Transaction.objects.filter(transaction_date=filter_date)
+        return Transaction.objects.filter(
+            transaction_date=filter_date
+        ).filter(
+            Q(is_philhealth=True) | Q(is_philhealth_free=True)
+        )
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        # echo back into the date-picker, default to today Manila
         ctx['selected_date'] = self.request.GET.get('date', get_manila_date().isoformat())
         return ctx
