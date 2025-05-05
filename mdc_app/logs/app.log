@@ -2819,3 +2819,27 @@ TypeError: transaction_lab_pdf() missing 1 required positional argument: 'pk'
 [2025-05-05 09:52:11,053] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
 [2025-05-05 09:52:11,054] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
 [2025-05-05 09:53:21,267] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 23861
+[2025-05-05 10:18:13,005] INFO django.server "GET / HTTP/1.1" 200 8569
+[2025-05-05 10:18:13,035] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
+[2025-05-05 10:24:11,759] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/patients/views.py changed, reloading.
+[2025-05-05 10:24:12,289] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 10:25:26,245] INFO django.server "GET / HTTP/1.1" 200 8993
+[2025-05-05 10:26:14,569] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/patients/views.py changed, reloading.
+[2025-05-05 10:26:15,040] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 10:26:18,525] INFO django.server "GET / HTTP/1.1" 200 8967
+[2025-05-05 10:26:21,245] INFO django.server "GET / HTTP/1.1" 200 8967
+[2025-05-05 10:26:23,797] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 18828
+[2025-05-05 10:26:29,764] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26863
+[2025-05-05 10:26:41,167] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-05 10:26:41,170] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-05 10:26:42,354] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-05 10:26:50,858] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-05 10:26:50,883] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 20523
+[2025-05-05 10:26:52,713] INFO django.server "GET / HTTP/1.1" 200 8971
+[2025-05-05 10:27:06,320] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26863
+[2025-05-05 10:27:18,676] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-05 10:27:18,678] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-05 10:27:20,919] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-05 10:27:32,627] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-05 10:27:32,663] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 10:27:34,215] INFO django.server "GET / HTTP/1.1" 200 8972
