@@ -111,20 +111,57 @@
     }
 
     @media print {
+        /* set paper size */
         @page { size: 80mm auto; margin: 0; }
-        body * { visibility: hidden; }
-        #receiptModal, #receiptModal * { visibility: visible; }
-        #receiptModal {
-            position: absolute; top: 0; left: 0;
-            width: 100%; background: #fff; z-index: 9999;
+
+        /* hide everything by default */
+        body * { visibility: hidden !important; }
+
+        /* but show the receipt or sticker modal and its contents */
+        #receiptModal, #stickerModal,
+        #receiptModal *, #stickerModal * {
+            visibility: visible !important;
+        }
+
+        #stickerModal .close {
+            display: none !important;
+        }
+
+        /* position the modal at the top-left for printing */
+        #receiptModal, #stickerModal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 9999;
             display: block !important;
+            
         }
+
+        /* tighten up the print layout */
+        .modal-content, .sticker-content {
+            width: 40mm;
+            margin: 0 auto;
+            padding: 6px !important;
+            border: none;
+            box-shadow: none;
+            page-break-after: avoid;
+        }
+
         .modal-content {
-            width: 60mm; margin: 0 auto;
-            padding: 10px; border: none; box-shadow: none;
+            width: 80mm;
+            margin: 0 auto;
+            padding: 6px !important;
+            border: none;
+            box-shadow: none;
+            page-break-after: avoid;
         }
+
+        /* hide any UI you don’t want printed */
         .no-print { display: none !important; }
-    }
+        }
+
 
     .action-group {
       display: flex;
@@ -135,6 +172,17 @@
     .col-transaction-id { width: 4%; }
 
     .btn-lab { background-color: #6F42C1; }
+
+    @media print {
+        #receiptModal {
+            width: 80mm;
+        }
+        .modal-content {
+            padding: 6px !important;
+            font-size: 12px !important;
+        }
+    }
+
 </style>
 {% endblock %}
 
@@ -163,7 +211,7 @@
     <thead>
         <tr>
             <th></th>
-            <th class="col-transaction-id">Transaction ID</th>
+            <th class="col-transaction-id">Txn ID</th>
             <th>Date</th>
             <th>Patient</th>
             <th style="width: 6%;">Payment Type</th>
@@ -174,43 +222,95 @@
         </tr>
     </thead>
     <tbody>
-        {% for transaction in transactions %}
-        <tr data-transaction-id="{{ transaction.id }}" data-patient-id="{{ transaction.patient.id }}" data-patient-name="{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}" data-contact="{{ transaction.contact_no }}" data-payment-type="{{ transaction.get_payment_type_display }}" data-transaction-type="{{ transaction.get_transaction_type_display }}" data-company="{{ transaction.company }}" data-purpose="{{ transaction.transaction_purpose }}" data-transaction-date="{{ transaction.transaction_date }}" data-transaction-time="{{ transaction.transaction_time }}" data-transaction-status="{{ transaction.get_transaction_status_display }}" data-discount-type="{{ transaction.discount_type }}" data-discount-rate="₱ {{ transaction.discount_rate }}" data-transaction-total="₱ {{ transaction.transaction_total }}" data-discounted-total="₱ {{ transaction.discounted_total }}" data-test-details="{% for tt in transaction.transaction_tests.all %}{{ tt.test.test_name }} - ₱{{ tt.test_price }}{% if not forloop.last %}, {% endif %}{% endfor %}">
-            <td><a href="{% url 'transaction_detail' transaction.id %}" class="btn-view btn-action" title="View"><i class="fas fa-eye"></i></a></td>
-            <td class="col-transaction-id">{{ transaction.id }}</td>
-            <td>{{ transaction.transaction_date }}</td>
-            <td>{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}</td>
-            <td style="width: 6%;">{{ transaction.payment_type }}</td>
-            <td style="width: 6%;">{{ transaction.transaction_type }}</td>
-            <td style="width: 25%;">{{ transaction.transaction_purpose }}</td>
-            <td id="transaction-status-{{ transaction.id }}">{{ transaction.transaction_status }}</td>
-            <td style="text-align: right;">
-              <div class="action-group">
-                <a href="{% url 'transaction_edit' transaction.id %}" class="btn-edit btn-action" title="Edit"><i class="fas fa-pen"></i></a>
-                <a href="javascript:void(0)" onclick="printAcknowledgementReceipt({{ transaction.id }})" class="btn-print btn-action" title="Print"><i class="fas fa-print"></i></a>
-                <a href="{% url 'transaction_lab_pdf' transaction.id %}" target="_blank" class="btn-lab btn-action" title="Lab Worksheet"> <i class="fas fa-vial"></i></a>
-                <button class="btn-print btn-action" title="Print Sticker"
-                onclick="printSticker('{{ transaction.patient.first_name }}', '{{ transaction.patient.last_name }}', '{{ transaction.id }}', '{{ transaction.patient.date_of_birth|date:'Y-m-d' }}')">
-                <i class="fas fa-sticky-note"></i>
-                </button>
-                <a href="{% url 'transaction_delete' transaction.id %}" class="btn-delete btn-action" title="Delete"><i class="fas fa-trash"></i></a>
-              </div>
-            </td>
-        </tr>
-        {% endfor %}
+    {% for t in transactions %}
+      <tr
+        data-transaction-id="{{ t.id }}"
+        data-patient-name="{{ t.patient.last_name }}, {{ t.patient.first_name }}"
+        data-contact="{{ t.contact_no }}"
+        data-company="{{ t.company }}"
+        data-purpose="{{ t.transaction_purpose }}"
+        data-transaction-date="{{ t.transaction_date }}"
+        data-transaction-time="{{ t.transaction_time }}"
+        data-test-details="{% for tt in t.transaction_tests.all %}{{ tt.test.test_name }} - ₱{{ tt.test_price }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+        data-payment-type="{{ t.get_payment_type_display }}"
+        data-transaction-type="{{ t.get_transaction_type_display }}"
+        data-discount-type="{{ t.discount_type }}"
+        data-discount-rate="₱ {{ t.discount_rate }}"
+        data-transaction-total="₱ {{ t.transaction_total }}"
+        data-discounted-total="₱ {{ t.discounted_total }}"
+      >
+        <td>
+          <a href="{% url 'transaction_detail' t.id %}" class="btn-view btn-action" title="View">
+            <i class="fas fa-eye"></i>
+          </a>
+        </td>
+        <td class="col-transaction-id">{{ t.id }}</td>
+        <td>{{ t.transaction_date }}</td>
+        <td>{{ t.patient.last_name }}, {{ t.patient.first_name }}</td>
+        <td>{{ t.payment_type }}</td>
+        <td>{{ t.transaction_type }}</td>
+        <td>{{ t.transaction_purpose }}</td>
+        <td id="transaction-status-{{ t.id }}">{{ t.transaction_status }}</td>
+        <td style="text-align: right;">
+          <div class="action-group">
+            <a href="{% url 'transaction_edit' t.id %}" class="btn-edit btn-action" title="Edit">
+              <i class="fas fa-pen"></i>
+            </a>
+            <a href="javascript:void(0)"
+               onclick="printAcknowledgementReceipt({{ t.id }})"
+               class="btn-print btn-action"
+               title="Print Receipt">
+              <i class="fas fa-print"></i>
+            </a>
+            <a href="{% url 'transaction_lab_pdf' t.id %}"
+               target="_blank"
+               class="btn-lab btn-action"
+               title="Lab Worksheet">
+              <i class="fas fa-vial"></i>
+            </a>
+            <button class="btn-print btn-action"
+                    title="Print Sticker"
+                    onclick="printSticker(
+                      '{{ t.patient.first_name }}',
+                      '{{ t.patient.last_name }}',
+                      '{{ t.id }}',
+                      '{{ t.patient.date_of_birth|date:'Y-m-d' }}'
+                    )">
+              <i class="fas fa-sticky-note"></i>
+            </button>
+            <a href="{% url 'transaction_delete' t.id %}" class="btn-delete btn-action" title="Delete">
+              <i class="fas fa-trash"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
     </tbody>
 </table>
 {% else %}
-<p>No transactions registered yet.</p>
+  <p>No transactions registered yet.</p>
 {% endif %}
 
 <!-- Receipt Modal -->
 <div id="receiptModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div id="receiptDetails"></div>
-        <button class="no-print" onclick="printReceipt()">Print/Save as PDF</button>
-    </div>
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('receiptModal')">&times;</span>
+    <div id="receiptDetails"></div>
+    <button class="no-print" onclick="printSpecific('receiptModal')">
+      Print/Save as PDF
+    </button>
+  </div>
+</div>
+
+<!-- Sticker Modal -->
+<div id="stickerModal" class="modal">
+  <div class="modal-content sticker-content">
+    <span class="close" onclick="closeModal('stickerModal')">&times;</span>
+    <div id="stickerDetails"></div>
+    <button class="no-print" onclick="printSpecific('stickerModal')">
+      Print Sticker
+    </button>
+  </div>
 </div>
 {% endblock %}
 
@@ -219,87 +319,83 @@
   const logoUrl = "{% static 'images/mdc_logo.jpg' %}";
 
   function printAcknowledgementReceipt(transactionId) {
-      const row = document.querySelector('tr[data-transaction-id="' + transactionId + '"]');
-      if (row) {
-          let receiptHtml = "<div style='font-family: \"Courier New\", monospace; font-size: 14px; line-height: 1.2;'>";
+    const row = document.querySelector(`tr[data-transaction-id="${transactionId}"]`);
+    if (!row) return;
 
-          receiptHtml += "<div style='text-align:center; margin-bottom:5px;'><img src='" + logoUrl + "' style='width:50px; height:auto;'></div>";
-          receiptHtml += "<div style='text-align:center; font-weight:bold;'>Mendoza Diagnostic Center</div>";
-          receiptHtml += "<div style='text-align:center; margin-bottom:10px;'>Acknowledgement Receipt</div>";
+    let html = "<div style='font-family:\"Courier New\",monospace;font-size:14px;line-height:1.2;'>";
+    html += "<div style='text-align:center;margin-bottom:5px;'><img src='" + logoUrl + "' style='width:50px;'></div>";
+    html += "<div style='text-align:center;font-weight:bold;'>Mendoza Diagnostic Center</div>";
+    html += "<div style='text-align:center;margin-bottom:10px;'>Acknowledgement Receipt</div>";
 
-          receiptHtml += "Transaction ID: " + row.getAttribute("data-transaction-id") + "<br>";
-          receiptHtml += "Patient Name: " + row.getAttribute("data-patient-name") + "<br>";
-          receiptHtml += "Contact Number: " + row.getAttribute("data-contact") + "<br>";
-          receiptHtml += "Company: " + row.getAttribute("data-company") + "<br>";
-          receiptHtml += "Package Name: " + row.getAttribute("data-purpose") + "<br>";
-          receiptHtml += "Transaction Date: " + row.getAttribute("data-transaction-date") + "<br>";
-          receiptHtml += "Transaction Time: " + row.getAttribute("data-transaction-time") + "<br>";
-          receiptHtml += "Transaction Status: Completed<br><br>";
+    html += `<strong>Transaction ID: ${row.getAttribute("data-transaction-id")}</strong><br>`;
+    html += `<strong>Patient Name: ${row.getAttribute("data-patient-name")}</strong><br>`;
+    html += `<strong>Contact Number: ${row.getAttribute("data-contact")}</strong><br>`;
+    html += `<strong>Company: ${row.getAttribute("data-company")}</strong><br>`;
+    html += `<strong>Package Name: ${row.getAttribute("data-purpose")}</strong><br>`;
+    html += `<strong>Date: ${row.getAttribute("data-transaction-date")} ${row.getAttribute("data-transaction-time")}</strong><br><br>`;
 
-          const testDetails = row.getAttribute("data-test-details");
-          if (testDetails) {
-              receiptHtml += "<strong>Test Details:</strong><br>";
-              testDetails.split(",").forEach(item => {
-                  const [name, price] = item.split(" - ");
-                  receiptHtml += "• " + name.trim() + " - " + price.trim() + "<br>";
-              });
-              receiptHtml += "<br>";
-          }
+    const tests = row.getAttribute("data-test-details");
+    if (tests) {
+      html += "<strong>Tests:</strong><br>";
+      tests.split(",").forEach(item => {
+        const [n,p] = item.split(" - ");
+        html += `<strong>• ${n.trim()} — ${p.trim()}<br></strong>`;
+      });
+      html += "<br>";
+    }
 
-          receiptHtml += "<strong>Payment Details:</strong><br>";
-          receiptHtml += "Payment Type: " + row.getAttribute("data-payment-type") + "<br>";
-          receiptHtml += "Transaction Type: " + row.getAttribute("data-transaction-type") + "<br>";
-          receiptHtml += "Discount Type: " + row.getAttribute("data-discount-type") + "<br>";
-          receiptHtml += "Discount Rate: " + row.getAttribute("data-discount-rate") + "<br>";
-          receiptHtml += "Transaction Total: " + row.getAttribute("data-transaction-total") + "<br>";
-          receiptHtml += "<strong>Discounted Total: " + row.getAttribute("data-discounted-total") + "</strong><br>";
+    html += "<strong>Payment:</strong><br>";
+    html += `<strong>Type: ${row.getAttribute("data-payment-type")}</strong><br>`;
+    html += `<strong>Txn Type: ${row.getAttribute("data-transaction-type")}</strong><br>`;
+    html += `<strong>Discount: ${row.getAttribute("data-discount-type")} (${row.getAttribute("data-discount-rate")})</strong><br>`;
+    html += `<strong>Total: ${row.getAttribute("data-transaction-total")}</strong><br>`;
+    html += `<strong>Paid: ${row.getAttribute("data-discounted-total")}</strong><br>`;
+    html += "</div>";
 
-          receiptHtml += "</div>";
-
-          document.getElementById("receiptDetails").innerHTML = receiptHtml;
-      }
-      document.getElementById("receiptModal").style.display = "block";
-  }
-
-
-  function closeModal() {
-    document.getElementById("receiptModal").style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    const modal = document.getElementById("receiptModal");
-    if (event.target == modal) modal.style.display = "none";
-  }
-
-  function printReceipt() {
-    window.print();
+    document.getElementById("receiptDetails").innerHTML = html;
+    document.getElementById("receiptModal").style.display = "block";
   }
 
   function printSticker(firstName, lastName, txnId, birthdate) {
-        fetch("http://119.94.172.228:5000/print", {  // replace with your public IP or domain
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-API-KEY": "GODisgood_2021??"  // if you added token protection
-            },
-            body: JSON.stringify({
-                first_name: firstName,
-                last_name: lastName,
-                txn_id: txnId,
-                birthdate: birthdate
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status) {
-                alert("Sticker sent to printer.");
-            } else {
-                alert("Print failed: " + (data.error || "Unknown error."));
-            }
-        })
-        .catch(err => {
-            alert("Print error: " + err.message);
-        });
-    }
+    const today = new Date().toISOString().split("T")[0];
+    const html = `
+      <div style="font-family:'Courier New',monospace;font-size:13px;line-height:1.2;">
+        <div><strong>${lastName},</strong></div>
+        <div><strong>${firstName}</strong></div>
+        <br>
+        <div><strong>Txn ID:</strong> ${txnId}</div>
+        <div><strong>DOB:</strong> ${birthdate}</div>
+        <div><strong>Date:</strong> ${today}</div>
+      </div>
+    `;
+    document.getElementById("stickerDetails").innerHTML = html;
+    document.getElementById("stickerModal").style.display = "block";
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target.id === 'receiptModal') closeModal('receiptModal');
+    if (e.target.id === 'stickerModal') closeModal('stickerModal');
+  }
+
+  function printSpecific(id) {
+  // 1. Grab the modal node
+  const modal = document.getElementById(id);
+  // 2. Save original page
+  const original = document.body.innerHTML;
+  // 3. Clone the modal (including its ID)
+  const clone = modal.cloneNode(true);
+  // 4. Replace the body with just that clone
+  document.body.innerHTML = '';
+  document.body.appendChild(clone);
+  // 5. Fire print
+  window.print();
+  // 6. Restore
+  document.body.innerHTML = original;
+}
+
 </script>
 {% endblock %}
