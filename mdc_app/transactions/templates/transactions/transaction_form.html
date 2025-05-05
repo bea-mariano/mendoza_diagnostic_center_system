@@ -490,23 +490,22 @@
 
             // --- MUTUALLY EXCLUSIVE: Philhealth vs Philhealth Free ---
 
-            function toggleExclusive(box, other, other2) {
-            if (box.checked) {
-                other.checked  = false;
-                other.disabled = true;
-                other2.checked  = false;
-                other2.disabled = true;
-            } else if (other.checked) {
-                box.checked  = false;
-                box.disabled = true;
-                other2.checked  = false;
-                other2.disabled = true;
-            } else if (other2.checked) {
-                box.checked  = false;
-                box.disabled = true;
-                other.checked  = false;
-                other.disabled = true;
-            } 
+            function toggleExclusive(selected, ...others) {
+                if (selected.checked) {
+                    // Disable others if one is checked
+                    others.forEach(other => {
+                        other.checked = false;
+                        other.disabled = true;
+                    });
+                } else {
+                    // If no boxes are checked, re-enable all
+                    const anyChecked = [selected, ...others].some(box => box.checked);
+                    if (!anyChecked) {
+                        [selected, ...others].forEach(box => {
+                            box.disabled = false;
+                        });
+                    }
+                }
             }
 
             ph500.addEventListener('change', () => toggleExclusive(ph500, phFree, ph700));

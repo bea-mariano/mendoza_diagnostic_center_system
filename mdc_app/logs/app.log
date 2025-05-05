@@ -2655,3 +2655,117 @@ TypeError: transaction_lab_pdf() missing 1 required positional argument: 'pk'
 [2025-05-04 13:52:56,504] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 7640
 [2025-05-04 13:55:27,306] INFO django.utils.autoreload C:\Users\Bea\Desktop\personal_projects\mendoza_diagnostic_center_system\mdc_app\transactions\views.py changed, reloading.
 [2025-05-04 13:55:27,742] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 06:53:40,917] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 06:55:21,934] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 06:58:25,319] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 06:59:40,030] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 07:02:57,840] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 07:04:02,447] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 07:05:15,267] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 07:06:11,027] INFO django.server "GET / HTTP/1.1" 302 0
+[2025-05-05 07:06:11,040] INFO django.server "GET /accounts/login/?next=/ HTTP/1.1" 200 1862
+[2025-05-05 07:06:11,300] WARNING django.request Not Found: /favicon.ico
+[2025-05-05 07:06:11,300] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 3879
+[2025-05-05 07:06:23,177] INFO django.server "POST /accounts/login/?next=/ HTTP/1.1" 200 1989
+[2025-05-05 07:06:30,122] INFO django.server "GET /admin HTTP/1.1" 301 0
+[2025-05-05 07:06:30,132] INFO django.server "GET /admin/ HTTP/1.1" 302 0
+[2025-05-05 07:06:30,162] INFO django.server "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4185
+[2025-05-05 07:06:30,178] INFO django.server "GET /static/admin/css/base.css HTTP/1.1" 200 21310
+[2025-05-05 07:06:30,187] INFO django.server "GET /static/admin/css/login.css HTTP/1.1" 200 958
+[2025-05-05 07:06:30,188] INFO django.server "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+[2025-05-05 07:06:30,189] INFO django.server "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+[2025-05-05 07:06:30,190] INFO django.server "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+[2025-05-05 07:06:30,190] INFO django.server "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+[2025-05-05 07:06:30,191] INFO django.server "GET /static/admin/css/responsive.css HTTP/1.1" 200 18559
+[2025-05-05 07:06:38,367] INFO django.server "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4352
+[2025-05-05 07:09:39,449] INFO django.server "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+[2025-05-05 07:09:39,465] INFO django.server "GET /admin/ HTTP/1.1" 200 5566
+[2025-05-05 07:09:39,484] INFO django.server "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+[2025-05-05 07:09:39,490] INFO django.server "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[2025-05-05 07:09:39,490] INFO django.server "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[2025-05-05 07:09:41,957] INFO django.server "GET /admin/auth/user/ HTTP/1.1" 200 10481
+[2025-05-05 07:09:41,975] INFO django.server "GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+[2025-05-05 07:09:41,985] INFO django.server "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[2025-05-05 07:09:41,986] INFO django.server "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+[2025-05-05 07:09:41,988] INFO django.server "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+[2025-05-05 07:09:41,990] INFO django.server "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+[2025-05-05 07:09:41,993] INFO django.server "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+[2025-05-05 07:09:41,994] INFO django.server "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[2025-05-05 07:09:41,996] INFO django.server "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[2025-05-05 07:09:41,996] INFO django.server "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+[2025-05-05 07:09:41,996] INFO django.server "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[2025-05-05 07:09:41,999] INFO django.server "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+[2025-05-05 07:09:41,999] INFO django.server "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+[2025-05-05 07:09:42,002] INFO django.server "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+[2025-05-05 07:09:42,016] INFO django.server "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[2025-05-05 07:09:42,017] INFO django.server "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[2025-05-05 07:09:48,674] INFO django.server "GET / HTTP/1.1" 200 8361
+[2025-05-05 07:09:48,688] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 200 41664
+[2025-05-05 07:09:52,744] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 14443
+[2025-05-05 07:09:58,786] INFO django.server "GET /transactions/reports/?date=2025-04-28 HTTP/1.1" 200 14443
+[2025-05-05 07:10:12,293] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11622
+[2025-05-05 07:27:55,319] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26006
+[2025-05-05 07:28:03,982] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11622
+[2025-05-05 07:28:06,264] INFO django.server "GET /patient/list/ HTTP/1.1" 200 5973
+[2025-05-05 07:28:07,303] INFO django.server "GET /patient/new/ HTTP/1.1" 200 4989
+[2025-05-05 07:28:31,945] INFO mdc_app Patient CREATED by user='mapleshield': id=1, name=BEA MARIANO
+[2025-05-05 07:28:31,948] INFO django.server "POST /patient/new/ HTTP/1.1" 200 5242
+[2025-05-05 07:28:34,129] INFO django.server "GET / HTTP/1.1" 200 8361
+[2025-05-05 07:28:34,148] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
+[2025-05-05 07:28:37,789] INFO django.server "GET /patient/list/ HTTP/1.1" 200 6944
+[2025-05-05 07:28:38,661] INFO django.server "GET /patient/new/ HTTP/1.1" 200 4989
+[2025-05-05 07:28:58,176] INFO mdc_app Patient CREATED by user='mapleshield': id=2, name=ALBERT MARIANO
+[2025-05-05 07:28:58,181] INFO django.server "POST /patient/new/ HTTP/1.1" 200 5245
+[2025-05-05 07:28:59,630] INFO django.server "GET / HTTP/1.1" 200 8361
+[2025-05-05 07:29:00,647] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11622
+[2025-05-05 07:29:01,752] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26204
+[2025-05-05 07:29:20,038] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11622
+[2025-05-05 07:29:21,130] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 6111
+[2025-05-05 07:29:22,512] INFO django.server "GET /companies/company/new/ HTTP/1.1" 200 5114
+[2025-05-05 07:29:41,046] INFO django.server "POST /companies/company/new/ HTTP/1.1" 200 5374
+[2025-05-05 07:29:42,381] INFO django.server "GET / HTTP/1.1" 200 8361
+[2025-05-05 07:29:43,796] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11622
+[2025-05-05 07:29:44,551] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26238
+[2025-05-05 07:29:59,104] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-05 07:29:59,108] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 16
+[2025-05-05 07:30:05,301] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11622
+[2025-05-05 07:30:06,148] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 6029
+[2025-05-05 07:30:07,361] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 3261
+[2025-05-05 07:30:26,363] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 302 0
+[2025-05-05 07:30:26,377] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 7162
+[2025-05-05 07:30:29,315] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11622
+[2025-05-05 07:30:30,371] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26238
+[2025-05-05 07:30:45,743] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-05 07:30:45,746] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-05 07:30:47,050] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-05 07:31:13,404] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11622
+[2025-05-05 07:31:17,349] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 6138
+[2025-05-05 07:31:19,149] INFO django.server "GET /tests/test/new/ HTTP/1.1" 200 3381
+[2025-05-05 07:31:30,852] INFO django.server "POST /tests/test/new/ HTTP/1.1" 200 3947
+[2025-05-05 07:31:32,075] INFO django.server "GET / HTTP/1.1" 200 8361
+[2025-05-05 07:31:38,747] INFO django.server "GET /tests/test/new/ HTTP/1.1" 200 3381
+[2025-05-05 07:31:48,830] INFO django.server "POST /tests/test/new/ HTTP/1.1" 200 3946
+[2025-05-05 07:31:50,126] INFO django.server "GET / HTTP/1.1" 200 8361
+[2025-05-05 07:31:55,372] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26805
+[2025-05-05 07:32:08,523] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-05 07:32:08,526] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-05 07:32:10,035] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-05 07:38:15,505] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26863
+[2025-05-05 07:38:40,482] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-05 07:38:40,484] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-05 07:38:41,849] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-05 07:39:01,686] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-05 07:39:01,709] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 13731
+[2025-05-05 07:48:38,701] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16135
+[2025-05-05 07:49:37,280] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16133
+[2025-05-05 07:51:22,856] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16135
+[2025-05-05 07:51:23,911] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16135
+[2025-05-05 07:52:05,354] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16135
+[2025-05-05 07:52:07,409] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 13731
+[2025-05-05 07:52:09,911] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16135
+[2025-05-05 07:52:11,850] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 13731
+[2025-05-05 07:52:53,670] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16132
+[2025-05-05 07:53:05,312] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16133
+[2025-05-05 07:53:48,980] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16133
+[2025-05-05 07:54:14,430] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16125
+[2025-05-05 09:16:43,405] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 16128
