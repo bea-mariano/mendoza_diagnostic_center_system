@@ -189,6 +189,10 @@
                 <a href="{% url 'transaction_edit' transaction.id %}" class="btn-edit btn-action" title="Edit"><i class="fas fa-pen"></i></a>
                 <a href="javascript:void(0)" onclick="printAcknowledgementReceipt({{ transaction.id }})" class="btn-print btn-action" title="Print"><i class="fas fa-print"></i></a>
                 <a href="{% url 'transaction_lab_pdf' transaction.id %}" target="_blank" class="btn-lab btn-action" title="Lab Worksheet"> <i class="fas fa-vial"></i></a>
+                <button class="btn-print btn-action" title="Print Sticker"
+                onclick="printSticker('{{ transaction.patient.first_name }}', '{{ transaction.patient.last_name }}', '{{ transaction.id }}', '{{ transaction.patient.date_of_birth|date:'Y-m-d' }}')">
+                <i class="fas fa-sticky-note"></i>
+                </button>
                 <a href="{% url 'transaction_delete' transaction.id %}" class="btn-delete btn-action" title="Delete"><i class="fas fa-trash"></i></a>
               </div>
             </td>
@@ -270,5 +274,32 @@
   function printReceipt() {
     window.print();
   }
+
+  function printSticker(firstName, lastName, txnId, birthdate) {
+        fetch("http://119.94.172.228:5000/print", {  // replace with your public IP or domain
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-API-KEY": "GODisgood_2021??"  // if you added token protection
+            },
+            body: JSON.stringify({
+                first_name: firstName,
+                last_name: lastName,
+                txn_id: txnId,
+                birthdate: birthdate
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status) {
+                alert("Sticker sent to printer.");
+            } else {
+                alert("Print failed: " + (data.error || "Unknown error."));
+            }
+        })
+        .catch(err => {
+            alert("Print error: " + err.message);
+        });
+    }
 </script>
 {% endblock %}
