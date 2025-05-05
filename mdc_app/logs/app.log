@@ -3094,3 +3094,14 @@ fileName='/static/mdc_app/static/images/mdc_logo.jpg' identity=[ImageReader@0x11
 [2025-05-05 12:28:15,680] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
 [2025-05-05 12:32:11,704] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 21101
 [2025-05-05 12:32:14,881] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
+[2025-05-05 13:09:09,620] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 13:13:17,052] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 13:13:21,481] INFO django.server "GET / HTTP/1.0" 200 11831
+[2025-05-05 13:13:49,412] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 13:13:54,832] INFO django.server "GET / HTTP/1.0" 200 11831
+[2025-05-05 13:13:54,893] INFO django.server "GET / HTTP/1.0" 200 11831
+[2025-05-05 13:13:59,289] INFO django.server "GET /transactions/transaction/active_list/ HTTP/1.0" 200 96198
+[2025-05-05 13:14:04,128] INFO django.server "GET /transactions/transaction/list/ HTTP/1.0" 200 794070
+[2025-05-05 13:14:14,391] INFO django.server "GET /transactions/reports/ HTTP/1.0" 200 277364
+[2025-05-05 13:14:26,945] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type=Cash HTTP/1.0" 200 41009
+[2025-05-05 13:14:44,507] INFO django.server "GET / HTTP/1.0" 200 11831
