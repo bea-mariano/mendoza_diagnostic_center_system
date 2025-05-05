@@ -2806,3 +2806,16 @@ TypeError: transaction_lab_pdf() missing 1 required positional argument: 'pk'
 [2025-05-05 09:36:44,394] INFO django.server "GET /transactions/transaction/3/ HTTP/1.1" 200 5683
 [2025-05-05 09:37:08,306] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 20191
 [2025-05-05 09:37:37,796] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 20190
+[2025-05-05 09:41:51,940] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 23142
+[2025-05-05 09:42:13,392] INFO django.server - Broken pipe from ('127.0.0.1', 61721)
+[2025-05-05 09:44:54,136] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 23594
+[2025-05-05 09:44:55,408] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 23594
+[2025-05-05 09:45:01,065] INFO django.server - Broken pipe from ('127.0.0.1', 61915)
+[2025-05-05 09:47:30,458] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-05 09:47:30,459] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-05 09:47:40,999] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 200 41664
+[2025-05-05 09:50:31,955] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-05 09:50:31,956] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-05 09:52:11,053] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-05 09:52:11,054] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-05 09:53:21,267] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 23861
