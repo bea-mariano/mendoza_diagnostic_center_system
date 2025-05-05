@@ -51,6 +51,16 @@ class HomeView(LoginRequiredMixin, TemplateView):
         # d) Discounts given = gross – discounted
         ctx['daily_discounts'] = ctx['daily_total'] - ctx['daily_discounted_total']
 
+        # e) Discounted total for charged transactions
+        ctx['charged_discounted_total'] = (
+            todays.filter(payment_type='Charged').aggregate(total=Sum('discounted_total'))['total'] or 0
+        )
+
+        # f) Discounted total for cash transactions
+        ctx['cash_discounted_total'] = (
+            todays.filter(payment_type='Cash').aggregate(total=Sum('discounted_total'))['total'] or 0
+        )
+
         # 3. Summary of test counts
         ctx['tests_summary'] = (
             TransactionTest.objects
@@ -61,6 +71,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
         )
 
         return ctx
+
 
 @method_decorator(login_required, name='dispatch')
 class PatientListView(ListView):
