@@ -2875,3 +2875,220 @@ TypeError: transaction_lab_pdf() missing 1 required positional argument: 'pk'
 [2025-05-05 11:39:18,926] INFO django.server "GET /transactions/transaction/5/ HTTP/1.1" 200 5656
 [2025-05-05 11:39:24,839] INFO django.server "GET / HTTP/1.1" 200 8972
 [2025-05-05 11:39:53,630] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 24589
+[2025-05-05 11:43:40,724] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 11:43:42,739] INFO django.server "GET /patient/list/ HTTP/1.1" 200 7668
+[2025-05-05 11:43:43,572] INFO django.server "GET / HTTP/1.1" 200 8972
+[2025-05-05 11:43:44,963] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 7241
+[2025-05-05 11:43:45,634] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 7162
+[2025-05-05 11:43:46,702] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 8261
+[2025-05-05 11:43:47,475] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 24589
+[2025-05-05 11:45:21,841] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:03:18,178] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:03:18,713] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:03:23,843] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:03:25,735] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2019
+[2025-05-05 12:07:17,263] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:07:17,772] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:07:21,607] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2001
+[2025-05-05 12:07:53,221] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:07:53,718] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:07:58,826] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 1999
+[2025-05-05 12:09:39,675] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:09:40,142] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:10:10,095] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:10:10,526] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:10:14,753] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:10:17,577] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2001
+[2025-05-05 12:12:25,333] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:12:25,872] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:12:29,450] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:12:31,196] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2004
+[2025-05-05 12:12:37,509] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:12:37,941] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:12:40,194] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:12:42,204] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2000
+[2025-05-05 12:12:54,619] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:12:55,159] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:12:57,411] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:12:59,570] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2004
+[2025-05-05 12:13:07,752] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:13:08,232] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:13:12,473] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:13:15,017] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2001
+[2025-05-05 12:13:54,785] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:13:55,199] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:13:57,889] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:13:59,490] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2004
+[2025-05-05 12:14:08,860] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:14:09,286] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:14:11,918] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:14:13,547] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2000
+[2025-05-05 12:14:27,102] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:14:27,664] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:14:29,747] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:14:30,949] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2001
+[2025-05-05 12:14:38,250] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:14:38,642] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:14:47,850] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:14:50,336] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 2000
+[2025-05-05 12:15:09,758] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:15:10,167] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:16:31,319] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:16:31,735] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:16:45,348] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:16:45,771] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:16:49,896] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:16:51,760] ERROR django.request Internal Server Error: /transactions/transaction/6/lab/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py", line 279, in transaction_lab_pdf
+    p.drawImage(
+UnboundLocalError: local variable 'p' referenced before assignment
+[2025-05-05 12:16:51,761] ERROR django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 500 61475
+[2025-05-05 12:17:56,729] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:17:57,162] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:18:28,161] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:18:28,590] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:18:33,233] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:18:34,702] ERROR django.request Internal Server Error: /transactions/transaction/6/lab/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 523, in open_for_read
+    return open_for_read_by_name(name,mode)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 463, in open_for_read_by_name
+    return open(name,mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/static/mdc_app/static/images/mdc_logo.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 530, in open_for_read
+    return BytesIO((datareader if name[:5].lower()=='data:' else rlUrlRead)(name))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 476, in rlUrlRead
+    return urlopen(name).read()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/urllib/request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/urllib/request.py", line 509, in open
+    req = Request(fullurl, data)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/urllib/request.py", line 328, in __init__
+    self.full_url = url
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/urllib/request.py", line 354, in full_url
+    self._parse()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/urllib/request.py", line 383, in _parse
+    raise ValueError("unknown url type: %r" % self.full_url)
+ValueError: unknown url type: '/static/mdc_app/static/images/mdc_logo.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 643, in __init__
+    fp = open_for_read(fileName,'b')
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 534, in open_for_read
+    return open_for_read(name,mode)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 532, in open_for_read
+    raise IOError('Cannot open resource "%s"' % name)
+OSError: Cannot open resource "/static/mdc_app/static/images/mdc_logo.jpg"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py", line 284, in transaction_lab_pdf
+    ImageReader(logo_path),
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 655, in __init__
+    annotateException('\nfileName=%r identity=%s'%(fileName,self.identity()))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 1176, in annotateException
+    rl_reraise(t,t(sep.join((_ for _ in (msg,str(v),postMsg) if _))),b)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 138, in rl_reraise
+    raise v.with_traceback(b)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 643, in __init__
+    fp = open_for_read(fileName,'b')
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 534, in open_for_read
+    return open_for_read(name,mode)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/reportlab/lib/utils.py", line 532, in open_for_read
+    raise IOError('Cannot open resource "%s"' % name)
+OSError: 
+fileName='/static/mdc_app/static/images/mdc_logo.jpg' identity=[ImageReader@0x1190e2ca0 filename='/static/mdc_app/static/images/mdc_logo.jpg'] Cannot open resource "/static/mdc_app/static/images/mdc_logo.jpg"
+[2025-05-05 12:18:34,704] ERROR django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 500 142534
+[2025-05-05 12:19:11,027] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:19:11,431] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:19:12,712] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:19:13,022] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:19:30,694] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:19:31,072] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:19:51,813] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:19:52,225] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:19:55,655] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:19:57,607] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54411
+[2025-05-05 12:20:52,130] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:20:52,562] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:20:55,396] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:20:57,727] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:21:19,677] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:21:20,110] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:21:29,595] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 12:21:30,822] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:21:55,381] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:21:55,809] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:21:58,287] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:22:20,984] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:22:21,408] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:23:00,703] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:23:01,335] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:23:02,274] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:23:13,012] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:23:13,457] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:23:15,363] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:23:20,931] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:23:21,379] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:23:22,897] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:23:38,139] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:23:38,548] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:23:39,927] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:23:41,048] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:23:56,462] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:23:56,911] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:23:57,584] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:24:14,657] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:24:15,063] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:24:30,234] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:24:44,094] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:24:44,500] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:24:46,366] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:25:16,601] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:25:17,071] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:25:18,346] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:25:38,909] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:25:39,320] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:25:40,567] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:25:47,861] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:25:48,327] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:25:49,637] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:25:58,930] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:25:59,327] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:26:01,392] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:26:19,154] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:26:19,574] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:26:21,757] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:26:55,924] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:26:56,480] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:26:57,381] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:27:08,125] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:27:08,981] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:27:11,353] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54413
+[2025-05-05 12:27:35,491] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:27:36,014] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:27:40,436] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:27:40,827] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:27:42,697] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:27:54,512] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:27:55,082] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:27:56,888] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
+[2025-05-05 12:28:13,954] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 12:28:14,546] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 12:28:15,680] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54414
