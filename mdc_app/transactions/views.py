@@ -438,33 +438,40 @@ def get_manila_date():
     return timezone.now().astimezone(pytz.timezone('Asia/Manila')).date()
 
 @method_decorator(login_required, name='dispatch')
-class TransactionPhilhealthListView(ListView):
-    """
-    Lists transactions that are marked as Philhealth AND Philhealth-free.
-    If ?date=YYYY-MM-DD is provided, filters transaction_date to that date (Manila time).
-    """
+class TransactionFilteredReportView(ListView):
     model = Transaction
     template_name = 'transactions/report_home.html'
     context_object_name = 'transactions'
     ordering = ['-transaction_date', '-transaction_time']
 
     def get_queryset(self):
-        date_str = self.request.GET.get('date')
-        if date_str:
-            try:
-                filter_date = datetime.strptime(date_str, '%Y-%m-%d').date()
-            except ValueError:
-                filter_date = get_manila_date()
-        else:
-            filter_date = get_manila_date()
+        qs = super().get_queryset()
+        q_date_start = self.request.GET.get('start_date')
+        q_date_end   = self.request.GET.get('end_date')
+        payment_type = self.request.GET.get('payment_type')
 
-        return Transaction.objects.filter(
-            transaction_date=filter_date
-        ).filter(
-            Q(is_philhealth=True) | Q(is_philhealth_free=True)
-        )
+        if q_date_start and q_date_end:
+            try:
+                date_start = datetime.strptime(q_date_start, '%Y-%m-%d').date()
+                date_end = datetime.strptime(q_date_end, '%Y-%m-%d').date()
+                qs = qs.filter(transaction_date__range=(date_start, date_end))
+            except ValueError:
+                pass
+        elif q_date_start:
+            try:
+                date_start = datetime.strptime(q_date_start, '%Y-%m-%d').date()
+                qs = qs.filter(transaction_date=date_start)
+            except ValueError:
+                pass
+
+        if payment_type in ['Cash', 'Charged']:
+            qs = qs.filter(payment_type__iexact=payment_type)
+
+        return qs
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['selected_date'] = self.request.GET.get('date', get_manila_date().isoformat())
+        ctx['start_date'] = self.request.GET.get('start_date', '')
+        ctx['end_date'] = self.request.GET.get('end_date', '')
+        ctx['payment_type'] = self.request.GET.get('payment_type', '')
         return ctx

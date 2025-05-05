@@ -2843,3 +2843,35 @@ TypeError: transaction_lab_pdf() missing 1 required positional argument: 'pk'
 [2025-05-05 10:27:32,627] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
 [2025-05-05 10:27:32,663] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
 [2025-05-05 10:27:34,215] INFO django.server "GET / HTTP/1.1" 200 8972
+[2025-05-05 11:02:25,005] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 11:03:10,292] INFO django.server "GET /transactions/reports/?active_tab=transactions&date=2025-05-05 HTTP/1.1" 200 26190
+[2025-05-05 11:03:17,468] INFO django.server - Broken pipe from ('127.0.0.1', 51777)
+[2025-05-05 11:03:30,015] INFO django.server "GET /transactions/reports/?start_date=2025-05-06&end_date=2025-05-07&payment_type=Charged HTTP/1.1" 200 26190
+[2025-05-05 11:05:58,653] INFO django.server "GET /transactions/reports/?start_date=2025-05-06&end_date=2025-05-07&payment_type=Charged HTTP/1.1" 200 12588
+[2025-05-05 11:06:01,020] INFO django.server "GET /transactions/reports/?start_date=2025-05-06&end_date=2025-05-07&payment_type=Charged HTTP/1.1" 200 12588
+[2025-05-05 11:06:40,434] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type=Charged HTTP/1.1" 200 12588
+[2025-05-05 11:06:43,539] INFO django.server "GET /transactions/reports/?start_date=&end_date=&payment_type=Charged HTTP/1.1" 200 12588
+[2025-05-05 11:08:06,648] INFO django.server "GET /transactions/reports/?start_date=&end_date=&payment_type=Charged HTTP/1.1" 200 20604
+[2025-05-05 11:08:08,281] INFO django.server "GET /transactions/reports/?start_date=&end_date=&payment_type=Charged HTTP/1.1" 200 20604
+[2025-05-05 11:08:08,830] INFO django.server "GET /transactions/reports/?start_date=&end_date=&payment_type=Charged HTTP/1.1" 200 20604
+[2025-05-05 11:08:09,028] INFO django.server "GET /transactions/reports/?start_date=&end_date=&payment_type=Charged HTTP/1.1" 200 20604
+[2025-05-05 11:08:16,753] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type=Charged HTTP/1.1" 200 20604
+[2025-05-05 11:10:49,234] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-05 11:10:49,704] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 11:11:10,353] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/urls.py changed, reloading.
+[2025-05-05 11:11:10,736] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 11:11:19,899] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type=Charged HTTP/1.1" 200 16184
+[2025-05-05 11:11:29,634] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type=Cash HTTP/1.1" 200 19341
+[2025-05-05 11:33:41,238] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type=Cash HTTP/1.1" 200 21869
+[2025-05-05 11:35:02,523] INFO django.server - Broken pipe from ('127.0.0.1', 53924)
+[2025-05-05 11:35:08,004] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type= HTTP/1.1" 200 23728
+[2025-05-05 11:35:13,197] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type=Charged HTTP/1.1" 200 18712
+[2025-05-05 11:36:54,793] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type=Charged HTTP/1.1" 200 19593
+[2025-05-05 11:38:15,353] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 200 41664
+[2025-05-05 11:38:26,233] INFO django.server "GET /transactions/reports/?start_date=2025-05-05&end_date=2025-05-05&payment_type= HTTP/1.1" 200 24609
+[2025-05-05 11:38:35,061] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 11:38:41,631] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 24589
+[2025-05-05 11:39:17,474] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 22196
+[2025-05-05 11:39:18,926] INFO django.server "GET /transactions/transaction/5/ HTTP/1.1" 200 5656
+[2025-05-05 11:39:24,839] INFO django.server "GET / HTTP/1.1" 200 8972
+[2025-05-05 11:39:53,630] INFO django.server "GET /transactions/reports/ HTTP/1.1" 200 24589
