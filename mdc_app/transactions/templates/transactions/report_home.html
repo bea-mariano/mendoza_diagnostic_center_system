@@ -212,6 +212,10 @@
           <button type="submit" class="btn">Filter</button>
         </form>
 
+        <div style="text-align: right; margin-bottom: 10px;">
+          <button class="btn btn-print" onclick="printPhilhealthReport()">Print Philhealth Report</button>
+        </div>        
+
         {% if transactions %}
         <table>
           <thead>
@@ -244,6 +248,8 @@
               data-discount-rate="₱ {{ transaction.discount_rate }}"
               data-transaction-total="₱ {{ transaction.transaction_total }}"
               data-discounted-total="₱ {{ transaction.discounted_total }}"
+              data-is-philhealth="{{ transaction.is_philhealth }}"
+              data-is-philhealth-free="{{ transaction.is_philhealth_free }}"
               data-test-details="{% for tt in transaction.transaction_tests.all %}{{ tt.test.test_name }} - ₱{{ tt.test_price }}{% if not forloop.last %}, {% endif %}{% endfor %}"
             >
               <td>
@@ -388,6 +394,78 @@
         modal.style.display = "none";
       }
     };
+
+    window.printPhilhealthReport = function () {
+    const logoUrl = "{% static 'images/mdc_logo.jpg' %}";
+    const rows = document.querySelectorAll('#pane-transactions tbody tr');
+
+    let html = `
+      <div style='text-align:center; margin-bottom:10px;'>
+        <img src='${logoUrl}' style='width:60px; height:auto;'>
+        <h2 style='margin:5px 0;'>Mendoza Diagnostic Center</h2>
+        <h3 style='margin:5px 0;'>Philhealth Transactions Report</h3>
+        <p>Date: {{ selected_date }}</p>
+      </div>
+      <table style='width:100%; border-collapse:collapse; font-size:12px;'>
+        <thead>
+          <tr style='background:#007BFF; color:#fff;'>
+            <th style='padding:6px; border:1px solid #ccc;'>Txn ID</th>
+            <th style='padding:6px; border:1px solid #ccc;'>Date</th>
+            <th style='padding:6px; border:1px solid #ccc;'>Patient</th>
+            <th style='padding:6px; border:1px solid #ccc;'>Philhealth Type</th>
+            <th style='padding:6px; border:1px solid #ccc;'>Discount</th>
+            <th style='padding:6px; border:1px solid #ccc;'>Discounted Total</th>
+            <th style='padding:6px; border:1px solid #ccc;'>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    rows.forEach(row => {
+      html += `
+        <tr>
+          <td style='padding:6px; border:1px solid #ccc;'>${row.dataset.transactionId}</td>
+          <td style='padding:6px; border:1px solid #ccc;'>${row.dataset.transactionDate}</td>
+          <td style='padding:6px; border:1px solid #ccc;'>${row.dataset.patientName}</td>
+          <td style='padding:6px; border:1px solid #ccc;'>
+            ${row.dataset.isPhilhealth?.toLowerCase() === "true" ? "Philhealth" : ""}
+            ${row.dataset.isPhilhealthFree?.toLowerCase() === "true" 
+              ? (row.dataset.isPhilhealth?.toLowerCase() === "true" ? "<br>" : "") + "Philhealth Free" 
+              : ""}
+          </td>
+          <td style='padding:6px; border:1px solid #ccc;'>${row.dataset.discountRate}</td>
+          <td style='padding:6px; border:1px solid #ccc;'>${row.dataset.discountedTotal}</td>
+          <td style='padding:6px; border:1px solid #ccc;'>${row.dataset.transactionStatus}</td>
+        </tr>`;
+
+        console.log("Transaction", row.dataset.transactionId)
+        console.log("Philhealth", row.dataset.isPhilhealth)
+        console.log("Philhealth Free", row.dataset.isPhilhealthFree)
+    });
+
+    html += `</tbody></table>`;
+
+    const reportWindow = window.open('', '_blank', 'width=800,height=1000');
+    reportWindow.document.write(`
+      <html>
+        <head>
+          <title>Philhealth Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
+            th { background-color: #007BFF; color: white; }
+          </style>
+        </head>
+        <body>${html}</body>
+      </html>
+    `);
+    reportWindow.document.close();
+    reportWindow.focus();
+    reportWindow.print();
+    reportWindow.close();
+  };
+
   });
 </script>
 {% endblock %}
