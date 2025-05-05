@@ -18,6 +18,7 @@ from reportlab.lib     import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen  import canvas
 from reportlab.platypus import Table, TableStyle
+from django.contrib.staticfiles import finders
 
 from .models import Transaction
 
@@ -261,6 +262,9 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen  import canvas
 from reportlab.platypus import Table, TableStyle
 
+from django.templatetags.static import static
+from reportlab.lib.utils import ImageReader
+
 from .models import Transaction
 
 def transaction_lab_pdf(request, pk):
@@ -273,15 +277,32 @@ def transaction_lab_pdf(request, pk):
     avail   = width - 2*margin
     gap     = 6
 
+    # Add logo after canvas is created
+    # Use Django staticfiles finders to get the full file path
+    logo_path = finders.find("images/mdc_logo.jpg")  # adjust if your path differs
+
+    logo_width = 50
+    logo_height = 50
+    if logo_path:
+        p.drawImage(
+            ImageReader(logo_path),
+            x=margin,
+            y=height - (margin+15),
+            width=40,
+            height=40,
+            preserveAspectRatio=True,
+            mask='auto'
+        )
+
+
     # Header
     y = height - margin
     p.setFont("Helvetica-Bold", 12)
-    p.drawString(margin, y, "Mendoza Diagnostic Center")
+    p.drawString(margin + 50, y, "Mendoza Diagnostic Center")
     p.setFont("Helvetica", 10)
-    p.drawString(margin, y - 15, "Laboratory Working Paper")
+    p.drawString(margin + 50, y - 15, "Laboratory Working Paper")
     p.line(margin, y - 20, width - margin, y - 20)
 
-    # Prep data
     dob     = txn.patient.date_of_birth
     tx_date = txn.transaction_date
     age     = (
@@ -307,6 +328,7 @@ def transaction_lab_pdf(request, pk):
 
     # Start drawing groups below header
     y -= 30
+    row_spacing = -3
 
     # --- Group 1: Transaction ID (60%) | Date (20%) ---
     tx_w   = avail * 0.6
@@ -324,7 +346,7 @@ def transaction_lab_pdf(request, pk):
     x_dt = margin + tx_w + gap
     tbl_dt.wrapOn(p, x_dt, y)
     tbl_dt.drawOn(p, x_dt, y - tbl_dt._height)
-    y -= tbl_tx._height + 5
+    y -= tbl_tx._height + row_spacing
 
     # --- Group 2: Patient ID (60%) | Gender (20%) ---
     tbl_pid = Table([[ "Patient ID", f":    {str(txn.patient.id)}" ]],
@@ -338,7 +360,7 @@ def transaction_lab_pdf(request, pk):
     tbl_gn.setStyle(basic_style)
     tbl_gn.wrapOn(p, margin+tx_w+gap, y)
     tbl_gn.drawOn(p, margin+tx_w+gap, y - tbl_gn._height)
-    y -= tbl_pid._height + 5
+    y -= tbl_pid._height + row_spacing
 
     # --- Group 3: Name (60%) | Age (20%) ---
     tbl_nm = Table([[ "Name", f":    {name}" ]],
@@ -352,7 +374,7 @@ def transaction_lab_pdf(request, pk):
     tbl_ag.setStyle(basic_style)
     tbl_ag.wrapOn(p, margin+tx_w+gap, y)
     tbl_ag.drawOn(p, margin+tx_w+gap, y - tbl_ag._height)
-    y -= tbl_nm._height + 5
+    y -= tbl_nm._height + row_spacing
 
     # --- Group 4: Birthdate (60%) | Contact No. (20%) ---
     tbl_bd = Table([[ "Birthdate", f""":    {dob.strftime("%Y-%m-%d")}""" ]],
@@ -366,7 +388,22 @@ def transaction_lab_pdf(request, pk):
     tbl_cn.setStyle(basic_style)
     tbl_cn.wrapOn(p, margin+tx_w+gap, y)
     tbl_cn.drawOn(p, margin+tx_w+gap, y - tbl_cn._height)
-    y -= tbl_bd._height + 5
+    y -= tbl_bd._height + row_spacing
+
+    # --- Group 6: Package Name (60%) | Company (20%) ---
+    tbl_pkg = Table([[ "Package Name", f":    {txn.transaction_purpose}" ]],
+                    colWidths=[tx_w * 0.25, tx_w * 0.75])
+    tbl_pkg.setStyle(basic_style)
+    tbl_pkg.wrapOn(p, margin, y)
+    tbl_pkg.drawOn(p, margin, y - tbl_pkg._height)
+
+    tbl_cmp = Table([[ "Company", f":    {txn.company.company_name}" ]],
+                    colWidths=[date_w * 0.3, date_w * 0.7])
+    tbl_cmp.setStyle(basic_style)
+    tbl_cmp.wrapOn(p, margin + tx_w + gap, y)
+    tbl_cmp.drawOn(p, margin + tx_w + gap, y - tbl_cmp._height)
+    y -= tbl_cmp._height + row_spacing
+
 
     # --- Group 5: Address full width (100%) ---
     tbl_ad = Table([[ "Address", f":    {addr}" ]],
@@ -374,28 +411,7 @@ def transaction_lab_pdf(request, pk):
     tbl_ad.setStyle(basic_style)
     tbl_ad.wrapOn(p, margin, y)
     tbl_ad.drawOn(p, margin, y - tbl_ad._height)
-    y -= tbl_ad._height + 20
-
-    # --- Group 6: Package Name (60%) | Company (20%) (no borders, no background) ---
-    
-
-    tbl_bd = Table(
-        [[ "PACKAGE NAME:", txn.transaction_purpose ]],
-        colWidths=[tx_w * 0.30, tx_w * 0.70]
-    )
-    tbl_bd.setStyle(basic_style)
-    tbl_bd.wrapOn(p, margin, y)
-    tbl_bd.drawOn(p, margin, y - tbl_bd._height)
-
-    tbl_cn = Table(
-        [[ "COMPANY:", txn.company.company_name ]],
-        colWidths=[date_w * 0.3, date_w * 0.7]
-    )
-    tbl_cn.setStyle(basic_style)
-    tbl_cn.wrapOn(p, margin + tx_w + gap, y)
-    tbl_cn.drawOn(p, margin + tx_w + gap, y - tbl_cn._height)
-    y -= tbl_cn._height + 5
-
+    y -= tbl_ad._height + row_spacing + 10
 
     # --- Tests (names only, no borders, no header) ---
     tests_data = [
@@ -406,7 +422,7 @@ def transaction_lab_pdf(request, pk):
     tbl_tests = Table(tests_data, colWidths=[avail])
     tbl_tests.setStyle(TableStyle([
         ("FONT",       (0, 0), (-1, -1), "Helvetica", 7),
-        # no GRID, no BACKGROUND
+        ("TEXTCOLOR",  (0, 0), (-1, -1), colors.red),
     ]))
     tbl_tests.wrapOn(p, margin, y)
     tbl_tests.drawOn(p, margin, y - tbl_tests._height)
