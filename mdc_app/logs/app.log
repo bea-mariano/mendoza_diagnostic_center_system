@@ -3119,3 +3119,138 @@ fileName='/static/mdc_app/static/images/mdc_logo.jpg' identity=[ImageReader@0x11
 [2025-05-05 13:52:02,237] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
 [2025-05-05 13:52:02,735] INFO django.utils.autoreload Watching for file changes with StatReloader
 [2025-05-05 13:52:05,039] INFO django.server "GET /transactions/transaction/6/lab/ HTTP/1.1" 200 54423
+[2025-05-05 21:40:50,242] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 21:41:30,957] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 21:41:52,925] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 21:42:01,568] INFO django.server "GET / HTTP/1.1" 302 0
+[2025-05-05 21:42:01,691] INFO django.server "GET /accounts/login/?next=/ HTTP/1.1" 200 1862
+[2025-05-05 21:42:03,247] ERROR django.request Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: auth_user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\User\Documents\octo_avenue\mendoza_diagnostic_center_system\mdc_app\accounts\views.py", line 21, in login_view
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\forms\forms.py", line 206, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\forms\forms.py", line 201, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\forms\forms.py", line 338, in full_clean
+    self._clean_form()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\forms\forms.py", line 354, in _clean_form
+    cleaned_data = self.clean()
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\forms.py", line 366, in clean
+    self.user_cache = authenticate(
+                      ~~~~~~~~~~~~^
+        self.request, username=username, password=password
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\__init__.py", line 114, in authenticate
+    user = backend.authenticate(request, **credentials)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\backends.py", line 65, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\base_user.py", line 37, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 629, in get
+    num = len(clone)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1935, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: auth_user
+[2025-05-05 21:42:03,260] ERROR django.server "POST /accounts/login/?next=/ HTTP/1.1" 500 183340
+[2025-05-05 21:43:20,675] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-05 21:43:25,499] INFO django.server "GET / HTTP/1.1" 302 0
+[2025-05-05 21:43:25,514] INFO django.server "GET /accounts/login/?next=/ HTTP/1.1" 200 1862
+[2025-05-05 21:43:29,424] INFO django.server "POST /accounts/login/?next=/ HTTP/1.1" 302 0
+[2025-05-05 21:43:29,504] INFO django.server "GET /patient/list/ HTTP/1.1" 200 5973
+[2025-05-05 21:43:32,023] INFO django.server "GET /patient/new/ HTTP/1.1" 200 4989
+[2025-05-05 21:43:46,458] INFO mdc_app Patient CREATED by user='mapleshield': id=1, name=ALBERT SANTOS
+[2025-05-05 21:43:46,462] INFO django.server "POST /patient/new/ HTTP/1.1" 200 5244
+[2025-05-05 21:43:51,370] INFO django.server "GET / HTTP/1.1" 200 8759
+[2025-05-05 21:43:51,558] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 200 41664
+[2025-05-05 21:43:53,771] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11445
+[2025-05-05 21:43:54,756] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26163
+[2025-05-05 21:44:08,628] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11445
+[2025-05-05 21:44:09,791] INFO django.server "GET /companies/company/list/ HTTP/1.1" 200 6111
+[2025-05-05 21:44:12,882] INFO django.server "GET /companies/company/new/ HTTP/1.1" 200 5114
+[2025-05-05 21:44:20,242] INFO django.server "POST /companies/company/new/ HTTP/1.1" 200 5374
+[2025-05-05 21:44:21,031] INFO django.server "GET / HTTP/1.1" 200 8759
+[2025-05-05 21:44:22,091] INFO django.server "GET /tests/test/list/ HTTP/1.1" 200 6138
+[2025-05-05 21:44:22,896] INFO django.server "GET /tests/test/new/ HTTP/1.1" 200 3381
+[2025-05-05 21:44:28,525] INFO django.server "POST /tests/test/new/ HTTP/1.1" 200 3945
+[2025-05-05 21:44:29,576] INFO django.server "GET / HTTP/1.1" 200 8759
+[2025-05-05 21:44:30,581] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11445
+[2025-05-05 21:44:31,322] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26479
+[2025-05-05 21:44:41,972] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 16
+[2025-05-05 21:44:41,987] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-05 21:44:45,473] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11445
+[2025-05-05 21:44:47,629] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 6029
+[2025-05-05 21:44:48,490] INFO django.server "GET /setpackages/setpackages/new/ HTTP/1.1" 200 3688
+[2025-05-05 21:44:55,510] INFO django.server "POST /setpackages/setpackages/new/ HTTP/1.1" 302 0
+[2025-05-05 21:44:55,529] INFO django.server "GET /setpackages/setpackages/list/ HTTP/1.1" 200 7147
+[2025-05-05 21:44:57,386] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 11445
+[2025-05-05 21:44:58,124] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26479
+[2025-05-05 21:45:04,181] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-05 21:45:04,182] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 22
+[2025-05-05 21:45:05,091] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/PEME/ HTTP/1.1" 200 16
+[2025-05-05 21:45:05,099] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=PEME&company_id=1 HTTP/1.1" 200 22
+[2025-05-05 21:45:13,572] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-05 21:45:13,594] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 13746
