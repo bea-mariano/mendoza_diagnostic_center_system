@@ -221,8 +221,8 @@
               <th>Date</th>
               <th>Patient</th>
               <th style="width:6%;">Philhealth Type</th>
-              <th style="width:6%;">Type</th>
-              <th style="width:25%;">Package</th>
+              <th style="width:6%;">Discount</th>
+              <th style="width:25%;">Discounted Total</th>
               <th>Status</th>
               {% comment %} <th>Actions</th> {% endcomment %}
             </tr>
@@ -254,9 +254,17 @@
               <td class="col-transaction-id">{{ transaction.id }}</td>
               <td>{{ transaction.transaction_date }}</td>
               <td>{{ transaction.patient.last_name }}, {{ transaction.patient.first_name }}</td>
-              <td>{{ transaction.payment_type }}</td>
-              <td>{{ transaction.transaction_type }}</td>
-              <td>{{ transaction.transaction_purpose }}</td>
+              <td>
+                {% if transaction.is_philhealth %}
+                  Philhealth
+                {% endif %}
+                {% if transaction.is_philhealth_free %}
+                  {% if transaction.is_philhealth %}<br>{% endif %}
+                  Philhealth Free
+                {% endif %}
+              </td>
+              <td>{{ transaction.discount_rate }}</td>
+              <td>{{ transaction.discounted_total }}</td>
               <td id="transaction-status-{{ transaction.id }}">{{ transaction.transaction_status }}</td>
               {% comment %} <td style="text-align:right;">
                 <div class="action-group">
