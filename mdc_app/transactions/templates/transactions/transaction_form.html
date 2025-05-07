@@ -394,10 +394,13 @@
                 const companyId = companySelect.value;
         
                 // always reset transactional fields first
-                updateTransactionTotal(null);
-                updateDiscountRate();
-                updateDiscountedTotal();
-        
+                if (!isEdit) {
+                    // only reset totals if it's a new transaction
+                    updateTransactionTotal(null);
+                    updateDiscountRate();
+                    updateDiscountedTotal();
+                }
+
                 if (!(purpose && companyId)) return;
         
                 // 1) get tests + exclusion_amount

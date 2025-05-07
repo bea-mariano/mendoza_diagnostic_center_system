@@ -3363,3 +3363,6 @@ django.db.utils.OperationalError: no such table: auth_user
 [2025-05-07 09:12:33,791] INFO django.server "GET /transactions/transaction/12/edit/ HTTP/1.1" 200 26743
 [2025-05-07 09:12:33,812] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
 [2025-05-07 09:12:36,986] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-07 09:15:59,684] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-07 09:16:02,405] INFO django.server "GET /transactions/transaction/12/edit/ HTTP/1.1" 200 26863
+[2025-05-07 09:16:02,455] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
