@@ -299,20 +299,24 @@
             function updateDiscountRate() {
                 const base = parseInt(transactionTotalField.value, 10) || 0;
                 let rate = 0;
-            
+
                 if (phFree.checked) {
-                  // Philhealth Free = entire bill
-                  rate = base;
-                } else if (ph500.checked) {
-                  if (ph500.checked) rate += 500;
-                  if (scBox.checked || pwdBox.checked) rate += Math.round(base * 0.2);
-                } else if (ph700.checked) {
+                    // Philhealth Free = entire bill
+                    rate = base;
+                } else {
+                    // Apply PhilHealth discount if selected
+                    if (ph500.checked) rate += 500;
                     if (ph700.checked) rate += 700;
-                    if (scBox.checked || pwdBox.checked) rate += Math.round(base * 0.2);
-                  }
-            
+
+                    // Apply additional SC/PWD 20% discount
+                    if (scBox.checked || pwdBox.checked) {
+                        rate += Math.round(base * 0.2);
+                    }
+                }
+
                 discountRateField.value = rate;
-              }
+            }
+
 
         
             function updateDiscountedTotal() {

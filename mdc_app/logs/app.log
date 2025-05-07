@@ -3280,3 +3280,13 @@ django.db.utils.OperationalError: no such table: auth_user
 [2025-05-05 22:26:56,605] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 14788
 [2025-05-05 22:27:48,458] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 14890
 [2025-05-05 22:28:57,138] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 15109
+[2025-05-07 08:04:08,388] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-07 08:04:18,013] INFO django.server "GET / HTTP/1.1" 200 8759
+[2025-05-07 08:04:18,033] INFO django.server "GET /static/images/mdc_logo.jpg HTTP/1.1" 304 0
+[2025-05-07 08:04:18,187] WARNING django.request Not Found: /favicon.ico
+[2025-05-07 08:04:18,188] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 3879
+[2025-05-07 08:04:20,215] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 26325
+[2025-05-07 08:04:21,323] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26862
+[2025-05-07 08:04:30,117] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-07 08:04:30,120] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-07 08:04:31,531] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
