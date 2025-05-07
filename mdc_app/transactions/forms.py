@@ -17,7 +17,7 @@ class TransactionForm(forms.ModelForm):
 
     class Meta:
         model = Transaction
-        exclude = ['discount_type']  # remove the old dropdown
+        # exclude = ['discount_type']  # remove the old dropdown
         fields = [
             'patient', 
             'address', 
@@ -30,7 +30,7 @@ class TransactionForm(forms.ModelForm):
             'has_drug_test', 
             'custody_control_form_submitted', 
             'transaction_status', 
-            'discount_type', 
+            # 'discount_type', 
             'discount_rate',
             'discounted_total', 
             'transaction_total'

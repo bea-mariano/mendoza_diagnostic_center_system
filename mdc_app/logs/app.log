@@ -3290,3 +3290,69 @@ django.db.utils.OperationalError: no such table: auth_user
 [2025-05-07 08:04:30,117] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
 [2025-05-07 08:04:30,120] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
 [2025-05-07 08:04:31,531] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-07 08:44:13,939] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-07 08:44:20,820] INFO django.server "GET / HTTP/1.1" 200 8759
+[2025-05-07 08:44:21,104] WARNING django.request Not Found: /favicon.ico
+[2025-05-07 08:44:21,104] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 3879
+[2025-05-07 08:44:23,212] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26862
+[2025-05-07 08:44:35,526] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-07 08:44:35,528] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-07 08:44:36,589] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-07 08:44:45,665] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 200 27047
+[2025-05-07 08:44:45,683] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-07 08:44:58,373] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/forms.py changed, reloading.
+[2025-05-07 08:44:58,769] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-07 08:45:10,565] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-07 08:45:10,599] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 28563
+[2025-05-07 08:45:11,882] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26862
+[2025-05-07 08:45:23,325] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-07 08:45:23,327] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-07 08:45:25,074] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-07 08:45:33,908] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-07 08:45:33,943] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 30800
+[2025-05-07 08:48:50,599] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-07 08:48:50,996] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-07 08:49:14,673] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-07 08:49:15,030] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-07 08:49:22,078] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26862
+[2025-05-07 08:49:34,939] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-07 08:49:34,942] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-07 08:49:36,470] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-07 08:49:45,425] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-07 08:49:45,469] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 33043
+[2025-05-07 08:49:55,962] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 33043
+[2025-05-07 08:49:56,509] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 33043
+[2025-05-07 08:49:56,661] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 33043
+[2025-05-07 08:49:56,793] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 33043
+[2025-05-07 08:49:56,891] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 33043
+[2025-05-07 08:49:57,669] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26862
+[2025-05-07 08:50:05,321] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-07 08:50:05,324] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-07 08:50:06,618] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-07 08:50:15,823] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-07 08:50:15,861] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 35286
+[2025-05-07 08:51:54,382] INFO django.utils.autoreload /Users/thirdstreetstudios/Desktop/github_repositories/mendoza_diagnostic_center_system/mdc_app/transactions/views.py changed, reloading.
+[2025-05-07 08:51:54,784] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-07 08:51:59,997] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 35286
+[2025-05-07 08:52:01,041] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26862
+[2025-05-07 08:52:11,286] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-07 08:52:11,288] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-07 08:52:12,421] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-07 08:52:21,719] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-07 08:52:21,764] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 37511
+[2025-05-07 08:54:47,417] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 37511
+[2025-05-07 08:54:48,585] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26874
+[2025-05-07 08:54:58,302] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-07 08:54:58,305] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 29
+[2025-05-07 08:54:59,883] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/CUSTOM%20TEST/ HTTP/1.1" 200 16
+[2025-05-07 08:55:08,801] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-07 08:55:08,846] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39751
+[2025-05-07 08:55:18,150] INFO django.server "GET /transactions/transaction/12/ HTTP/1.1" 200 5664
+[2025-05-07 08:55:35,302] INFO django.server "GET /transactions/transaction/12/edit/ HTTP/1.1" 200 26926
+[2025-05-07 08:55:40,321] INFO django.server "POST /transactions/transaction/12/edit/ HTTP/1.1" 302 0
+[2025-05-07 08:55:40,364] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39751
+[2025-05-07 08:55:41,694] INFO django.server "GET /transactions/transaction/12/ HTTP/1.1" 200 5668
+[2025-05-07 08:55:50,681] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39751
+[2025-05-07 08:59:47,647] INFO django.server "GET /transactions/transaction/12/edit/ HTTP/1.1" 200 26926
+[2025-05-07 09:04:20,679] INFO django.server "GET /transactions/transaction/12/edit/ HTTP/1.1" 200 26926
+[2025-05-07 09:04:22,408] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 42012
