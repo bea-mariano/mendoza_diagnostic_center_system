@@ -490,11 +490,7 @@
             });
         
             // --- 9) Initial load: only on CREATE pages ---
-            const isEdit = !!document.querySelector("form").dataset.pk;
-            if (!isEdit) {
-                // on a NEW transaction we need to load package → tests → promoPrice → recalc
-                reloadPurposes();
-            }
+            reloadPurposes();  // run this regardless of isEdit
 
             // --- MUTUALLY EXCLUSIVE: Philhealth vs Philhealth Free ---
 
