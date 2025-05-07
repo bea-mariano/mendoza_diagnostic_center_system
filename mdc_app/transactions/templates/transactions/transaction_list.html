@@ -238,6 +238,10 @@
         data-discount-rate="₱ {{ t.discount_rate }}"
         data-transaction-total="₱ {{ t.transaction_total }}"
         data-discounted-total="₱ {{ t.discounted_total }}"
+        data-is-philhealth="{{ t.is_philhealth }}"
+        data-is-philhealth-free="{{ t.is_philhealth_free }}"
+        data-is-senior-citizen="{{ t.is_senior_citizen }}"
+        data-is-pwd="{{ t.is_pwd }}"
       >
         <td>
           <a href="{% url 'transaction_detail' t.id %}" class="btn-view btn-action" title="View">
@@ -318,43 +322,61 @@
 <script>
   const logoUrl = "{% static 'images/mdc_logo.jpg' %}";
 
-  function printAcknowledgementReceipt(transactionId) {
-    const row = document.querySelector(`tr[data-transaction-id="${transactionId}"]`);
-    if (!row) return;
-
-    let html = "<div style='font-family:\"Courier New\",monospace;font-size:14px;line-height:1.2;'>";
-    html += "<div style='text-align:center;margin-bottom:5px;'><img src='" + logoUrl + "' style='width:50px;'></div>";
-    html += "<div style='text-align:center;font-weight:bold;'>Mendoza Diagnostic Center</div>";
-    html += "<div style='text-align:center;margin-bottom:10px;'>Acknowledgement Receipt</div>";
-
-    html += `<strong>Transaction ID: ${row.getAttribute("data-transaction-id")}</strong><br>`;
-    html += `<strong>Patient Name: ${row.getAttribute("data-patient-name")}</strong><br>`;
-    html += `<strong>Contact Number: ${row.getAttribute("data-contact")}</strong><br>`;
-    html += `<strong>Company: ${row.getAttribute("data-company")}</strong><br>`;
-    html += `<strong>Package Name: ${row.getAttribute("data-purpose")}</strong><br>`;
-    html += `<strong>Date: ${row.getAttribute("data-transaction-date")} ${row.getAttribute("data-transaction-time")}</strong><br><br>`;
-
-    const tests = row.getAttribute("data-test-details");
-    if (tests) {
-      html += "<strong>Tests:</strong><br>";
-      tests.split(",").forEach(item => {
-        const [n,p] = item.split(" - ");
-        html += `<strong>• ${n.trim()} — ${p.trim()}<br></strong>`;
-      });
-      html += "<br>";
-    }
-
-    html += "<strong>Payment:</strong><br>";
-    html += `<strong>Type: ${row.getAttribute("data-payment-type")}</strong><br>`;
-    html += `<strong>Txn Type: ${row.getAttribute("data-transaction-type")}</strong><br>`;
-    html += `<strong>Discount: ${row.getAttribute("data-discount-type")} (${row.getAttribute("data-discount-rate")})</strong><br>`;
-    html += `<strong>Total: ${row.getAttribute("data-transaction-total")}</strong><br>`;
-    html += `<strong>Paid: ${row.getAttribute("data-discounted-total")}</strong><br>`;
-    html += "</div>";
-
-    document.getElementById("receiptDetails").innerHTML = html;
-    document.getElementById("receiptModal").style.display = "block";
+  function getDiscountLabel(row) {
+      if (row.dataset.isPhilhealthFree === "True") {
+          return "Philhealth Free";
+      } else if (row.dataset.isPhilhealth === "True") {
+          return "Philhealth";
+      } else if (row.dataset.isSeniorCitizen === "True") {
+          return "Senior Citizen";
+      } else if (row.dataset.isPwd === "True") {
+          return "PWD";
+      } else {
+          return "No Discount";
+      }
   }
+
+  function printAcknowledgementReceipt(transactionId) {
+      const row = document.querySelector(`tr[data-transaction-id="${transactionId}"]`);
+      if (!row) return;
+
+      const discountLabel = getDiscountLabel(row);
+      const discountRate = row.getAttribute("data-discount-rate");
+
+      let html = "<div style='font-family:\"Courier New\",monospace;font-size:14px;line-height:1.2;'>";
+      html += "<div style='text-align:center;margin-bottom:5px;'><img src='" + logoUrl + "' style='width:50px;'></div>";
+      html += "<div style='text-align:center;font-weight:bold;'>Mendoza Diagnostic Center</div>";
+      html += "<div style='text-align:center;margin-bottom:10px;'>Acknowledgement Receipt</div>";
+
+      html += `<strong>Transaction ID: ${row.getAttribute("data-transaction-id")}</strong><br>`;
+      html += `<strong>Patient Name: ${row.getAttribute("data-patient-name")}</strong><br>`;
+      html += `<strong>Contact Number: ${row.getAttribute("data-contact")}</strong><br>`;
+      html += `<strong>Company: ${row.getAttribute("data-company")}</strong><br>`;
+      html += `<strong>Package Name: ${row.getAttribute("data-purpose")}</strong><br>`;
+      html += `<strong>Date: ${row.getAttribute("data-transaction-date")} ${row.getAttribute("data-transaction-time")}</strong><br><br>`;
+
+      const tests = row.getAttribute("data-test-details");
+      if (tests) {
+        html += "<strong>Tests:</strong><br>";
+        tests.split(",").forEach(item => {
+          const [n, p] = item.split(" - ");
+          html += `<strong>• ${n.trim()} — ${p.trim()}<br></strong>`;
+        });
+        html += "<br>";
+      }
+
+      html += "<strong>Payment:</strong><br>";
+      html += `<strong>Type: ${row.getAttribute("data-payment-type")}</strong><br>`;
+      html += `<strong>Txn Type: ${row.getAttribute("data-transaction-type")}</strong><br>`;
+      html += `<strong>Discount: ${discountLabel} (${discountRate})</strong><br>`;
+      html += `<strong>Total: ${row.getAttribute("data-transaction-total")}</strong><br>`;
+      html += `<strong>Paid: ${row.getAttribute("data-discounted-total")}</strong><br>`;
+      html += "</div>";
+
+      document.getElementById("receiptDetails").innerHTML = html;
+      document.getElementById("receiptModal").style.display = "block";
+  }
+
 
   function printSticker(firstName, lastName, txnId, birthdate) {
     const today = new Date().toISOString().split("T")[0];

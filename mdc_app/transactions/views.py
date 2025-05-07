@@ -104,41 +104,47 @@ class TransactionCreateView(CreateView):
         return ctx
 
     def form_valid(self, form):
-        # … your existing form_valid logic unchanged …
         self.object = form.save(commit=False)
-        tp = self.request.POST.get('transaction_purpose') or form.cleaned_data.get('transaction_purpose')
-        self.object.transaction_purpose = tp.strip() if tp else None
 
-        pkg = None
-        if self.object.company_id and self.object.transaction_purpose:
-            pkg = Setpackage.objects.filter(
-                company=self.object.company,
-                package_transaction_purpose__iexact=self.object.transaction_purpose
-            ).first()
-        self.object.setpackage = pkg
-
-        self.object.transaction_status = 'Ongoing'
-        if not self.object.payment_type:
-            self.object.payment_type = 'Cash'
-
-        # discount logic
+        # DEBUG: show raw POST discounts
         selected = self.request.POST.getlist('discounts')
-        self.object.is_philhealth      = 'Philhealth'     in selected
+        print("🛠️ DEBUG - Submitted discounts:", selected)
+
+        self.object.is_philhealth      = 'Philhealth' in selected or 'Philhealth 700' in selected
         self.object.is_philhealth_free = 'Philhealth Free' in selected
-        self.object.is_senior_citizen  = 'Senior Citizen'  in selected
-        self.object.is_pwd             = 'PWD'             in selected
+        self.object.is_senior_citizen  = 'Senior Citizen' in selected
+        self.object.is_pwd             = 'PWD' in selected
 
         base = self.object.transaction_total
         rate = 0
+
+        print(f"🧮 DEBUG - Base transaction total: {base}")
+        print(f"🧾 DEBUG - is_philhealth: {self.object.is_philhealth}")
+        print(f"🧾 DEBUG - is_philhealth_free: {self.object.is_philhealth_free}")
+        print(f"🧾 DEBUG - is_senior_citizen: {self.object.is_senior_citizen}")
+        print(f"🧾 DEBUG - is_pwd: {self.object.is_pwd}")
+
         if self.object.is_philhealth_free:
             rate = base
+            print("📢 DEBUG - Philhealth Free applied → full discount")
         else:
-            if self.object.is_philhealth:
+            if 'Philhealth 700' in selected:
+                rate += 700
+                print("✅ DEBUG - Philhealth 700 applied")
+            elif 'Philhealth' in selected:
                 rate += 500
+                print("✅ DEBUG - Philhealth 500 applied")
+
             if self.object.is_senior_citizen or self.object.is_pwd:
-                rate += round(base * 0.2)
-        self.object.discount_rate    = rate
+                senior_pwd_discount = round(base * 0.2)
+                print(f"✅ DEBUG - SC/PWD discount: {senior_pwd_discount}")
+                rate += senior_pwd_discount
+
+        self.object.discount_rate = rate
         self.object.discounted_total = max(base - rate, 0)
+
+        print(f"🎯 DEBUG - Final Discount Rate: {rate}")
+        print(f"🎯 DEBUG - Final Discounted Total: {self.object.discounted_total}")
 
         self.object.save()
         form.save_m2m()
@@ -151,6 +157,7 @@ class TransactionCreateView(CreateView):
             )
 
         return redirect(self.success_url)
+
 
 
 class TransactionUpdateView(UpdateView):
@@ -194,8 +201,12 @@ class TransactionUpdateView(UpdateView):
         if transaction.is_philhealth_free:
             rate = base
         else:
-            if transaction.is_philhealth:
+            discounts = self.request.POST.getlist('discounts')
+            if 'Philhealth 700' in discounts:
+                rate += 700
+            elif 'Philhealth' in discounts:
                 rate += 500
+
             if transaction.is_senior_citizen or transaction.is_pwd:
                 rate += round(base * 0.2)
         transaction.discount_rate    = rate
