@@ -106,11 +106,26 @@ class TransactionCreateView(CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
 
-        # DEBUG: show raw POST discounts
+        tp = self.request.POST.get('transaction_purpose') or form.cleaned_data.get('transaction_purpose')
+        self.object.transaction_purpose = tp.strip() if tp else None
+
+        pkg = None
+        if self.object.company_id and self.object.transaction_purpose:
+            pkg = Setpackage.objects.filter(
+                company=self.object.company,
+                package_transaction_purpose__iexact=self.object.transaction_purpose
+            ).first()
+        self.object.setpackage = pkg
+
+        self.object.transaction_status = form.cleaned_data.get('transaction_status', 'Ongoing')
+        if not self.object.payment_type:
+            self.object.payment_type = 'Cash'
+
+        # Unified discount logic
         selected = self.request.POST.getlist('discounts')
         print("🛠️ DEBUG - Submitted discounts:", selected)
 
-        self.object.is_philhealth      = 'Philhealth' in selected or 'Philhealth 700' in selected
+        self.object.is_philhealth      = 'Philhealth 500' in selected or 'Philhealth 700' in selected
         self.object.is_philhealth_free = 'Philhealth Free' in selected
         self.object.is_senior_citizen  = 'Senior Citizen' in selected
         self.object.is_pwd             = 'PWD' in selected
@@ -131,7 +146,7 @@ class TransactionCreateView(CreateView):
             if 'Philhealth 700' in selected:
                 rate += 700
                 print("✅ DEBUG - Philhealth 700 applied")
-            elif 'Philhealth' in selected:
+            elif 'Philhealth 500' in selected:
                 rate += 500
                 print("✅ DEBUG - Philhealth 500 applied")
 
@@ -139,6 +154,22 @@ class TransactionCreateView(CreateView):
                 senior_pwd_discount = round(base * 0.2)
                 print(f"✅ DEBUG - SC/PWD discount: {senior_pwd_discount}")
                 rate += senior_pwd_discount
+        
+
+        # choose one of your model’s DISCOUNT_TYPE_CHOICES
+        if self.object.is_philhealth_free:
+            self.object.discount_type = 'Philhealth Free'
+        elif 'Philhealth 700' in selected:
+            self.object.discount_type = 'Philhealth 700'
+        elif 'Philhealth 500' in selected:
+            self.object.discount_type = 'Philhealth 500'
+        elif self.object.is_senior_citizen:
+            self.object.discount_type = 'Senior Citizen'
+        elif self.object.is_pwd:
+            self.object.discount_type = 'PWD'
+        else:
+            self.object.discount_type = 'No Discount'
+
 
         self.object.discount_rate = rate
         self.object.discounted_total = max(base - rate, 0)
@@ -149,6 +180,7 @@ class TransactionCreateView(CreateView):
         self.object.save()
         form.save_m2m()
 
+        self.object.transaction_tests.all().delete()
         for test in form.cleaned_data.get('tests', []):
             TransactionTest.objects.create(
                 transaction=self.object,
@@ -172,53 +204,84 @@ class TransactionUpdateView(UpdateView):
         return ctx
 
     def form_valid(self, form):
-        transaction = form.save(commit=False)
+        self.object = form.save(commit=False)
 
         tp = self.request.POST.get('transaction_purpose') or form.cleaned_data.get('transaction_purpose')
-        transaction.transaction_purpose = tp.strip() if tp else None
+        self.object.transaction_purpose = tp.strip() if tp else None
 
         pkg = None
-        if transaction.company_id and transaction.transaction_purpose:
+        if self.object.company_id and self.object.transaction_purpose:
             pkg = Setpackage.objects.filter(
-                company=transaction.company,
-                package_transaction_purpose__iexact=transaction.transaction_purpose
+                company=self.object.company,
+                package_transaction_purpose__iexact=self.object.transaction_purpose
             ).first()
-        transaction.setpackage = pkg
+        self.object.setpackage = pkg
 
-        transaction.transaction_status = form.cleaned_data.get('transaction_status', 'Ongoing')
-        if not transaction.payment_type:
-            transaction.payment_type = 'Cash'
+        self.object.transaction_status = form.cleaned_data.get('transaction_status', 'Ongoing')
+        if not self.object.payment_type:
+            self.object.payment_type = 'Cash'
 
-        # mirror the same discount logic:
+        # Unified discount logic
         selected = self.request.POST.getlist('discounts')
-        transaction.is_philhealth      = 'Philhealth'     in selected
-        transaction.is_philhealth_free = 'Philhealth Free' in selected
-        transaction.is_senior_citizen  = 'Senior Citizen'  in selected
-        transaction.is_pwd             = 'PWD'             in selected
+        print("🛠️ DEBUG - Submitted discounts:", selected)
 
-        base = transaction.transaction_total
+        self.object.is_philhealth      = 'Philhealth 500' in selected or 'Philhealth 700' in selected
+        self.object.is_philhealth_free = 'Philhealth Free' in selected
+        self.object.is_senior_citizen  = 'Senior Citizen' in selected
+        self.object.is_pwd             = 'PWD' in selected
+
+        base = self.object.transaction_total
         rate = 0
-        if transaction.is_philhealth_free:
+
+        print(f"🧮 DEBUG - Base transaction total: {base}")
+        print(f"🧾 DEBUG - is_philhealth: {self.object.is_philhealth}")
+        print(f"🧾 DEBUG - is_philhealth_free: {self.object.is_philhealth_free}")
+        print(f"🧾 DEBUG - is_senior_citizen: {self.object.is_senior_citizen}")
+        print(f"🧾 DEBUG - is_pwd: {self.object.is_pwd}")
+
+        if self.object.is_philhealth_free:
             rate = base
+            print("📢 DEBUG - Philhealth Free applied → full discount")
         else:
-            discounts = self.request.POST.getlist('discounts')
-            if 'Philhealth 700' in discounts:
+            if 'Philhealth 700' in selected:
                 rate += 700
-            elif 'Philhealth' in discounts:
+                print("✅ DEBUG - Philhealth 700 applied")
+            elif 'Philhealth 500' in selected:
                 rate += 500
+                print("✅ DEBUG - Philhealth 500 applied")
 
-            if transaction.is_senior_citizen or transaction.is_pwd:
-                rate += round(base * 0.2)
-        transaction.discount_rate    = rate
-        transaction.discounted_total = max(base - rate, 0)
+            if self.object.is_senior_citizen or self.object.is_pwd:
+                senior_pwd_discount = round(base * 0.2)
+                print(f"✅ DEBUG - SC/PWD discount: {senior_pwd_discount}")
+                rate += senior_pwd_discount
 
-        transaction.save()
+        # choose one of your model’s DISCOUNT_TYPE_CHOICES
+        if self.object.is_philhealth_free:
+            self.object.discount_type = 'Philhealth Free'
+        elif 'Philhealth 700' in selected:
+            self.object.discount_type = 'Philhealth 700'
+        elif 'Philhealth 500' in selected:
+            self.object.discount_type = 'Philhealth 500'
+        elif self.object.is_senior_citizen:
+            self.object.discount_type = 'Senior Citizen'
+        elif self.object.is_pwd:
+            self.object.discount_type = 'PWD'
+        else:
+            self.object.discount_type = 'No Discount'
+
+        self.object.discount_rate = rate
+        self.object.discounted_total = max(base - rate, 0)
+
+        print(f"🎯 DEBUG - Final Discount Rate: {rate}")
+        print(f"🎯 DEBUG - Final Discounted Total: {self.object.discounted_total}")
+
+        self.object.save()
         form.save_m2m()
-        transaction.transaction_tests.all().delete()
 
+        self.object.transaction_tests.all().delete()
         for test in form.cleaned_data.get('tests', []):
             TransactionTest.objects.create(
-                transaction=transaction,
+                transaction=self.object,
                 test=test,
                 test_price=test.test_price
             )
