@@ -22,7 +22,7 @@ from django.contrib.staticfiles import finders
 
 from .models import Transaction
 
-
+import json
 
 @method_decorator(login_required, name='dispatch')
 class TransactionListView(ListView):
@@ -201,6 +201,22 @@ class TransactionUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx['patients'] = Patient.objects.all()
+        
+        # build a list of the discounts that are True on this txn
+        txn = self.object
+        saved = []
+        if txn.is_philhealth and txn.discount_type == 'Philhealth 500':
+            saved.append('Philhealth 500')
+        if txn.is_philhealth and txn.discount_type == 'Philhealth 700':
+            saved.append('Philhealth 700')
+        if txn.is_philhealth_free:
+            saved.append('Philhealth Free')
+        if txn.is_senior_citizen:
+            saved.append('Senior Citizen')
+        if txn.is_pwd:
+            saved.append('PWD')
+
+        ctx['saved_discounts_json'] = json.dumps(saved)
         return ctx
 
     def form_valid(self, form):

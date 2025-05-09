@@ -3502,3 +3502,37 @@ django.db.utils.OperationalError: no such table: auth_user
 [2025-05-09 10:21:52,001] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39709
 [2025-05-09 10:21:52,041] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
 [2025-05-09 10:21:52,042] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:32:27,295] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-09 10:32:35,132] INFO django.server "GET / HTTP/1.1" 200 8983
+[2025-05-09 10:32:35,187] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:32:35,187] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:32:36,943] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 27440
+[2025-05-09 10:32:36,973] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:32:36,974] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:33:01,802] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 27368
+[2025-05-09 10:33:01,838] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:33:01,838] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:35:02,511] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 27379
+[2025-05-09 10:35:02,547] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:35:02,547] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:35:13,243] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39709
+[2025-05-09 10:35:13,280] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:35:13,281] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:35:14,686] INFO django.server "GET /transactions/transaction/30/ HTTP/1.1" 200 5680
+[2025-05-09 10:35:14,719] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:35:14,720] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:35:17,004] INFO django.server "GET /transactions/transaction/30/edit/ HTTP/1.1" 200 27480
+[2025-05-09 10:35:17,035] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:35:17,036] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:37:24,679] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39709
+[2025-05-09 10:37:24,727] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:37:24,728] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:37:31,436] INFO django.server "GET /transactions/transaction/29/ HTTP/1.1" 200 5693
+[2025-05-09 10:37:35,015] INFO django.server "GET /transactions/transaction/29/edit/ HTTP/1.1" 200 27492
+[2025-05-09 10:37:40,872] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39709
+[2025-05-09 10:37:42,737] INFO django.server "GET /transactions/transaction/28/ HTTP/1.1" 200 5681
+[2025-05-09 10:37:50,486] INFO django.server "GET /transactions/transaction/28/edit/ HTTP/1.1" 200 27472
+[2025-05-09 10:37:52,639] INFO django.server "POST /transactions/transaction/28/edit/ HTTP/1.1" 302 0
+[2025-05-09 10:37:52,680] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39709
+[2025-05-09 10:37:55,315] INFO django.server "GET /transactions/transaction/20/ HTTP/1.1" 200 5671
+[2025-05-09 10:37:58,887] INFO django.server "GET /transactions/transaction/20/edit/ HTTP/1.1" 200 27454

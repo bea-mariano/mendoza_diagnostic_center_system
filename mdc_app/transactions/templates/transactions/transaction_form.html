@@ -210,6 +210,8 @@
                 {% endfor %}
             };
 
+            const savedDiscounts = JSON.parse('{{ saved_discounts_json|escapejs }}');
+
             // 2) Grab the DOM nodes
             const patientSelect = document.getElementById("id_patient");
             const ageField      = document.getElementById("id_age");
@@ -533,6 +535,17 @@
                 opt.style.display = label.includes(q) ? '' : 'none';
             });
             });
+
+            if (isEdit && Array.isArray(savedDiscounts)) {
+                document.querySelectorAll("input[name='discounts']").forEach(cb => {
+                if (savedDiscounts.includes(cb.value)) {
+                    cb.checked = true;
+                }
+                });
+                // now run your recalc so UI matches the saved values
+                updateDiscountRate();
+                updateDiscountedTotal();
+            }
 
 
         });
