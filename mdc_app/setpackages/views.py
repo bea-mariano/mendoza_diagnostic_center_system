@@ -118,6 +118,9 @@ class SetpackageCreateView(CreateView):
         for test_id in self.request.POST.getlist('tests'):
             exclusion_val = self.request.POST.get(f'exclusion_{test_id}', '')
             try:
+                if exclusion_val == "":
+                    exclusion_val = 0
+                    
                 exclusion_amount = float(exclusion_val)
             except (ValueError, TypeError):
                 continue

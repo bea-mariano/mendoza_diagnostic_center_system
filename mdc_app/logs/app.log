@@ -3487,3 +3487,18 @@ django.db.utils.OperationalError: no such table: auth_user
 [2025-05-08 10:28:08,379] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=PEME&company_id=1 HTTP/1.1" 200 23
 [2025-05-08 10:28:18,161] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
 [2025-05-08 10:28:18,198] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 34904
+[2025-05-09 10:21:11,678] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-09 10:21:20,986] INFO django.server "GET / HTTP/1.1" 200 8973
+[2025-05-09 10:21:21,043] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:21:21,044] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:21:29,055] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 26874
+[2025-05-09 10:21:29,089] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:21:29,090] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-09 10:21:38,665] INFO django.server "GET /transactions/ajax/get-company-peme-rate/1/ HTTP/1.1" 200 18
+[2025-05-09 10:21:38,666] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/1/ HTTP/1.1" 200 212
+[2025-05-09 10:21:41,538] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/1/Debug%20Test%2011/ HTTP/1.1" 200 102
+[2025-05-09 10:21:41,546] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=Debug%20Test%2011&company_id=1 HTTP/1.1" 200 25
+[2025-05-09 10:21:51,952] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-09 10:21:52,001] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 39709
+[2025-05-09 10:21:52,041] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-09 10:21:52,042] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
