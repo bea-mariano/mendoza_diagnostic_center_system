@@ -56,209 +56,242 @@ from operator import attrgetter
 from django.db.models import Q
 
 
+from io import BytesIO
+from datetime import datetime
+from operator import attrgetter
+from itertools import groupby
+
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import Paragraph, Table, TableStyle
+from reportlab.pdfgen import canvas
+
+from io import BytesIO
+from datetime import datetime
+from operator import attrgetter
+from itertools import groupby
+
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import Paragraph, Table, TableStyle
+from reportlab.pdfgen import canvas
+
+from io import BytesIO
+from datetime import datetime
+from operator import attrgetter
+from itertools import groupby
+
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import Paragraph, Table, TableStyle
+from reportlab.pdfgen import canvas
+
 def create_pdf(company, transactions):
     buffer = BytesIO()
     p = canvas.Canvas(buffer, pagesize=letter)
     width, height = letter
-
-    # Header for Mendoza Diagnostic Center
-    p.setFont("Helvetica-Bold", 16)
-    p.drawString(50, 750, "Mendoza Diagnostic Center")
-
-    p.setFont("Helvetica", 9)
-    p.drawString(50, 735, "930 ME National Road, Tibag, Pulilan, Bulacan")
-    p.drawString(50, 725, '"Healthcare partner that is convenient, reliable, and affordable"')
-
-    # STATEMENT OF ACCOUNT Title
-    p.setFont("Helvetica", 12)
-    page_width, _ = letter
-    text = "STATEMENT OF ACCOUNT"
-    text_width = p.stringWidth(text, "Helvetica", 12)
-    x_center = (page_width - text_width) / 2
-    p.drawString(x_center, 690, text)
-
-    # Company details header table
-    header_data = [
-        ["DATE", datetime.now().strftime('%B %d, %Y')],
-        ["STATEMENT NO", f"{company.id}-{datetime.now().strftime('%Y%m')}"] ,
-        ["ACCOUNT NAME", company.company_name]
-    ]
-
-    available_width = width - 100
-    header_table = Table(header_data, colWidths=[available_width * 0.25, available_width * 0.75])
-    header_table.setStyle(TableStyle([
-        ('FONT', (0, 0), (-1, -1), 'Helvetica', 9),
-        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
-        ('TOPPADDING', (0, 0), (-1, -1), 4),
-    ]))
-
-    header_table_y = 660
-    header_table.wrapOn(p, available_width, height)
-    header_table.drawOn(p, 50, header_table_y - header_table._height)
+    margin = 50
+    available_width = width - 2 * margin
 
     styles = getSampleStyleSheet()
     normalStyle = styles['Normal']
 
-    # Transactions table
-    transaction_data = [["DATE", "ID", "PATIENT NAME", "TRANSACTION TYPE", "AMOUNT"]]
-    total_amount = 0
+    def draw_header():
+        # Letterhead
+        p.setFont("Helvetica-Bold", 16)
+        p.drawString(margin, height - margin, "Mendoza Diagnostic Center")
+        p.setFont("Helvetica", 9)
+        p.drawString(margin, height - margin - 15,
+                     "930 ME National Road, Tibag, Pulilan, Bulacan")
+        p.drawString(margin, height - margin - 25,
+                     '"Healthcare partner that is convenient, reliable, and affordable"')
+
+        # Title
+        p.setFont("Helvetica", 12)
+        title = "STATEMENT OF ACCOUNT"
+        tw = p.stringWidth(title, "Helvetica", 12)
+        p.drawString((width - tw) / 2, height - margin - 45, title)
+
+        # Company details
+        hdr = [
+            ["DATE", datetime.now().strftime('%B %d, %Y')],
+            ["STATEMENT NO", f"{company.id}-{datetime.now().strftime('%Y%m')}"],
+            ["ACCOUNT NAME", company.company_name]
+        ]
+        tbl = Table(hdr, colWidths=[available_width * 0.25, available_width * 0.75])
+        tbl.setStyle(TableStyle([
+            ('FONT', (0,0), (-1,-1), 'Helvetica', 9),
+            ('ALIGN',(0,0),(-1,-1),'LEFT'),
+            ('VALIGN',(0,0),(-1,-1),'MIDDLE'),
+            ('BOTTOMPADDING',(0,0),(-1,-1),4),
+            ('TOPPADDING',(0,0),(-1,-1),4),
+        ]))
+        y0 = height - margin - 65
+        tbl.wrapOn(p, available_width, height)
+        tbl.drawOn(p, margin, y0 - tbl._height)
+
+        return y0 - tbl._height - 20  # top of body area
+
+    # Prepare transaction rows
+    header_row = ["DATE", "ID", "PATIENT NAME", "TRANSACTION TYPE", "AMOUNT"]
+    detail_rows = []
+    total_amount = 0.0
     for txn in transactions:
-        amount_value = float(txn.formatted_discounted_total.replace(',', ''))
-        total_amount += amount_value
-        transaction_data.append([
+        amt = float(txn.formatted_discounted_total.replace(',', ''))
+        total_amount += amt
+        detail_rows.append([
             txn.transaction_date.strftime('%Y-%m-%d'),
             txn.id,
             str(txn.patient),
             Paragraph(str(txn.transaction_purpose), normalStyle),
             txn.formatted_discounted_total
         ])
+    total_row = ["BALANCE DUE", "", "", "", f"{total_amount:,.2f}"]
 
-    total_formatted = "{:,.2f}".format(total_amount)
-    transaction_data.append(["BALANCE DUE", "", "", "", total_formatted])
-
-    transactions_table = Table(transaction_data, colWidths=[
-        available_width * 0.15, available_width * 0.10, available_width * 0.30,
-        available_width * 0.30, available_width * 0.15
-    ])
-
-    last_row_index = len(transaction_data) - 1
-
-    transactions_table.setStyle(TableStyle([
-        ('FONT', (0, 0), (-1, 0), 'Helvetica-Bold', 9),
-        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
-        ('FONT', (0, 1), (-1, -1), 'Helvetica', 9),
-        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('GRID', (0, 0), (-1, -1), 0.25, colors.black),
-        ('FONT', (0, last_row_index), (-1, last_row_index), 'Helvetica-Bold', 9),
-        ('BACKGROUND', (0, last_row_index), (-1, last_row_index), colors.lightgrey),
-        ('SPAN', (0, last_row_index), (3, last_row_index)),
-        ('ALIGN', (0, last_row_index), (0, last_row_index), 'RIGHT'),
-        ('ALIGN', (4, 0), (4, -1), 'RIGHT'),
-    ]))
-
-    transactions_table_y = header_table_y - header_table._height - 20
-
-    p.setFont("Helvetica-Bold", 12)
-    p.drawString(50, transactions_table_y, "TRANSACTIONS")
-
-    transactions_table_y = header_table_y - header_table._height - 35
-    transactions_table.wrapOn(p, available_width, height)
-    transactions_table.drawOn(p, 50, transactions_table_y - transactions_table._height)
-
-    # Payment Type Summary Table
-    # Sort transactions by payment_type to prepare for groupby
-    sorted_transactions = sorted(transactions, key=attrgetter('payment_type'))
-
-    summary_data = [["PAYMENT TYPE", "TRANSACTION COUNT", "PRICE PER EMPLOYEE", "TOTAL"]]
-    total_commission = 0
-
-    for payment_type, group in groupby(sorted_transactions, key=attrgetter('payment_type')):
-        group_list = list(group)
-        count_txn = len(group_list)
-        commission = float(50)
-        total = count_txn * commission
-        total_commission += total
-
-        summary_data.append([
-            payment_type,
-            count_txn,
-            f"{commission:,.2f}",
-            f"{total:,.2f}"
-        ])
-
-    # Add total row
-    summary_data.append([
-        "ACCOUNT CURRENT REBATES", "", "",
-        f"{total_commission:,.2f}"
-    ])
-
-
-    summary_table = Table(summary_data, colWidths=[
-        available_width * 0.30, available_width * 0.25, available_width * 0.25, available_width * 0.20
-    ])
-
-    summary_table.setStyle(TableStyle([
-        ('FONT', (0, 0), (-1, 0), 'Helvetica-Bold', 9),
-        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
-        ('FONT', (0, 1), (-1, -1), 'Helvetica', 9),
-        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('GRID', (0, 0), (-1, -1), 0.25, colors.black),
-        ('FONT', (0, -1), (-1, -1), 'Helvetica-Bold', 9),
-        ('BACKGROUND', (0, -1), (-1, -1), colors.lightgrey),
-        ('SPAN', (0, -1), (2, -1)),
-        ('ALIGN', (0, -1), (0, -1), 'RIGHT'),
-    ]))
-
-    summary_table_y = transactions_table_y - transactions_table._height - 30
-
-    p.setFont("Helvetica-Bold", 12)
-    p.drawString(50, summary_table_y, "COMMISSIONS")
-
-    summary_table_y = transactions_table_y - transactions_table._height - 40
-    summary_table.wrapOn(p, available_width, height)
-    summary_table.drawOn(p, 50, summary_table_y - summary_table._height)
-
-    # Final Balance Due Summary Table
-    final_summary_data = [
-        ["BALANCE DUE", f"{total_amount:,.2f}"],
-        ["CURRENT REBATES", f"{total_commission:,.2f}"],
-        ["TOTAL BALANCE DUE", f"{total_amount - total_commission:,.2f}"]
+    # Paginate every 25 rows
+    rows_per_page = 25
+    chunks = [
+        detail_rows[i:i + rows_per_page]
+        for i in range(0, len(detail_rows), rows_per_page)
     ]
 
-    final_summary_table = Table(final_summary_data, colWidths=[available_width * 0.35, available_width * 0.15])
-    final_summary_table.setStyle(TableStyle([
-        ('FONT', (0, 0), (-1, -1), 'Helvetica-Bold', 9),
-        ('BACKGROUND', (0, 0), (-1, -1), colors.whitesmoke),
-        ('GRID', (0, 0), (-1, -1), 0.25, colors.black),
-        ('ALIGN', (1, 0), (1, -1), 'RIGHT'),
-        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-    ]))
+    # Footer notes
+    note_lines = [
+        "*PLEASE MAKE YOUR PAYMENT WITHIN TEN (10) DAYS UPON RECEIPT OF THIS STATEMENT OF ACCOUNT",
+        "*Please compare this statement of account with your records, and should there be any discrepancy",
+        "please contact us at 0938-333-2349",
+        "*Please make check payable to:",
+        "ACCOUNT NAME: MENDOZA DIAGNOSTIC CENTER",
+        "ACCOUNT NO: 413-7-41350801-7",
+        "BANK NAME: METROBANK",
+        "BANK BRANCH: PULILAN, BULACAN"
+    ]
+    line_height = 12
+    notes_block_height = len(note_lines) * line_height + 10
 
-    final_summary_table_y = summary_table_y - summary_table._height - 40
-    p.setFont("Helvetica-Bold", 12)
-    p.drawString(50, final_summary_table_y, "BALANCE SUMMARY")
+    # 1) Draw all transaction pages
+    for page_num, chunk in enumerate(chunks):
+        if page_num > 0:
+            p.showPage()
+        y_body_start = draw_header()
 
-    final_summary_table_y = final_summary_table_y - 15
-    final_summary_table.wrapOn(p, available_width, height)
-    final_summary_table.drawOn(p, 50, final_summary_table_y - final_summary_table._height)
+        # Transactions heading
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(margin, y_body_start, "TRANSACTIONS")
 
+        # Build table for this chunk
+        table_data = [header_row] + chunk
+        is_last_page = (page_num == len(chunks) - 1)
+        # Only append total_row on same page if total transactions <= 12
+        if is_last_page and len(detail_rows) <= 12:
+            table_data.append(total_row)
 
-    notes_y = final_summary_table_y - final_summary_table._height - 30
+        # Style
+        table_style = [
+            ('FONT',(0,0),(-1,0),'Helvetica-Bold',9),
+            ('BACKGROUND',(0,0),(-1,0),colors.lightgrey),
+            ('FONT',(0,1),(-1,-1),'Helvetica',9),
+            ('ALIGN',(0,0),(-1,-1),'LEFT'),
+            ('VALIGN',(0,0),(-1,-1),'MIDDLE'),
+            ('GRID',(0,0),(-1,-1),0.25,colors.black),
+            ('ALIGN',(4,0),(4,-1),'RIGHT'),
+        ]
+        # Only style the balance row if it's on the same page
+        if is_last_page and len(detail_rows) <= 12:
+            table_style += [
+                ('FONT',(0,-1),(-1,-1),'Helvetica-Bold',9),
+                ('BACKGROUND',(0,-1),(-1,-1),colors.lightgrey),
+                ('SPAN',(0,-1),(3,-1)),
+                ('ALIGN',(0,-1),(0,-1),'RIGHT'),
+            ]
 
-    p.setFont("Helvetica-Bold", 9)
-    p.drawString(50, notes_y, "Prepared By:")
-    p.drawString(50, notes_y - 25, "Diosa M. Mendoza")
-    p.setFont("Helvetica", 9)
-    p.drawString(50, notes_y - 35, "Accounting")
+        tbl = Table(table_data, colWidths=[
+            available_width * 0.15,
+            available_width * 0.10,
+            available_width * 0.30,
+            available_width * 0.30,
+            available_width * 0.15,
+        ])
+        tbl.setStyle(TableStyle(table_style))
+        tbl.wrapOn(p, available_width, height)
+        bottom_y = y_body_start - 20 - tbl._height
+        tbl.drawOn(p, margin, bottom_y)
 
-    p.setFont("Helvetica-Bold", 9)
-    p.drawString(250, notes_y, "Checked By:")
-    p.drawString(250, notes_y - 25, "Lovelie Joy M. Mendoza")
-    p.setFont("Helvetica", 9)
-    p.drawString(250, notes_y - 35, "Manager")
+    # 2) If more than 12 transactions, render summary & footers on a separate page
+    if len(detail_rows) > 12:
+        p.showPage()
+        y_body_start = draw_header()
 
-    p.setFont("Helvetica-Bold", 9)
-    p.drawString(50, notes_y - 60, "*PLEASE MAKE YOUR PAYMENT WITHIN TEN (10) DAYS UPON RECEIPT OF THIS STATEMENT OF ACCOUNT")
+        # Commissions summary
+        sorted_txns = sorted(transactions, key=attrgetter('payment_type'))
+        summary = [["PAYMENT TYPE","TRANSACTION COUNT","PRICE PER EMPLOYEE","TOTAL"]]
+        total_commission = 0.0
+        for ptype, grp in groupby(sorted_txns, key=attrgetter('payment_type')):
+            lst = list(grp)
+            cnt = len(lst)
+            com = 50.0
+            total_commission += cnt * com
+            summary.append([ptype, cnt, f"{com:,.2f}", f"{cnt*com:,.2f}"])
+        summary.append(["ACCOUNT CURRENT REBATES","","",f"{total_commission:,.2f}"])
 
-    p.setFont("Helvetica", 9)
-    p.drawString(50, notes_y - 75, "*Please compare this statement of account with your records, and should there be any discrepancy")
-    p.drawString(50, notes_y - 90, "please contact us at 0938-333-2349")
-    p.drawString(50, notes_y - 105, "*Please make check payable to:")
-    p.drawString(50, notes_y - 120, "ACCOUNT NAME: MENDOZA DIAGNOSTIC CENTER")
-    p.drawString(50, notes_y - 135, "ACCOUNT NO: 413-7-41350801-7")
-    p.drawString(50, notes_y - 150, "BANK NAME: METROBANK")
-    p.drawString(50, notes_y - 165, "BANK BRANCH: PULILAN, BULACAN")
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(margin, y_body_start, "COMMISSIONS")
+        tbl2 = Table(summary, colWidths=[
+            available_width * 0.30,
+            available_width * 0.25,
+            available_width * 0.25,
+            available_width * 0.20,
+        ])
+        tbl2.setStyle(TableStyle([
+            ('FONT',(0,0),(-1,0),'Helvetica-Bold',9),
+            ('BACKGROUND',(0,0),(-1,0),colors.lightgrey),
+            ('GRID',(0,0),(-1,-1),0.25,colors.black),
+            ('ALIGN',(0,0),(-1,-1),'CENTER'),
+            ('FONT',(0,-1),(-1,-1),'Helvetica-Bold',9),
+            ('BACKGROUND',(0,-1),(-1,-1),colors.lightgrey),
+            ('SPAN',(0,-1),(2,-1)),
+            ('ALIGN',(0,-1),(0,-1),'RIGHT'),
+        ]))
+        tbl2.wrapOn(p, available_width, height)
+        y_after_comm = y_body_start - 20 - tbl2._height
+        tbl2.drawOn(p, margin, y_after_comm)
 
+        # Balance summary
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(margin, y_after_comm - 40, "BALANCE SUMMARY")
+        final_data = [
+            ["BALANCE DUE", f"{total_amount:,.2f}"],
+            ["CURRENT REBATES", f"{total_commission:,.2f}"],
+            ["TOTAL BALANCE DUE", f"{total_amount - total_commission:,.2f}"],
+        ]
+        tbl3 = Table(final_data, colWidths=[available_width * 0.35, available_width * 0.15])
+        tbl3.setStyle(TableStyle([
+            ('FONT',(0,0),(-1,-1),'Helvetica-Bold',9),
+            ('BACKGROUND',(0,0),(-1,-1),colors.whitesmoke),
+            ('GRID',(0,0),(-1,-1),0.25,colors.black),
+            ('ALIGN',(1,0),(1,-1),'RIGHT'),
+        ]))
+        tbl3.wrapOn(p, available_width, height)
+        y_final = y_after_comm - 60 - tbl3._height
+        tbl3.drawOn(p, margin, y_final)
 
-    # Finish up the PDF
+        # Footers (notes)
+        # Always have enough space—header + summary leaves room, but you could check again if needed
+        notes_y = y_final - 30
+        p.setFont("Helvetica-Bold", 9)
+        p.drawString(margin, notes_y, note_lines[0])
+        p.setFont("Helvetica", 9)
+        for idx, line in enumerate(note_lines[1:], start=1):
+            p.drawString(margin, notes_y - idx * line_height, line)
+
     p.save()
     pdf = buffer.getvalue()
     buffer.close()
     return pdf
+
 
 
 
