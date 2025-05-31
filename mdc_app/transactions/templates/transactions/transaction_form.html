@@ -210,7 +210,8 @@
                 {% endfor %}
             };
 
-            const savedDiscounts = JSON.parse('{{ saved_discounts_json|escapejs }}');
+            const savedDiscountsJson = '{{ saved_discounts_json|escapejs }}';
+            const savedDiscounts = savedDiscountsJson ? JSON.parse(savedDiscountsJson) : [];
 
             // 2) Grab the DOM nodes
             const patientSelect = document.getElementById("id_patient");
@@ -341,15 +342,25 @@
             // --- 5) Fetch and reload purposes ---
             function reloadPurposes() {
                 const companyId = companySelect.value;
+                console.log("reloadPurposes called with companyId:", companyId);
+                
+                // Clear purposes first
                 transactionPurposeField.innerHTML = '<option value="">Select Purpose</option>';
-                if (!companyId) return;
+                
+                if (!companyId) {
+                    console.log("No company selected, returning early");
+                    return;
+                }
         
+                console.log("Fetching purposes for company:", companyId);
                 fetch(`/setpackages/ajax/get-available-transaction-purposes/${companyId}/`)
                     .then(res => {
+                        console.log("Response status:", res.status);
                         if (!res.ok) throw new Error(res.statusText);
                         return res.json();
                     })
                     .then(data => {
+                        console.log("Received purposes data:", data);
                         data.purposes.forEach(p => {
                             const opt = document.createElement("option");
                             opt.value = p;
@@ -359,30 +370,51 @@
                             }
                             transactionPurposeField.appendChild(opt);
                         });
+                        console.log("Added", data.purposes.length, "purposes to dropdown");
                         // trigger a change so the rest of the logic runs
                         transactionPurposeField.dispatchEvent(new Event("change"));
                     })
-                    .catch(err => console.error("Error loading purposes:", err));
+                    .catch(err => {
+                        console.error("Error loading purposes:", err);
+                        // Add fallback option
+                        const fallbackOpt = document.createElement("option");
+                        fallbackOpt.value = "CUSTOM TEST";
+                        fallbackOpt.textContent = "CUSTOM TEST";
+                        transactionPurposeField.appendChild(fallbackOpt);
+                    });
             }
         
             // --- 6) Handlers ---
         
-            // When company changes, reload purposes and get the P E M E rate
+            // When company changes, reload purposes and get the PEME rate
             companySelect.addEventListener("change", function() {
+                console.log("Company changed to:", this.value);
+                
+                // Always reload purposes when company changes
                 reloadPurposes();
+                
                 const cid = companySelect.value;
-                if (!cid) return;
+                if (!cid) {
+                    companyPemeRateField.value = 0;
+                    updateTransactionTotal(null);
+                    updateDiscountRate();
+                    updateDiscountedTotal();
+                    return;
+                }
         
+                console.log("Fetching PEME rate for company:", cid);
                 fetch(`/transactions/ajax/get-company-peme-rate/${cid}/`)
                     .then(res => res.json())
                     .then(data => {
+                        console.log("Received PEME rate:", data.peme_rate);
                         companyPemeRateField.value = data.peme_rate || 0;
                         // recalc using no promo override (will read hidden field)
                         updateTransactionTotal(null);
                         updateDiscountRate();
                         updateDiscountedTotal();
                     })
-                    .catch(() => {
+                    .catch(err => {
+                        console.error("Error fetching PEME rate:", err);
                         companyPemeRateField.value = 0;
                         updateTransactionTotal(null);
                         updateDiscountRate();
@@ -394,18 +426,25 @@
             transactionPurposeField.addEventListener("change", function() {
                 const purpose   = transactionPurposeField.value;
                 const companyId = companySelect.value;
+                
+                console.log("Purpose changed to:", purpose, "for company:", companyId);
         
                 // always reset transactional fields first
                 updateTransactionTotal(null);
                 updateDiscountRate();
                 updateDiscountedTotal();
         
-                if (!(purpose && companyId)) return;
+                if (!(purpose && companyId)) {
+                    console.log("Missing purpose or company, returning early");
+                    return;
+                }
         
+                console.log("Fetching tests for purpose:", purpose);
                 // 1) get tests + exclusion_amount
                 fetch(`/setpackages/ajax/get-tests-by-purpose/${companyId}/${encodeURIComponent(purpose)}/`)
                     .then(res => res.json())
                     .then(data => {
+                        console.log("Received tests data:", data);
                         exclusionMap = {};
                         data.test_ids.forEach(item => {
                             exclusionMap[String(item.test_id)] = parseFloat(item.exclusion_amount) || 0;
@@ -417,15 +456,18 @@
                             cb.checked = ids.includes(cb.value);
                         });
         
-                        // 2) if it’s a package, fetch its promo price
+                        // 2) if it's a package, fetch its promo price
                         if (purpose !== "CUSTOM TEST") {
+                            console.log("Fetching promo price for package:", purpose);
                             fetch(`/setpackages/ajax/get-package-price/?purpose=${encodeURIComponent(purpose)}&company_id=${companyId}`)
                                 .then(res => res.json())
                                 .then(pkg => {
+                                    console.log("Received package data:", pkg);
                                     // store the promo once
                                     currentPromoPrice = pkg.promo_price != null
                                         ? Math.round(pkg.promo_price)
                                         : 0;
+                                    console.log("Set currentPromoPrice to:", currentPromoPrice);
                                     // use it to initialize the field & recalc
                                     updateTransactionTotal(currentPromoPrice);
                                     updateDiscountRate();
@@ -437,6 +479,7 @@
                                 });
                         } else {
                             // custom test → no promo
+                            console.log("Custom test selected, no promo price");
                             currentPromoPrice = null;
                             updateTransactionTotal(null);
                             updateDiscountRate();
@@ -491,12 +534,19 @@
                 if (isNaN(parseInt(discountedTotalField.value, 10))) discountedTotalField.value = 0;
             });
         
-            // --- 9) Initial load: only on CREATE pages ---
+            // --- 9) Initial load handling ---
             const isEdit = !!document.querySelector("form").dataset.pk;
-            if (!isEdit) {
-                // on a NEW transaction we need to load package → tests → promoPrice → recalc
-                reloadPurposes();
+            console.log("Page loaded, isEdit:", isEdit);
+            
+            if (isEdit) {
+                // For edit pages, if company is already selected, load purposes
+                if (companySelect.value) {
+                    console.log("Edit page with pre-selected company, loading purposes");
+                    reloadPurposes();
+                }
             }
+            // For create pages, we don't call reloadPurposes() here since no company is selected yet
+            // It will be called when user selects a company
 
             // --- MUTUALLY EXCLUSIVE: Philhealth vs Philhealth Free ---
 
