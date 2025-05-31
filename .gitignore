@@ -6,3 +6,5 @@
 mdc_app\logs\app.log
 
 *.pyc
+
+**/.DS_Store
