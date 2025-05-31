@@ -3571,3 +3571,47 @@ django.db.utils.OperationalError: no such table: auth_user
 [2025-05-09 13:34:42,148] INFO django.utils.autoreload Watching for file changes with StatReloader
 [2025-05-09 13:34:44,828] INFO django.server "GET /companies/company/1/ HTTP/1.1" 200 39679
 [2025-05-09 13:34:48,911] INFO django.server "GET /companies/company/1/generate_statement/?month=2025-05 HTTP/1.1" 200 6619
+[2025-05-09 13:35:55,234] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-09 13:36:03,031] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 252020
+[2025-05-09 13:36:06,478] INFO django.server "GET /transactions/transaction/14/edit/ HTTP/1.1" 200 29747
+[2025-05-31 12:42:11,804] INFO django.utils.autoreload Watching for file changes with StatReloader
+[2025-05-31 12:42:18,003] INFO django.server "GET / HTTP/1.1" 302 0
+[2025-05-31 12:42:18,039] INFO django.server "GET /accounts/login/?next=/ HTTP/1.1" 200 1862
+[2025-05-31 12:42:18,286] WARNING django.request Not Found: /favicon.ico
+[2025-05-31 12:42:18,286] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 3879
+[2025-05-31 12:42:34,179] INFO django.server "GET / HTTP/1.1" 302 0
+[2025-05-31 12:42:34,186] INFO django.server "GET /accounts/login/?next=/ HTTP/1.1" 200 1862
+[2025-05-31 12:42:34,366] WARNING django.request Not Found: /favicon.ico
+[2025-05-31 12:42:34,367] WARNING django.server "GET /favicon.ico HTTP/1.1" 404 3879
+[2025-05-31 12:42:42,093] INFO django.server "POST /accounts/login/?next=/ HTTP/1.1" 302 0
+[2025-05-31 12:42:42,327] INFO django.server "GET /patient/list/ HTTP/1.1" 200 784432
+[2025-05-31 12:42:52,581] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 2878274
+[2025-05-31 12:42:56,937] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 186486
+[2025-05-31 12:43:46,945] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-31 12:43:46,945] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-31 12:43:50,374] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 186486
+[2025-05-31 12:43:50,409] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-31 12:43:50,409] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-31 12:49:08,315] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 189096
+[2025-05-31 12:49:08,346] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-31 12:49:08,347] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-31 12:49:47,262] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 189096
+[2025-05-31 12:49:47,290] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-31 12:49:47,290] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-31 12:50:29,232] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 189096
+[2025-05-31 12:50:29,258] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-31 12:50:29,258] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-31 12:52:32,931] INFO django.server "GET /transactions/transaction/new/ HTTP/1.1" 200 189181
+[2025-05-31 12:52:32,986] WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-31 12:52:32,987] WARNING django.server "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3990
+[2025-05-31 12:52:39,677] INFO django.server "GET /transactions/ajax/get-company-peme-rate/81/ HTTP/1.1" 200 18
+[2025-05-31 12:52:39,678] INFO django.server "GET /setpackages/ajax/get-available-transaction-purposes/81/ HTTP/1.1" 200 31
+[2025-05-31 12:52:45,830] INFO django.server "GET /setpackages/ajax/get-tests-by-purpose/81/PEME%207-ELEVEN/ HTTP/1.1" 200 329
+[2025-05-31 12:52:45,848] INFO django.server "GET /setpackages/ajax/get-package-price/?purpose=PEME%207-ELEVEN&company_id=81 HTTP/1.1" 200 22
+[2025-05-31 12:54:08,000] INFO django.server "POST /transactions/transaction/new/ HTTP/1.1" 302 0
+[2025-05-31 12:54:11,510] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 2880834
+[2025-05-31 12:54:13,495] INFO django.server "GET /transactions/transaction/1242/ HTTP/1.1" 200 6500
+[2025-05-31 12:54:25,824] INFO django.server "GET /transactions/transaction/list/ HTTP/1.1" 200 2880834
+[2025-05-31 12:54:28,038] INFO django.server "GET /patient/list/ HTTP/1.1" 200 784432
+[2025-05-31 12:54:39,883] INFO django.server "GET /patient/list/?q=abacan HTTP/1.1" 200 7046
+[2025-05-31 12:54:41,892] INFO django.server "GET /patient/483/ HTTP/1.1" 200 5132
